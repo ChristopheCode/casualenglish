@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Irregular Verbs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <button onclick="toggleMenu()" class="ham"><img src="./img/hamburger.svg" alt=""></button>
+    <div class="words">
+      <h1>Irregular Verbs</h1>
+      <div class="word">
+        <p id="french"></p>
+        <div class="progressbar">
+          <span></span>
+        </div>
+      </div>
+      <div class="answer">
+        <p id="english"></p>
+      </div>
+      <div class="btn-deck">
+        <button id="speakButton"><img src="./img/speak.png" alt=""></button>
+        <button onclick="displayIrregularVerb()"><img src="./img/next.png" alt=""></button>
+      </div>
+
+      <div class="footer">
+        <ul>
+          <li><a class="legal" href="https://mention.goalc2.com/index.html" target="_blank">mention legale</a></li>
+                    <li><a class="legal" href="https://mention.goalc2.com/cookies.html" target="_blank">politique de cookies</a>
+                    </li>
+                    <li><a class="legal" href="https://mention.goalc2.com/confidentialite.html" target="_blank">politique de confidentialité</a></li>
+                    <li><a class="legal" href="https://mention.goalc2.com/condition.html" target="_blank">condition générale de vente (CGV)</a></li>
+        </ul>
+        <a href="./index.html"><img src="./img/logo.png" alt=""></a>
+      </div>
+    </div>
+    <button onclick="toggleDark()" class="btn-float dark-mode"><img src="./img/moon.svg" alt=""></button>
+    <button onclick="toggleQues()" class="btn-float ques"><img src="./img/question.svg" alt=""></button>
+
+    <!-- menu -->
+    <div class="menu">
+      <a href="./iregularverbs.html">Irregular Verb</a>
+      <a href="./phrasalverbs.html">Phrasal Verbs</a>
+      <a href="./preposition_at_on_in.html">At on in time</a>
+      <a href="https://join.goalc2.com/">Join</a>
+        <!--<a href="">Exercise</a>
+        <a href="">Grammer</a> -->
+    </div>
+
+    <!-- help -->
+    <div class="help">
+      <p>1. Dans les paramètres
+        régler son téléphone
+        en anglais
+        <br>
+        <br>
+        2. Dans le menu choisir
+        la thématique
+        <br>
+        <br>
+        3. Appuyer sur play
+        <br>
+        <br>
+        4. Vous avez 2 secondes
+        pour trouver la réponse
+        <br>
+        <br>
+        5. Le résultat s'affiche
+        <br>
+        <br>
+        6. Pour écouter appuyer
+        sur le haut-parleur
+        <br>
+        <br>
+        7. Pour passer au suivant
+        appuyer sur la flèche
+      </p>
+    </div>
+
+  </div>
+  <script src="./script.js"></script>
+  <script>
+    var irregularVerbs = [
+      { english: "be", french: "être", pastSimple: "was were", pastParticiple: "been" },
+      { english: "beat", french: "battre", pastSimple: "beat", pastParticiple: "beaten" },
+      { english: "become", french: "devenir", pastSimple: "became", pastParticiple: "become" },
+      { english: "begin", french: "commencer", pastSimple: "began", pastParticiple: "begun" },
+      { english: "bend", french: "plier se courber", pastSimple: "bent", pastParticiple: "bent" },
+      { english: "bet", french: "parier", pastSimple: "bet", pastParticiple: "bet" },
+      { english: "bite", french: "mordre", pastSimple: "bit", pastParticiple: "bitten" },
+      { english: "blow", french: "souffler gonfler", pastSimple: "blew", pastParticiple: "blown" },
+      { english: "break", french: "casser", pastSimple: "broke", pastParticiple: "broken" },
+      { english: "bring", french: "apporter", pastSimple: "brought", pastParticiple: "brought" },
+      { english: "broadcast", french: "diffuser émettre", pastSimple: "broadcast", pastParticiple: "broadcast" },
+      { english: "build", french: "construire", pastSimple: "built", pastParticiple: "built" },
+      { english: "burst", french: "éclater", pastSimple: "burst", pastParticiple: "burst" },
+      { english: "buy", french: "acheter", pastSimple: "bought", pastParticiple: "bought" },
+      { english: "catch", french: "attraper", pastSimple: "caught", pastParticiple: "caught" },
+      { english: "choose", french: "choisir", pastSimple: "chose", pastParticiple: "chosen" },
+      { english: "come", french: "venir", pastSimple: "came", pastParticiple: "come" },
+      { english: "cost", french: "coûter", pastSimple: "cost", pastParticiple: "cost" },
+      { english: "creep", french: "ramper", pastSimple: "crept", pastParticiple: "crept" },
+      { english: "cut", french: "couper", pastSimple: "cut", pastParticiple: "cut" },
+      { english: "deal", french: "distribuer", pastSimple: "dealt", pastParticiple: "dealt" },
+      { english: "dig", french: "creuser", pastSimple: "dug", pastParticiple: "dug" },
+      { english: "do", french: "faire", pastSimple: "did", pastParticiple: "done" },
+      { english: "draw", french: "dessiner tirer", pastSimple: "drew", pastParticiple: "drawn" },
+      { english: "drink", french: "boire", pastSimple: "drank", pastParticiple: "drunk" },
+      { english: "drive", french: "conduire", pastSimple: "drove", pastParticiple: "driven" },
+      { english: "eat", french: "manger", pastSimple: "ate", pastParticiple: "eaten" },
+      { english: "fall", french: "tomber", pastSimple: "fell", pastParticiple: "fallen" },
+      { english: "feed", french: "nourrir", pastSimple: "fed", pastParticiple: "fed" },
+      { english: "feel", french: "se sentir ressentir", pastSimple: "felt", pastParticiple: "felt" },
+      { english: "fight", french: "se battre", pastSimple: "fought", pastParticiple: "fought" },
+      { english: "find", french: "trouver", pastSimple: "found", pastParticiple: "found" },
+      { english: "flee", french: "s'enfuir", pastSimple: "fled", pastParticiple: "fled" },
+      { english: "fly", french: "voler", pastSimple: "flew", pastParticiple: "flown" },
+      { english: "forbid", french: "interdire", pastSimple: "forbade", pastParticiple: "forbidden" },
+      { english: "forget", french: "oublier", pastSimple: "forgot", pastParticiple: "forgotten forgot" },
+      { english: "forgive", french: "pardonner", pastSimple: "forgave", pastParticiple: "forgiven" },
+      { english: "freeze", french: "geler", pastSimple: "froze", pastParticiple: "frozen" },
+      { english: "get", french: "obtenir", pastSimple: "got", pastParticiple: "gotten got" },
+      { english: "give", french: "donner", pastSimple: "gave", pastParticiple: "given" },
+      { english: "go", french: "aller", pastSimple: "went", pastParticiple: "gone" },
+      { english: "grow", french: "grandir pousser", pastSimple: "grew", pastParticiple: "grown" },
+      { english: "hang", french: "tenir pendre", pastSimple: "hung", pastParticiple: "hung" },
+      { english: "have", french: "avoir", pastSimple: "had", pastParticiple: "had" },
+      { english: "hear", french: "entendre", pastSimple: "heard", pastParticiple: "heard" },
+      { english: "hide", french: "cacher", pastSimple: "hid", pastParticiple: "hidden" },
+      { english: "hit", french: "taper appuyer", pastSimple: "hit", pastParticiple: "hit" },
+      { english: "hold", french: "tenir", pastSimple: "held", pastParticiple: "held" },
+      { english: "hurt", french: "blesser", pastSimple: "hurt", pastParticiple: "hurt" },
+      { english: "keep", french: "garder", pastSimple: "kept", pastParticiple: "kept" },
+      { english: "kneel", french: "s'agenouiller", pastSimple: "knelt knelled", pastParticiple: "knelt kneeled" },
+      { english: "know", french: "connaître savoir", pastSimple: "knew", pastParticiple: "known" },
+      { english: "lay", french: "poser", pastSimple: "laid", pastParticiple: "laid" },
+      { english: "lead", french: "mener guider", pastSimple: "led", pastParticiple: "led" },
+      { english: "learn", french: "apprendre", pastSimple: "learnt", pastParticiple: "learnt" },
+      { english: "leave", french: "laisser quitter partir", pastSimple: "left", pastParticiple: "left" },
+      { english: "lend", french: "prêter", pastSimple: "lent", pastParticiple: "lent" },
+      { english: "let", french: "permettre louer", pastSimple: "let", pastParticiple: "let" },
+      { english: "lie", french: "s'allonger", pastSimple: "lay", pastParticiple: "lain" },
+      { english: "light", french: "allumer", pastSimple: "lit lighted", pastParticiple: "lit lighted" },
+      { english: "lose", french: "perdre", pastSimple: "lost", pastParticiple: "lost" },
+      { english: "make", french: "fabriquer", pastSimple: "made", pastParticiple: "made" },
+      { english: "mean", french: "signifier", pastSimple: "meant", pastParticiple: "meant" },
+      { english: "meet", french: "rencontrer", pastSimple: "met", pastParticiple: "met" },
+      { english: "pay", french: "payer", pastSimple: "paid", pastParticiple: "paid" },
+      { english: "put", french: "mettre", pastSimple: "put", pastParticiple: "put" },
+      { english: "read", french: "lire", pastSimple: "read", pastParticiple: "read" },
+      { english: "ride", french: "conduire faire du cheval", pastSimple: "rode", pastParticiple: "ridden" },
+      { english: "ring", french: "sonner téléphoner", pastSimple: "rang", pastParticiple: "rung" },
+      { english: "rise", french: "lever", pastSimple: "rose", pastParticiple: "risen" },
+      { english: "run", french: "courir", pastSimple: "ran", pastParticiple: "run" },
+      { english: "say", french: "dire", pastSimple: "said", pastParticiple: "said" },
+      { english: "see", french: "voir", pastSimple: "saw", pastParticiple: "seen" },
+      { english: "seek", french: "chercher", pastSimple: "sought", pastParticiple: "sought" },
+      { english: "sell", french: "vendre", pastSimple: "sold", pastParticiple: "sold" },
+      { english: "send", french: "envoyer", pastSimple: "sent", pastParticiple: "sent" },
+      { english: "set", french: "fixer", pastSimple: "set", pastParticiple: "set" },
+      { english: "shake", french: "secouer", pastSimple: "shook", pastParticiple: "shaken" },
+      { english: "sew", french: "coudre", pastSimple: "sewed", pastParticiple: "sewn sewed" },
+      { english: "shine", french: "briller", pastSimple: "shone", pastParticiple: "shone" },
+      { english: "shoot", french: "tirer fusiller", pastSimple: "shot", pastParticiple: "shot" },
+      { english: "show", french: "montrer", pastSimple: "showed", pastParticiple: "shown" },
+      { english: "shrink", french: "retrecir", pastSimple: "shrank", pastParticiple: "shrunk" },
+      { english: "shut", french: "fermer", pastSimple: "shut", pastParticiple: "shut" },
+      { english: "sing", french: "chanter", pastSimple: "sang", pastParticiple: "sung" },
+      { english: "sink", french: "couler", pastSimple: "sank sunk", pastParticiple: "sunk sunken" },
+      { english: "sit", french: "s'asseoir", pastSimple: "sat", pastParticiple: "sat" },
+      { english: "sleep", french: "dormir", pastSimple: "slept", pastParticiple: "slept" },
+      { english: "slide", french: "glisser", pastSimple: "slid", pastParticiple: "slid" },
+      { english: "speak", french: "parler", pastSimple: "spoke", pastParticiple: "spoken" },
+      { english: "spend", french: "dépenser passer du temps", pastSimple: "spent", pastParticiple: "spent" },
+      { english: "spit", french: "cracher", pastSimple: "spat spit", pastParticiple: "spat spit" },
+      { english: "split", french: "fendre", pastSimple: "split", pastParticiple: "split" },
+      { english: "spread", french: "répandre", pastSimple: "spread", pastParticiple: "spread" },
+      { english: "spring", french: "surgir jaillir bondir", pastSimple: "sprang", pastParticiple: "sprung" },
+      { english: "stand", french: "être debout", pastSimple: "stood", pastParticiple: "stood" },
+      { english: "steal", french: "voler dérober", pastSimple: "stole", pastParticiple: "stolen" },
+      { english: "stick", french: "coller", pastSimple: "stuck", pastParticiple: "stuck" },
+      { english: "sting", french: "piquer", pastSimple: "stung", pastParticiple: "stung" },
+      { english: "stink", french: "puer", pastSimple: "stank", pastParticiple: "stunk" },
+      { english: "strike", french: "frapper", pastSimple: "struck", pastParticiple: "struck" },
+      { english: "swear", french: "jurer", pastSimple: "swore", pastParticiple: "sworn" },
+      { english: "sweep", french: "balayer", pastSimple: "swept", pastParticiple: "swept" },
+      { english: "swim", french: "nager", pastSimple: "swam", pastParticiple: "swum" },
+      { english: "swing", french: "se balancer", pastSimple: "swung swang", pastParticiple: "swung swang" },
+      { english: "take", french: "prendre", pastSimple: "took", pastParticiple: "taken" },
+      { english: "teach", french: "enseigner", pastSimple: "taught", pastParticiple: "taught" },
+      { english: "tear", french: "déchirer", pastSimple: "tore", pastParticiple: "torn" },
+      { english: "tell", french: "dire raconter", pastSimple: "told", pastParticiple: "told" },
+      { english: "think", french: "penser", pastSimple: "thought", pastParticiple: "thought" },
+      { english: "throw", french: "jeter", pastSimple: "threw", pastParticiple: "thrown" },
+      { english: "understand", french: "comprendre", pastSimple: "understood", pastParticiple: "understood" },
+      { english: "wake", french: "réveiller", pastSimple: "woke", pastParticiple: "woken" },
+      { english: "wear", french: "porter (avoir sur soi)", pastSimple: "wore", pastParticiple: "worn" },
+      { english: "weep", french: "pleurer", pastSimple: "wept", pastParticiple: "wept" },
+      { english: "win", french: "gagner", pastSimple: "won", pastParticiple: "won" },
+      { english: "write", french: "écrire", pastSimple: "wrote", pastParticiple: "written" },
+
+    ];
+    var count = -1;
+    var verb = null;
+    const speakButton = document.querySelector("#speakButton");
+    let speech = new SpeechSynthesisUtterance("Please Wait");
+
+    window.onload = () => {
+      displayIrregularVerb();
+    }
+
+    function displayIrregularVerb() {
+      if (count < 0) {
+        document.getElementById("french").innerHTML = "";
+        document.getElementById("english").innerHTML = "";
+        count = 2;
+        var randomIndex = Math.floor(Math.random() * irregularVerbs.length);
+        verb = irregularVerbs[randomIndex];
+        document.getElementById("french").innerHTML = verb.french;
+
+        speech = new SpeechSynthesisUtterance("Please Wait");
+        speech.lang = "en-UK";
+
+        const progressbar = document.querySelector('.words .word .progressbar span');
+        progressbar.animate([{ width: '0%' }, { width: '100%' }], { duration: (count + 1) * 1000, fill: "forwards" })
+
+        var interval = setInterval(function () {
+          count--;
+          if (count === -1) {
+            clearInterval(interval);
+            speech = new SpeechSynthesisUtterance(verb.english + ", " + verb.pastSimple + ", " + verb.pastParticiple);
+            speech.lang = "en-UK";
+            document.getElementById("english").innerHTML = verb.english + " " + verb.pastSimple + " " + verb.pastParticiple;
+          }
+
+        }, 1000);
+      }
+    }
+
+    if ('speechSynthesis' in window) {
+      speakButton.addEventListener("click", function () {
+        if (verb !== null) {
+          window.speechSynthesis.speak(speech);
+        }
+      });
+    } else {
+      speakButton.disabled = true;
+      speakButton.innerHTML = "Text-to-speech not supported";
+    }
+    //bloquer inspection de la page et accès au code source//
+
+    function blockAccess(event) {
+      if (event.keyCode == 123 || (event.ctrlKey && event.shiftKey && event.keyCode == 73)) {
+        event.preventDefault();
+      }
+    }
+
+    document.addEventListener('keydown', blockAccess);
+
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+  </script>
+</body>
+
+</html>
