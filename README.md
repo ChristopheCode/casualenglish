@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/images/logo.png" alt="Casual English Logo" width="200">
+  <img src="https://github.com/ChristopheCode/casualenglish/blob/main/img/logo.png?raw=true" alt="Casual English Logo" width="200">
 </p>
 
 <h1 align="center">Casual English</h1>
@@ -8,40 +8,23 @@
   <strong>Learn English irregular verbs interactively.</strong>
 </p>
 
-<p align="center">
-
-  <!-- MIT License badge -->
-  <a href="https://opensource.org/licenses/MIT">
-    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT License">
-  </a>
-
-  <!-- GitHub stars -->
-  <a href="https://github.com/USERNAME/REPO/stargazers">
-    <img src="https://img.shields.io/github/stars/USERNAME/REPO?style=flat&color=yellow" alt="GitHub Stars">
-  </a>
-
-  <!-- GitHub forks -->
-  <a href="https://github.com/USERNAME/REPO/fork">
-    <img src="https://img.shields.io/github/forks/USERNAME/REPO?style=flat&color=lightgrey" alt="GitHub Forks">
-  </a>
-
-</p>
-
 ---
 
 ## 📘 About
 
 **Casual English** is a simple educational tool designed to help students practice and improve their knowledge of **English irregular verbs**.
 
-This project is developed by a small team of IT specialists, designers, and teachers.  
-Our goal is to make English learning easier, clearer, and more interactive.
+The project is developed by a small team of IT specialists, designers, and teachers.  
+Our goal is to make English learning easier, clearer, and more engaging.
+
+The project currently focuses on the **frontend development** of the application.
 
 ---
 
 ## ✨ Features
 
-- **Irregular Verbs Practice** – Interactive learning tools  
-- **Simple and Clean UI** – Easy to use for students of all levels  
+- **Irregular Verbs Practice** – Learn and practice English irregular verbs through interactive exercises  
+- **Simple and Clean Interface** – Designed to be easy to use for students of all levels  
 
 ---
 
@@ -53,15 +36,15 @@ Our goal is to make English learning easier, clearer, and more interactive.
 
 ## 👥 Our Team
 
-- **Developers** – UI and learning experience  
-- **Designers** – Clean and accessible visual layout  
-- **Teachers** – Educational quality of the content  
+- **Developers** – Building the user interface and learning experience  
+- **Designers** – Creating a clean and accessible visual layout  
+- **Teachers** – Ensuring the educational quality of the content  
 
 ---
 
 ## 🎯 Our Mission
 
-To help students strengthen their English skills with simple, focused, and interactive exercises centered on irregular verbs.
+To help students improve their English skills with clear, focused, and interactive exercises centered on irregular verbs.
 
 ---
 
@@ -69,7 +52,7 @@ To help students strengthen their English skills with simple, focused, and inter
 
 We welcome contributions!
 
-1. Fork this repository  
+1. Fork the repository  
 2. Create a new branch (e.g. `casualenglish/add-new-verb-list`)  
 3. Make your changes  
 4. Open a Pull Request  
@@ -79,5 +62,5 @@ We welcome contributions!
 ## 📄 License
 
 This project is open-source under the **MIT License**.  
+You are free to use, modify, and share the code.  
 See the `LICENSE` file for more details.
-
