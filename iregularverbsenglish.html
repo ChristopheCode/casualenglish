@@ -317,6 +317,21 @@
       });
     }
 
+    function isInstagramWebView() {
+    const ua = navigator.userAgent || "";
+    return ua.includes("Instagram");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const speakButton = document.getElementById("speakButton");
+
+    if (isInstagramWebView()) {
+    // Hide the speaker button entirely in Instagram
+    speakButton.style.display = "none";
+    }
+    });
+
+
     // IMPORTANT:
     // Removed the "block access / disable right click / disable keys" code.
     // This can break Instagram in-app browser interactions and does not protect source code anyway.
