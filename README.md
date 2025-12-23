@@ -1,32 +1,63 @@
-English Learning App
-About
-English Learning App is a simple and educational tool designed to help students improve their English skills. Our app focuses on learning irregular verbs and we also have a project to help users learn synonyms and antonyms.
+# English Learning App
 
-This project is being developed by a small team of IT specialists, designers, and teachers. Our goal is to make learning easier and more engaging for students.
+## 📘 About
 
-Currently, the project focuses on the frontend development of the app, but we plan to expand it over time.
+**English Learning App** is a simple and educational tool designed to help students improve their English skills.  
+The app currently focuses on **learning irregular verbs**, and an additional project to help users learn **synonyms and antonyms** is planned.
 
-Features
-Irregular Verbs Practice: Learn and practice English irregular verbs with interactive exercises.
-Synonyms and Antonyms (coming soon): A project to help users expand their vocabulary.
-Simple and Clean Design: Easy to use for all students.
-Technology
-Frontend: [html, CSS, Javascript]
-Our Team
-We are a small team working together to make this project possible:
+This project is developed by a small team of IT specialists, designers, and teachers.  
+Our goal is to make learning easier and more engaging for students.
 
-Developers: Focus on building the user interface and experience.
-Designers: Creating a simple and attractive layout for the app.
-Teachers: Helping ensure the content is educational and useful.
-Our Mission
-Our mission is to help students improve their English language skills in a fun and interactive way. We believe that technology can be a powerful tool for learning, and we want to make it accessible to everyone.
+The project currently focuses on the **frontend development**, but new features will be added over time.
 
-Contributing
-We welcome contributions! If you’d like to help, feel free to:
+---
 
-Fork the repository.
-Create a new branch (e.g., casualenglish/add-new-verb-list).
-Make your changes.
-Open a Pull Request.
-License
-This project is open source under the MIT License. You are free to use, modify, and share the code. See the LICENSE file for more details.
+## ✨ Features
+
+- **Irregular Verbs Practice**: Learn and practice English irregular verbs with interactive exercises.
+- **Synonyms & Antonyms (coming soon)**: Expand your vocabulary in a fun and effective way.
+- **Simple and Clean Design**: Easy to use for all students.
+
+---
+
+## 🛠 Technology
+
+- **Frontend:** HTML, CSS, JavaScript
+
+---
+
+## 👥 Our Team
+
+We are a small, collaborative team:
+
+- **Developers** – Building the user interface and improving the experience  
+- **Designers** – Creating a clean and attractive visual layout  
+- **Teachers** – Ensuring the content is educational and relevant  
+
+---
+
+## 🎯 Our Mission
+
+Our mission is to help students improve their English language skills in a fun and interactive way.  
+We believe technology can make learning more accessible and enjoyable.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions!  
+To contribute:
+
+1. **Fork** the repository  
+2. Create a new branch (e.g. `casualenglish/add-new-verb-list`)  
+3. Make your changes  
+4. Open a **Pull Request**  
+
+---
+
+## 📄 License
+
+This project is open-source under the **MIT License**.  
+You are free to use, modify, and share the code.  
+See the `LICENSE` file for more details.
+
