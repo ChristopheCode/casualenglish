@@ -1,92 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>English Irregular Verbs</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <div class="container">
-    <button onclick="toggleMenu()" class="ham"><img src="./img/hamburger.svg" alt=""></button>
+    <button onclick="toggleMenu()" class="ham">
+      <img src="./img/hamburger.svg" alt="Menu" />
+    </button>
+
     <div class="words">
       <h1>Irregular Verbs</h1>
+
       <div class="word">
         <p id="french"></p>
         <div class="progressbar">
           <span></span>
         </div>
       </div>
+
       <div class="answer">
         <p id="english"></p>
       </div>
+
       <div class="btn-deck">
-        <button id="speakButton"><img src="./img/speak.png" alt=""></button>
-        <button onclick="displayIrregularVerb()"><img src="./img/next.png" alt=""></button>
+        <button id="speakButton" type="button">
+          <img src="./img/speak.png" alt="Speak" />
+        </button>
+        <button id="nextButton" type="button">
+          <img src="./img/next.png" alt="Next" />
+        </button>
       </div>
 
       <div class="footer">
         <ul>
-          <li><a class="legal" href="./mention.html" target="_blank">Legal Notice</a></li>
-                    <li><a class="legal" href="./cookies.html" target="_blank">Cookie Policy</a>
-                    </li>
-                    <li><a class="legal" href="./confidentialite.html" target="_blank">Privacy Policy</a></li>
-                    <li><a class="legal" href="./condition.html" target="_blank">General Terms and Conditions of Sale (GTCS)</a></li>
+          <li><a class="legal" href="./mention.html" target="_blank" rel="noopener">Legal Notice</a></li>
+          <li><a class="legal" href="./cookies.html" target="_blank" rel="noopener">Cookie Policy</a></li>
+          <li><a class="legal" href="./confidentialite.html" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a class="legal" href="./condition.html" target="_blank" rel="noopener">General Terms and Conditions of Sale (GTCS)</a></li>
         </ul>
-        <a href="./index.html"><img src="./img/logo.png" alt=""></a>
+        <a href="./index.html">
+          <img src="./img/logo.png" alt="Casual English" />
+        </a>
       </div>
     </div>
-    <button onclick="toggleDark()" class="btn-float dark-mode"><img src="./img/moon.svg" alt=""></button>
-    <button onclick="toggleQues()" class="btn-float ques"><img src="./img/question.svg" alt=""></button>
+
+    <button onclick="toggleDark()" class="btn-float dark-mode">
+      <img src="./img/moon.svg" alt="Dark mode" />
+    </button>
+    <button onclick="toggleQues()" class="btn-float ques">
+      <img src="./img/question.svg" alt="Help" />
+    </button>
 
     <!-- menu -->
     <div class="menu">
       <a href="./index.html">Back to Main Page</a>
-      <!--
-      <a href="./phrasalverbs.html">Phrasal Verbs</a>
-      <a href="./preposition_at_on_in.html">At on in time</a>
-      <a href="https://join.goalc2.com/">Join</a>  --!>
-        <!--<a href="">Exercise</a>
-        <a href="">Grammer</a> -->
     </div>
 
     <!-- help -->
     <div class="help">
-      <p>1. In the settings
-        set your phone
-        to English
-        <br>
-        <br>
-        2. In the menu, choose
-        the language
-        <br>
-        <br>
+      <p>
+        1. In the settings set your phone to English
+        <br><br>
+        2. In the menu, choose the language
+        <br><br>
         3. Press play
-        <br>
-        <br>
-        4. You have 2 seconds
-        to find the answer
-        <br>
-        <br>
+        <br><br>
+        4. You have 2 seconds to find the answer
+        <br><br>
         5. The result is displayed
-        <br>
-        <br>
-        6. To listen, press
-        the speaker
-        <br>
-        <br>
-        7. To go to the next,
-        press the arrow
+        <br><br>
+        6. To listen, press the speaker
+        <br><br>
+        7. To go to the next, press the arrow
       </p>
     </div>
-
   </div>
+
+  <!-- If you still use functions from script.js (toggleMenu/toggleDark/toggleQues), keep this. -->
   <script src="./script.js"></script>
+
   <script>
-    var irregularVerbs = [
+    // =====================
+    // DATA
+    // =====================
+    const irregularVerbs = [
       { english: "be", french: "होना", pastSimple: "was were", pastParticiple: "been" },
       { english: "beat", french: "पीटना मारना", pastSimple: "beat", pastParticiple: "beaten" },
       { english: "become", french: "बनना", pastSimple: "became", pastParticiple: "become" },
@@ -204,68 +207,127 @@
       { english: "weep", french: "रोना", pastSimple: "wept", pastParticiple: "wept" },
       { english: "win", french: "जीतना", pastSimple: "won", pastParticiple: "won" },
       { english: "write", french: "लिखना", pastSimple: "wrote", pastParticiple: "written" },
-
     ];
-    var count = -1;
-    var verb = null;
-    const speakButton = document.querySelector("#speakButton");
-    let speech = new SpeechSynthesisUtterance("Please Wait");
 
-    window.onload = () => {
-      displayIrregularVerb();
-    }
+    // =====================
+    // STATE
+    // =====================
+    let countdown = -1;
+    let currentVerb = null;
+    let intervalId = null;
 
-    function displayIrregularVerb() {
-      if (count < 0) {
-        document.getElementById("french").innerHTML = "";
-        document.getElementById("english").innerHTML = "";
-        count = 2;
-        var randomIndex = Math.floor(Math.random() * irregularVerbs.length);
-        verb = irregularVerbs[randomIndex];
-        document.getElementById("french").innerHTML = verb.french;
+    const speakButton = document.getElementById("speakButton");
+    const nextButton = document.getElementById("nextButton");
+    const frenchEl = document.getElementById("french");
+    const englishEl = document.getElementById("english");
+    const progressSpan = document.querySelector(".words .word .progressbar span");
 
-        speech = new SpeechSynthesisUtterance("Please Wait");
-        speech.lang = "en-UK";
+    // =====================
+    // INIT
+    // =====================
+    document.addEventListener("DOMContentLoaded", () => {
+      // Start immediately (visual part). This is fine in Instagram WebView.
+      showNewVerb();
 
-        const progressbar = document.querySelector('.words .word .progressbar span');
-        progressbar.animate([{ width: '0%' }, { width: '100%' }], { duration: (count + 1) * 1000, fill: "forwards" })
+      // Next button
+      nextButton.addEventListener("click", () => showNewVerb());
 
-        var interval = setInterval(function () {
-          count--;
-          if (count === -1) {
-            clearInterval(interval);
-            speech = new SpeechSynthesisUtterance(verb.english + ", " + verb.pastSimple + ", " + verb.pastParticiple);
-            speech.lang = "en-UK";
-            document.getElementById("english").innerHTML = verb.english + " " + verb.pastSimple + " " + verb.pastParticiple;
-          }
+      // Speak button: MUST be triggered by a real user gesture on mobile / Instagram.
+      setupSpeech();
+    });
 
-        }, 1000);
+    // =====================
+    // FUNCTIONS
+    // =====================
+    function showNewVerb() {
+      // Reset any running countdown
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
       }
-    }
 
-    if ('speechSynthesis' in window) {
-      speakButton.addEventListener("click", function () {
-        if (verb !== null) {
-          window.speechSynthesis.speak(speech);
+      // Reset UI
+      countdown = 2;
+      frenchEl.textContent = "";
+      englishEl.textContent = "";
+
+      // Pick a verb
+      const randomIndex = Math.floor(Math.random() * irregularVerbs.length);
+      currentVerb = irregularVerbs[randomIndex];
+
+      // Show prompt (you used "french" but values are currently English in your data)
+      frenchEl.textContent = currentVerb.french;
+
+      // Restart progress animation safely
+      restartProgressAnimation((countdown + 1) * 1000);
+
+      // Countdown then reveal answer
+      intervalId = setInterval(() => {
+        countdown--;
+        if (countdown === -1) {
+          clearInterval(intervalId);
+          intervalId = null;
+          englishEl.textContent =
+            `${currentVerb.english} ${currentVerb.pastSimple} ${currentVerb.pastParticiple}`;
         }
-      });
-    } else {
-      speakButton.disabled = true;
-      speakButton.innerHTML = "Text-to-speech not supported";
+      }, 1000);
     }
-    //bloquer inspection de la page et accès au code source//
 
-    function blockAccess(event) {
-      if (event.keyCode == 123 || (event.ctrlKey && event.shiftKey && event.keyCode == 73)) {
-        event.preventDefault();
+    function restartProgressAnimation(durationMs) {
+      if (!progressSpan) return;
+
+      // Cancel previous animation by removing/re-adding style
+      progressSpan.getAnimations().forEach(anim => anim.cancel());
+      progressSpan.style.width = "0%";
+
+      // Trigger reflow so the next animation starts correctly
+      // eslint-disable-next-line no-unused-expressions
+      progressSpan.offsetWidth;
+
+      progressSpan.animate(
+        [{ width: "0%" }, { width: "100%" }],
+        { duration: durationMs, fill: "forwards" }
+      );
+    }
+
+    function setupSpeech() {
+      if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
+        speakButton.disabled = true;
+        speakButton.title = "Text-to-speech not supported";
+        return;
       }
+
+      speakButton.addEventListener("click", () => {
+        if (!currentVerb) return;
+
+        // iOS / Instagram WebView often needs cancel() to avoid stuck queues
+        window.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(
+          `${currentVerb.english}, ${currentVerb.pastSimple}, ${currentVerb.pastParticiple}`
+        );
+
+        // Use a valid BCP-47 tag (en-UK is not valid). en-GB is the common choice.
+        utterance.lang = "en-GB";
+
+        window.speechSynthesis.speak(utterance);
+      });
     }
 
-    document.addEventListener('keydown', blockAccess);
+    function isInstagramWebView() {
+    const ua = navigator.userAgent || "";
+    return ua.includes("Instagram");
+    }
 
-    document.addEventListener('contextmenu', event => event.preventDefault());
+    document.addEventListener("DOMContentLoaded", () => {
+    const speakButton = document.getElementById("speakButton");
+
+    if (isInstagramWebView()) {
+    // Hide the speaker button entirely in Instagram
+    speakButton.style.display = "none";
+    }
+    });
 
   </script>
 </body>
-
 </html>
