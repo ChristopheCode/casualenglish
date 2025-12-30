@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exercises</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <button onclick="toggleMenu()" class="ham">
+      <img src="./img/hamburger.svg" alt="Menu" />
+    </button>
+
+    <div class="words">
+      <h1>Exercises</h1>
+
+      <div class="exercise-card">
+        <p class="exercise-tense" id="tenseLabel">(Past Simple)</p>
+
+        <p class="exercise-sentence" id="sentence"></p>
+
+        <p class="exercise-hint" id="hint"></p>
+
+        <div class="exercise-choices" id="choices"></div>
+
+        <p class="exercise-feedback" id="feedback"></p>
+
+        <button class="exercise-next" id="nextExercise" type="button">Next</button>
+      </div>
+
+      <div class="footer">
+        <ul>
+          <li><a class="legal" href="./mention.html" target="_blank" rel="noopener">Legal Notice</a></li>
+          <li><a class="legal" href="./cookies.html" target="_blank" rel="noopener">Cookie Policy</a></li>
+          <li><a class="legal" href="./confidentialite.html" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a class="legal" href="./condition.html" target="_blank" rel="noopener">General Terms and Conditions of Sale (GTCS)</a></li>
+        </ul>
+        <a href="./index.html">
+          <img src="./img/logo.png" alt="Casual English" />
+        </a>
+      </div>
+    </div>
+
+    <button onclick="toggleDark()" class="btn-float dark-mode">
+      <img src="./img/moon.svg" alt="Dark mode" />
+    </button>
+
+    <button onclick="toggleQues()" class="btn-float ques">
+      <img src="./img/question.svg" alt="Help" />
+    </button>
+
+    <!-- menu -->
+    <div class="menu">
+      <a href="./index.html">Back to Main Page</a>
+      <a href="./iregularverbsenglish.html">Irregular Verbs</a>
+      <a href="./exercises.html">Exercises</a>
+    </div>
+
+    <!-- overlay -->
+    <div class="menu-overlay" onclick="closeMenu()" aria-hidden="true"></div>
+
+    <!-- help -->
+    <div class="help">
+      <p>
+        1. Read the sentence and the tense.<br><br>
+        2. Choose the correct form.<br><br>
+        3. ✅ Correct / ❌ Wrong<br><br>
+        4. Press Next.
+      </p>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+
+  <script>
+    // ==========================================================
+    // DATA: 1 exercise per verb (realistic sentences per tense)
+    // ==========================================================
+    const verbs = [
+      {
+        base: "go", past: "went", pp: "gone",
+        sentences: {
+          base: "Every day, I ____ to school.",
+          past: "Yesterday, I ____ to school.",
+          pp: "I have ____ to London three times."
+        }
+      },
+      {
+        base: "win", past: "won", pp: "won",
+        sentences: {
+          base: "I usually ____ the game when I practice.",
+          past: "Last week, our team ____ the match.",
+          pp: "They have ____ three matches this season."
+        }
+      },
+      {
+        base: "eat", past: "ate", pp: "eaten",
+        sentences: {
+          base: "I ____ breakfast at 7 a.m.",
+          past: "Yesterday, I ____ pizza for dinner.",
+          pp: "I have ____ too much today."
+        }
+      },
+      {
+        base: "see", past: "saw", pp: "seen",
+        sentences: {
+          base: "I often ____ my friends on weekends.",
+          past: "I ____ a great movie last night.",
+          pp: "I have ____ that teacher before."
+        }
+      },
+      {
+        base: "take", past: "took", pp: "taken",
+        sentences: {
+          base: "I ____ the bus to work.",
+          past: "She ____ a photo of the sunset.",
+          pp: "I have ____ this test before."
+        }
+      },
+      {
+        base: "write", past: "wrote", pp: "written",
+        sentences: {
+          base: "I ____ emails every day.",
+          past: "He ____ a letter to his friend.",
+          pp: "She has ____ a new book."
+        }
+      },
+      {
+        base: "come", past: "came", pp: "come",
+        sentences: {
+          base: "I ____ home at 6 p.m.",
+          past: "They ____ to my house yesterday.",
+          pp: "My package has ____ already."
+        }
+      },
+      {
+        base: "give", past: "gave", pp: "given",
+        sentences: {
+          base: "I ____ my sister a gift.",
+          past: "He ____ me good advice.",
+          pp: "They have ____ a lot of money to charity."
+        }
+      },
+      {
+        base: "get", past: "got", pp: "gotten",
+        sentences: {
+          base: "I ____ up early on weekdays.",
+          past: "I ____ a message from him yesterday.",
+          pp: "I have ____ better at English."
+        }
+      },
+      {
+        base: "make", past: "made", pp: "made",
+        sentences: {
+          base: "I ____ coffee every morning.",
+          past: "She ____ a cake for my birthday.",
+          pp: "He has ____ a big mistake."
+        }
+      }
+    ];
+
+    // Rotation of tenses (1 per verb)
+    const templates = [
+      { label: "Present Simple", form: "base" },
+      { label: "Past Simple", form: "past" },
+      { label: "Present Perfect", form: "pp" }
+    ];
+
+    // ---------- UI ----------
+    const tenseLabel = document.getElementById("tenseLabel");
+    const sentenceEl = document.getElementById("sentence");
+    const hintEl = document.getElementById("hint");
+    const choicesEl = document.getElementById("choices");
+    const feedbackEl = document.getElementById("feedback");
+    const nextBtn = document.getElementById("nextExercise");
+
+    let index = 0;
+    let locked = false;
+
+    function shuffle(arr) {
+      return arr
+        .map(v => ({ v, s: Math.random() }))
+        .sort((a, b) => a.s - b.s)
+        .map(x => x.v);
+    }
+
+    function correctAnswer(v, t) {
+      if (t.form === "base") return v.base;
+      if (t.form === "past") return v.past;
+      return v.pp;
+    }
+
+    function renderExercise() {
+      locked = false;
+      feedbackEl.textContent = "";
+      feedbackEl.className = "exercise-feedback";
+
+      if (index >= verbs.length) index = 0;
+
+      const v = verbs[index];
+      const t = templates[index % templates.length]; // rotate tenses
+
+      tenseLabel.textContent = `(${t.label})`;
+      sentenceEl.textContent = v.sentences[t.form];
+      hintEl.innerHTML = `Verb: <strong>${v.base}</strong>`;
+
+      const options = shuffle([v.base, v.past, v.pp]);
+      choicesEl.innerHTML = "";
+
+      options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "exercise-choice";
+        btn.textContent = opt;
+        btn.addEventListener("click", () => onPick(opt, btn, v, t));
+        choicesEl.appendChild(btn);
+      });
+    }
+
+    function onPick(value, btn, v, t) {
+      if (locked) return;
+      locked = true;
+
+      const ans = correctAnswer(v, t);
+
+      // disable all
+      [...choicesEl.querySelectorAll("button")].forEach(b => b.disabled = true);
+
+      if (value === ans) {
+        btn.classList.add("correct");
+        feedbackEl.textContent = "✅ Correct";
+        feedbackEl.classList.add("ok");
+      } else {
+        btn.classList.add("wrong");
+        feedbackEl.textContent = "❌ Wrong";
+        feedbackEl.classList.add("bad");
+
+        // highlight correct one
+        [...choicesEl.querySelectorAll("button")].forEach(b => {
+          if (b.textContent === ans) b.classList.add("correct");
+        });
+      }
+    }
+
+    nextBtn.addEventListener("click", () => {
+      index++;
+      renderExercise();
+    });
+
+    document.addEventListener("DOMContentLoaded", renderExercise);
+  </script>
+</body>
+</html>
