@@ -311,6 +311,22 @@ body {
     top: 65px;
 }
 
+.menu-overlay {
+  position: fixed;
+  inset: 0;              /* top:0 right:0 bottom:0 left:0 */
+  background: rgba(0,0,0,0.25);
+  opacity: 0;
+  pointer-events: none;  /* invisible aux clics quand fermé */
+  transition: opacity 0.3s;
+  z-index: 9;            /* juste sous le menu (10) et sous le bouton ham (15) */
+}
+
+.menu-overlay.show {
+  opacity: 1;
+  pointer-events: auto;  /* capte les clics quand ouvert */
+}
+
 .ques img {
     height: 30px;
+
 }
