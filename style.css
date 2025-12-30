@@ -330,3 +330,88 @@ body {
     height: 30px;
 
 }
+
+/* -----------------------------
+   Exercises page
+------------------------------ */
+.exercise-card {
+  margin: auto;
+  width: clamp(275px, 100%, 420px);
+  background: var(--bg-color-secondary);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.08);
+}
+
+.exercise-tense {
+  color: var(--text-color-primary);
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.exercise-sentence {
+  color: var(--text-color-secondary);
+  font-size: 20px;
+  text-align: center;
+  margin: 10px 0 8px 0;
+}
+
+.exercise-hint {
+  color: var(--text-color-primary);
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.exercise-choices {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.exercise-choice {
+  border: none;
+  background-color: var(--button-bg-primary);
+  color: white;
+  font-weight: bold;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.exercise-choice:disabled {
+  opacity: 0.78;
+  cursor: default;
+}
+
+.exercise-choice.correct {
+  outline: 3px solid rgba(0, 200, 0, 0.35);
+}
+
+.exercise-choice.wrong {
+  outline: 3px solid rgba(255, 0, 0, 0.30);
+}
+
+.exercise-feedback {
+  text-align: center;
+  min-height: 22px;
+  font-weight: bold;
+  margin: 8px 0 12px 0;
+}
+
+.exercise-feedback.ok { color: #1a7f37; }
+.exercise-feedback.bad { color: #c62828; }
+
+.exercise-next {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: var(--button-bg-primary);
+  color: white;
+  font-weight: bold;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 18px;
+  cursor: pointer;
+}
