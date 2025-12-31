@@ -415,3 +415,48 @@ body {
   font-size: 18px;
   cursor: pointer;
 }
+
+/* Exercises 2 (match irregular verbs page style) */
+.exercise-choices-inline {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+
+.exercise-choice-inline {
+  border: none;
+  background-color: var(--button-bg-primary);
+  color: white;
+  font-weight: bold;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.exercise-choice-inline:disabled {
+  opacity: 0.78;
+  cursor: default;
+}
+
+.exercise-choice-inline.correct {
+  outline: 3px solid rgba(0, 200, 0, 0.35);
+}
+
+.exercise-choice-inline.wrong {
+  outline: 3px solid rgba(255, 0, 0, 0.30);
+}
+
+.exercise-feedback-inline {
+  text-align: center;
+  min-height: 22px;
+  font-weight: bold;
+  margin: 10px 0 0 0;
+  color: var(--text-color-primary);
+}
+
+.exercise-feedback-inline.ok { color: #1a7f37; }
+.exercise-feedback-inline.bad { color: #c62828; }
+
+
