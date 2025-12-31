@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exercises</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <button onclick="toggleMenu()" class="ham">
+      <img src="./img/hamburger.svg" alt="Menu" />
+    </button>
+
+    <div class="words">
+      <h1>Exercises</h1>
+
+      <!-- Like the verbs page: big text + progress bar area -->
+      <div class="word">
+        <p id="french"></p>
+        <div class="progressbar">
+          <span></span>
+        </div>
+      </div>
+
+      <!-- Like the verbs page: light box -->
+      <div class="answer">
+        <div id="choices" class="exercise-choices-inline"></div>
+      </div>
+
+      <p id="feedback" class="exercise-feedback-inline"></p>
+
+      <!-- Same buttons as verbs page -->
+      <div class="btn-deck">
+        <button id="speakButton" type="button">
+          <img src="./img/speak.png" alt="Speak" />
+        </button>
+        <button id="nextButton" type="button">
+          <img src="./img/next.png" alt="Next" />
+        </button>
+      </div>
+
+      <div class="footer">
+        <ul>
+          <li><a class="legal" href="./mention.html" target="_blank" rel="noopener">Legal Notice</a></li>
+          <li><a class="legal" href="./cookies.html" target="_blank" rel="noopener">Cookie Policy</a></li>
+          <li><a class="legal" href="./confidentialite.html" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a class="legal" href="./condition.html" target="_blank" rel="noopener">General Terms and Conditions of Sale (GTCS)</a></li>
+        </ul>
+        <a href="./index.html">
+          <img src="./img/logo.png" alt="Casual English" />
+        </a>
+      </div>
+    </div>
+
+    <button onclick="toggleDark()" class="btn-float dark-mode">
+      <img src="./img/moon.svg" alt="Dark mode" />
+    </button>
+
+    <button onclick="toggleQues()" class="btn-float ques">
+      <img src="./img/question.svg" alt="Help" />
+    </button>
+
+    <!-- menu -->
+    <div class="menu">
+      <a href="./index.html">Back to Main Page</a>
+      <a href="./iregularverbsenglish.html">Irregular Verbs</a>
+      <a href="./exercises.html">Exercises</a>
+    </div>
+
+    <!-- overlay -->
+    <div class="menu-overlay" onclick="closeMenu()" aria-hidden="true"></div>
+
+    <!-- help -->
+    <div class="help">
+      <p>
+        1. Read the sentence (____).<br><br>
+        2. Choose the correct verb form.<br><br>
+        3. ✅ Correct / ❌ Wrong<br><br>
+        4. Press the arrow for the next exercise.
+      </p>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+
+  <script>
+    // ==========================================================
+    // 1 exercise per verb (realistic sentence per tense)
+    // ==========================================================
+    const verbs = [
+      {
+        base: "go", past: "went", pp: "gone",
+        sentences: {
+          base: "Every day, I ____ to school. (Present Simple)",
+          past: "Yesterday, I ____ to school. (Past Simple)",
+          pp: "I have ____ to London three times. (Present Perfect)"
+        }
+      },
+      {
+        base: "win", past: "won", pp: "won",
+        sentences: {
+          base: "I usually ____ the game when I practice. (Present Simple)",
+          past: "Last week, our team ____ the match. (Past Simple)",
+          pp: "They have ____ three matches this season. (Present Perfect)"
+        }
+      },
+      {
+        base: "eat", past: "ate", pp: "eaten",
+        sentences: {
+          base: "I ____ breakfast at 7 a.m. (Present Simple)",
+          past: "Yesterday, I ____ pizza for dinner. (Past Simple)",
+          pp: "I have ____ too much today. (Present Perfect)"
+        }
+      },
+      {
+        base: "see", past: "saw", pp: "seen",
+        sentences: {
+          base: "I often ____ my friends on weekends. (Present Simple)",
+          past: "I ____ a great movie last night. (Past Simple)",
+          pp: "I have ____ that teacher before. (Present Perfect)"
+        }
+      },
+      {
+        base: "take", past: "took", pp: "taken",
+        sentences: {
+          base: "I ____ the bus to work. (Present Simple)",
+          past: "She ____ a photo of the sunset. (Past Simple)",
+          pp: "I have ____ this test before. (Present Perfect)"
+        }
+      }
+    ];
+
+    // rotate tense: base -> past -> pp -> base -> ...
+    const forms = ["base", "past", "pp"];
+
+    // UI
+    const sentenceEl = document.getElementById("french"); // big text (like your verbs page)
+    const choicesEl = document.getElementById("choices");
+    const feedbackEl = document.getElementById("feedback");
+
+    const speakButton = document.getElementById("speakButton");
+    const nextButton = document.getElementById("nextButton");
+
+    // progressbar (optional, used as a small "timer" to match your style)
+    const progressSpan = document.querySelector(".words .word .progressbar span");
+
+    let index = 0;
+    let locked = false;
+    let current = null;
+
+    function shuffle(arr) {
+      return arr
+        .map(v => ({ v, s: Math.random() }))
+        .sort((a, b) => a.s - b.s)
+        .map(x => x.v);
+    }
+
+    function correctAnswer(v, form) {
+      return form === "base" ? v.base : form === "past" ? v.past : v.pp;
+    }
+
+    function restartProgressAnimation(durationMs) {
+      if (!progressSpan) return;
+      progressSpan.getAnimations().forEach(anim => anim.cancel());
+      progressSpan.style.width = "0%";
+      progressSpan.offsetWidth;
+      progressSpan.animate(
+        [{ width: "0%" }, { width: "100%" }],
+        { duration: durationMs, fill: "forwards" }
+      );
+    }
+
+    function renderExercise() {
+      locked = false;
+      feedbackEl.textContent = "";
+      feedbackEl.className = "exercise-feedback-inline";
+
+      if (index >= verbs.length) index = 0;
+
+      const v = verbs[index];
+      const form = forms[index % forms.length]; // rotate
+      const sentence = v.sentences[form];
+
+      current = { verb: v, form, sentence };
+
+      // Big line (like irregular verbs page)
+      sentenceEl.textContent = sentence;
+
+      // Choices inside the "answer" box
+      const options = shuffle([v.base, v.past, v.pp]);
+      choicesEl.innerHTML = "";
+
+      options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "exercise-choice-inline";
+        btn.textContent = opt;
+        btn.addEventListener("click", () => onPick(opt, btn));
+        choicesEl.appendChild(btn);
+      });
+
+      // Small animation just to feel consistent
+      restartProgressAnimation(900);
+    }
+
+    function onPick(value, btn) {
+      if (locked || !current) return;
+      locked = true;
+
+      const ans = correctAnswer(current.verb, current.form);
+
+      // disable all
+      [...choicesEl.querySelectorAll("button")].forEach(b => b.disabled = true);
+
+      if (value === ans) {
+        btn.classList.add("correct");
+        feedbackEl.textContent = "✅ Correct";
+        feedbackEl.classList.add("ok");
+      } else {
+        btn.classList.add("wrong");
+        feedbackEl.textContent = "❌ Wrong";
+        feedbackEl.classList.add("bad");
+
+        // highlight correct one
+        [...choicesEl.querySelectorAll("button")].forEach(b => {
+          if (b.textContent === ans) b.classList.add("correct");
+        });
+      }
+    }
+
+    // TTS
+    function setupSpeech() {
+      if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
+        speakButton.style.display = "none";
+        return;
+      }
+
+      speakButton.addEventListener("click", () => {
+        if (!current) return;
+
+        window.speechSynthesis.cancel();
+
+        const ans = correctAnswer(current.verb, current.form);
+        const text = `${current.sentence.replace("____", ans)}. Answer: ${ans}.`;
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "en-GB";
+        window.speechSynthesis.speak(utterance);
+      });
+    }
+
+    // Hide speaker in Instagram WebView (like your other page)
+    function isInstagramWebView() {
+      const ua = navigator.userAgent || "";
+      return ua.includes("Instagram");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (isInstagramWebView()) {
+        speakButton.style.display = "none";
+      }
+      setupSpeech();
+      renderExercise();
+
+      nextButton.addEventListener("click", () => {
+        index++;
+        renderExercise();
+      });
+    });
+  </script>
+</body>
+</html>
