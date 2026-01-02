@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tense Rules</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <button onclick="toggleMenu()" class="ham">
+      <img src="./img/hamburger.svg" alt="Menu" />
+    </button>
+
+    <div class="words">
+      <h1>Tense Rules</h1>
+
+      <div class="tense-card">
+        <p class="tense-title" id="tenseTitle">(Present Simple)</p>
+
+        <p class="tense-rule" id="tenseRule"></p>
+
+        <div class="tense-box">
+          <p class="tense-label">Example</p>
+          <p class="tense-example" id="tenseExample"></p>
+        </div>
+
+        <div class="tense-box">
+          <p class="tense-label">Signal words</p>
+          <p class="tense-signals" id="tenseSignals"></p>
+        </div>
+
+        <button class="exercise-next" id="nextTense" type="button">Next</button>
+      </div>
+
+      <div class="footer">
+        <ul>
+          <li><a class="legal" href="./mention.html" target="_blank" rel="noopener">Legal Notice</a></li>
+          <li><a class="legal" href="./cookies.html" target="_blank" rel="noopener">Cookie Policy</a></li>
+          <li><a class="legal" href="./confidentialite.html" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a class="legal" href="./condition.html" target="_blank" rel="noopener">General Terms and Conditions of Sale (GTCS)</a></li>
+        </ul>
+        <a href="./index.html">
+          <img src="./img/logo.png" alt="Casual English" />
+        </a>
+      </div>
+    </div>
+
+    <button onclick="toggleDark()" class="btn-float dark-mode">
+      <img src="./img/moon.svg" alt="Dark mode" />
+    </button>
+
+    <button onclick="toggleQues()" class="btn-float ques">
+      <img src="./img/question.svg" alt="Help" />
+    </button>
+
+    <!-- menu -->
+    <div class="menu">
+      <a href="./index.html">Back to Main Page</a>
+      <a href="./iregularverbsenglish.html">Irregular Verbs</a>
+      <a href="./exercises.html">Exercises</a>
+      <a href="./tense-rules.html">Tense Rules</a>
+    </div>
+
+    <!-- overlay -->
+    <div class="menu-overlay" onclick="closeMenu()" aria-hidden="true"></div>
+
+    <!-- help -->
+    <div class="help">
+      <p>
+        1. Read the rule and the example.<br><br>
+        2. Look at the signal words.<br><br>
+        3. Press Next to review the next tense.
+      </p>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+
+  <script>
+    // =====================
+    // DATA
+    // =====================
+    const tenses = [
+      {
+        title: "Present Simple",
+        rule:
+          "Use it for habits, routines, facts, and regular actions. (I/you/we/they + base verb).",
+        example: "I go to the gym on Mondays.",
+        signals: "always, usually, often, sometimes, never, every day/week"
+      },
+      {
+        title: "Past Simple",
+        rule:
+          "Use it for finished actions in the past. Time is finished (yesterday, last week...).",
+        example: "We went to Paris yesterday.",
+        signals: "yesterday, last night, last week, in 2020, two days ago"
+      },
+      {
+        title: "Present Perfect",
+        rule:
+          "Use it for life experience, recent actions with a result now, or actions that started in the past and continue now. (have/has + past participle).",
+        example: "I have been to London three times.",
+        signals: "ever, never, already, yet, just, since, for, recently"
+      },
+      {
+        title: "Present Continuous",
+        rule:
+          "Use it for actions happening now or temporary situations. (am/is/are + verb-ing).",
+        example: "I am studying right now.",
+        signals: "now, right now, at the moment, today"
+      },
+      {
+        title: "Future (will)",
+        rule:
+          "Use it for quick decisions, predictions, promises, and offers. (will + base verb).",
+        example: "I will call you later.",
+        signals: "tomorrow, later, soon, I think..., probably"
+      }
+    ];
+
+    // =====================
+    // UI
+    // =====================
+    const titleEl = document.getElementById("tenseTitle");
+    const ruleEl = document.getElementById("tenseRule");
+    const exampleEl = document.getElementById("tenseExample");
+    const signalsEl = document.getElementById("tenseSignals");
+    const nextBtn = document.getElementById("nextTense");
+
+    let index = 0;
+
+    function renderCard() {
+      const t = tenses[index];
+      titleEl.textContent = `(${t.title})`;
+      ruleEl.textContent = t.rule;
+      exampleEl.textContent = t.example;
+      signalsEl.textContent = t.signals;
+    }
+
+    nextBtn.addEventListener("click", () => {
+      index++;
+      if (index >= tenses.length) index = 0;
+      renderCard();
+    });
+
+    document.addEventListener("DOMContentLoaded", renderCard);
+  </script>
+</body>
+</html>
