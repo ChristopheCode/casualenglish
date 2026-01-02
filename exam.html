@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exam</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <button onclick="toggleMenu()" class="ham">
+      <img src="./img/hamburger.svg" alt="Menu" />
+    </button>
+
+    <div class="words">
+      <h1>Exam</h1>
+
+      <div class="exercise-card" id="card">
+        <!-- Header line -->
+        <p class="exercise-tense" id="progress">(Question 1/10)</p>
+
+        <!-- Question -->
+        <p class="exercise-sentence" id="sentence"></p>
+
+        <!-- Hint -->
+        <p class="exercise-hint" id="hint"></p>
+
+        <!-- Choices -->
+        <div class="exercise-choices" id="choices"></div>
+
+        <!-- Feedback -->
+        <p class="exercise-feedback" id="feedback"></p>
+
+        <!-- Next / Finish -->
+        <button class="exercise-next" id="nextBtn" type="button">Next</button>
+
+        <!-- Result block (hidden until the end) -->
+        <div id="result" style="display:none; margin-top: 14px; text-align:center;">
+          <p class="exercise-tense" id="resultTitle"></p>
+          <p class="exercise-sentence" id="resultScore" style="font-weight:bold;"></p>
+
+          <!-- “Badge” -->
+          <div id="badge" style="
+              margin: 12px auto 0;
+              width: fit-content;
+              padding: 10px 14px;
+              border-radius: 999px;
+              background: var(--bg-color-secondary);
+              color: var(--text-color-primary);
+              font-weight: bold;
+              box-shadow: 0px 5px 10px rgba(0,0,0,0.08);
+            ">
+          </div>
+
+          <button class="exercise-next" id="restartBtn" type="button" style="margin-top: 14px;">
+            Restart Exam
+          </button>
+        </div>
+      </div>
+
+      <div class="footer">
+        <ul>
+          <li><a class="legal" href="./mention.html" target="_blank" rel="noopener">Legal Notice</a></li>
+          <li><a class="legal" href="./cookies.html" target="_blank" rel="noopener">Cookie Policy</a></li>
+          <li><a class="legal" href="./confidentialite.html" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a class="legal" href="./condition.html" target="_blank" rel="noopener">General Terms and Conditions of Sale (GTCS)</a></li>
+        </ul>
+        <a href="./index.html">
+          <img src="./img/logo.png" alt="Casual English" />
+        </a>
+      </div>
+    </div>
+
+    <button onclick="toggleDark()" class="btn-float dark-mode">
+      <img src="./img/moon.svg" alt="Dark mode" />
+    </button>
+
+    <button onclick="toggleQues()" class="btn-float ques">
+      <img src="./img/question.svg" alt="Help" />
+    </button>
+
+    <!-- menu -->
+    <div class="menu">
+      <a href="./index.html">Back to Main Page</a>
+      <a href="./iregularverbsenglish.html">Irregular Verbs</a>
+      <a href="./exercises.html">Exercises</a>
+      <a href="./exam.html">Exam</a>
+    </div>
+
+    <!-- overlay -->
+    <div class="menu-overlay" onclick="closeMenu()" aria-hidden="true"></div>
+
+    <!-- help -->
+    <div class="help">
+      <p>
+        1. Answer 10 questions.<br><br>
+        2. Choose the correct form.<br><br>
+        3. Your score is shown at the end.<br><br>
+        4. Restart if you want!
+      </p>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+
+  <script>
+    // ====== Use the same verbs list as exercises ======
+    // (Paste your full "const verbs = [...]" here)
+    const verbs = [
+      { base: "be", past: "was", pp: "been", sentences: { base: "I want to ____ more confident.", past: "I ____ at home yesterday.", pp: "I have ____ very busy this week." } },
+      { base: "beat", past: "beat", pp: "beaten", sentences: { base: "We often ____ our record in training.", past: "We ____ them last night.", pp: "They have ____ every team so far." } },
+      // ... keep your full list here ...
+      { base: "write", past: "wrote", pp: "written", sentences: { base: "I ____ emails every day.", past: "I ____ a letter yesterday.", pp: "I have ____ a new story." } }
+    ];
+
+    const templates = [
+      { label: "Present Simple", form: "base" },
+      { label: "Past Simple", form: "past" },
+      { label: "Present Perfect", form: "pp" }
+    ];
+
+    // ====== EXAM SETTINGS ======
+    const TOTAL = 10;
+
+    // ====== UI ======
+    const progressEl = document.getElementById("progress");
+    const sentenceEl = document.getElementById("sentence");
+    const hintEl = document.getElementById("hint");
+    const choicesEl = document.getElementById("choices");
+    const feedbackEl = document.getElementById("feedback");
+    const nextBtn = document.getElementById("nextBtn");
+
+    const resultBox = document.getElementById("result");
+    const resultTitle = document.getElementById("resultTitle");
+    const resultScore = document.getElementById("resultScore");
+    const badge = document.getElementById("badge");
+    const restartBtn = document.getElementById("restartBtn");
+
+    // ====== STATE ======
+    let qIndex = 0;
+    let score = 0;
+    let locked = false;
+
+    let lastKey = null;
+    let currentV = null;
+    let currentT = null;
+
+    function shuffle(arr) {
+      return arr
+        .map(v => ({ v, s: Math.random() }))
+        .sort((a, b) => a.s - b.s)
+        .map(x => x.v);
+    }
+
+    function correctAnswer(v, t) {
+      if (t.form === "base") return v.base;
+      if (t.form === "past") return v.past;
+      return v.pp;
+    }
+
+    function pickRandomExercise() {
+      let v, t, key;
+      do {
+        v = verbs[Math.floor(Math.random() * verbs.length)];
+        t = templates[Math.floor(Math.random() * templates.length)];
+        key = `${v.base}-${t.form}`;
+      } while (key === lastKey && verbs.length > 1);
+
+      lastKey = key;
+      return { v, t };
+    }
+
+    function renderQuestion() {
+      locked = false;
+      feedbackEl.textContent = "";
+      feedbackEl.className = "exercise-feedback";
+
+      resultBox.style.display = "none";
+      nextBtn.style.display = "block";
+
+      progressEl.textContent = `(Question ${qIndex + 1}/${TOTAL})`;
+
+      const picked = pickRandomExercise();
+      currentV = picked.v;
+      currentT = picked.t;
+
+      // Show sentence + tense label inside hint
+      sentenceEl.textContent = currentV.sentences[currentT.form];
+      hintEl.innerHTML = `Tense: <strong>${currentT.label}</strong> · Verb: <strong>${currentV.base}</strong>`;
+
+      const options = shuffle([currentV.base, currentV.past, currentV.pp]);
+      choicesEl.innerHTML = "";
+
+      options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "exercise-choice";
+        btn.textContent = opt;
+        btn.addEventListener("click", () => onPick(opt, btn));
+        choicesEl.appendChild(btn);
+      });
+
+      // On last question, button says Finish
+      nextBtn.textContent = (qIndex === TOTAL - 1) ? "Finish" : "Next";
+    }
+
+    function onPick(value, btn) {
+      if (locked) return;
+      locked = true;
+
+      const ans = correctAnswer(currentV, currentT);
+
+      [...choicesEl.querySelectorAll("button")].forEach(b => b.disabled = true);
+
+      if (value === ans) {
+        score++;
+        btn.classList.add("correct");
+        feedbackEl.textContent = "✅ Correct";
+        feedbackEl.classList.add("ok");
+      } else {
+        btn.classList.add("wrong");
+        feedbackEl.textContent = `❌ Wrong (answer: ${ans})`;
+        feedbackEl.classList.add("bad");
+
+        [...choicesEl.querySelectorAll("button")].forEach(b => {
+          if (b.textContent === ans) b.classList.add("correct");
+        });
+      }
+    }
+
+    function showResult() {
+      // hide question UI
+      nextBtn.style.display = "none";
+      resultBox.style.display = "block";
+      choicesEl.innerHTML = "";
+      sentenceEl.textContent = "";
+      hintEl.textContent = "";
+      feedbackEl.textContent = "";
+
+      progressEl.textContent = `(Result)`;
+
+      resultScore.textContent = `${score}/${TOTAL}`;
+
+      if (score <= 4) {
+        resultTitle.textContent = "Keep going 💪";
+        badge.textContent = "Training badge";
+      } else if (score <= 7) {
+        resultTitle.textContent = "Good job 👍";
+        badge.textContent = "Progress badge";
+      } else {
+        resultTitle.textContent = "Congratulations 🎉";
+        badge.textContent = "Champion badge";
+      }
+    }
+
+    nextBtn.addEventListener("click", () => {
+      // If user didn't answer, block advancing (optional)
+      if (!locked) {
+        feedbackEl.textContent = "Please choose an answer 🙂";
+        feedbackEl.className = "exercise-feedback bad";
+        return;
+      }
+
+      qIndex++;
+
+      if (qIndex >= TOTAL) {
+        showResult();
+        return;
+      }
+
+      renderQuestion();
+    });
+
+    restartBtn.addEventListener("click", () => {
+      qIndex = 0;
+      score = 0;
+      lastKey = null;
+      renderQuestion();
+    });
+
+    document.addEventListener("DOMContentLoaded", renderQuestion);
+  </script>
+</body>
+</html>
