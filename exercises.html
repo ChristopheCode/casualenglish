@@ -80,101 +80,20 @@
     // DATA: verbs + realistic sentences (3 tenses per verb)
     // ==========================================================
     const verbs = [
-      {
-        base: "go", past: "went", pp: "gone",
-        sentences: {
-          base: "Every day, I ____ to school.",
-          past: "Yesterday, I ____ to school.",
-          pp: "I have ____ to London three times."
-        }
-      },
-      {
-        base: "win", past: "won", pp: "won",
-        sentences: {
-          base: "I usually ____ the game when I practice.",
-          past: "Last week, our team ____ the match.",
-          pp: "They have ____ three matches this season."
-        }
-      },
-      {
-        base: "eat", past: "ate", pp: "eaten",
-        sentences: {
-          base: "I ____ breakfast at 7 a.m.",
-          past: "Yesterday, I ____ pizza for dinner.",
-          pp: "I have ____ too much today."
-        }
-      },
-      {
-        base: "see", past: "saw", pp: "seen",
-        sentences: {
-          base: "I often ____ my friends on weekends.",
-          past: "I ____ a great movie last night.",
-          pp: "I have ____ that teacher before."
-        }
-      },
-      {
-        base: "take", past: "took", pp: "taken",
-        sentences: {
-          base: "I ____ the bus to work.",
-          past: "She ____ a photo of the sunset.",
-          pp: "I have ____ this test before."
-        }
-      },
-      {
-        base: "write", past: "wrote", pp: "written",
-        sentences: {
-          base: "I ____ emails every day.",
-          past: "He ____ a letter to his friend.",
-          pp: "She has ____ a new book."
-        }
-      },
-      {
-        base: "come", past: "came", pp: "come",
-        sentences: {
-          base: "I ____ home at 6 p.m.",
-          past: "They ____ to my house yesterday.",
-          pp: "My package has ____ already."
-        }
-      },
-      {
-        base: "give", past: "gave", pp: "given",
-        sentences: {
-          base: "I ____ my sister a gift.",
-          past: "He ____ me good advice.",
-          pp: "They have ____ a lot of money to charity."
-        }
-      },
-      {
-        base: "get", past: "got", pp: "gotten",
-        sentences: {
-          base: "I ____ up early on weekdays.",
-          past: "I ____ a message from him yesterday.",
-          pp: "I have ____ better at English."
-        }
-      },
-      {
-        base: "make", past: "made", pp: "made",
-        sentences: {
-          base: "I ____ coffee every morning.",
-          past: "She ____ a cake for my birthday.",
-          pp: "He has ____ a big mistake."
-        }
-      },
-
-        { base: "be", past: "was", pp: "been", sentences: { base: "I want to ____ more confident.", past: "I ____ at home yesterday.", pp: "I have ____ very busy this week." } },
-        { base: "beat", past: "beat", pp: "beaten", sentences: { base: "We often ____ our record in training.", past: "We ____ them last night.", pp: "They have ____ every team so far." } },
-        { base: "become", past: "became", pp: "become", sentences: { base: "I want to ____ a designer.", past: "He ____ famous quickly.", pp: "She has ____ more relaxed." } },
-        { base: "begin", past: "began", pp: "begun", sentences: { base: "Classes ____ at 9 a.m.", past: "The movie ____ late.", pp: "The meeting has ____ already." } },
-        { base: "bend", past: "bent", pp: "bent", sentences: { base: "I ____ my knees when I stretch.", past: "I ____ the wire by mistake.", pp: "The frame has ____ over time." } },
-        { base: "bet", past: "bet", pp: "bet", sentences: { base: "I never ____ money on games.", past: "I ____ €5 yesterday.", pp: "He has ____ on this match before." } },
-        { base: "bite", past: "bit", pp: "bitten", sentences: { base: "Dogs sometimes ____ when they are scared.", past: "The mosquito ____ me.", pp: "I have ____ my tongue." } },
-        { base: "blow", past: "blew", pp: "blown", sentences: { base: "The wind ____ hard in winter.", past: "The storm ____ the door open.", pp: "The candle has ____ out." } },
-        { base: "break", past: "broke", pp: "broken", sentences: { base: "I try not to ____ my phone.", past: "I ____ my glasses yesterday.", pp: "I have ____ the rule once." } },
-        { base: "bring", past: "brought", pp: "brought", sentences: { base: "I always ____ my notebook.", past: "She ____ a gift.", pp: "They have ____ enough food." } },
-        { base: "broadcast", past: "broadcast", pp: "broadcast", sentences: { base: "They ____ the news every evening.", past: "They ____ the interview yesterday.", pp: "They have ____ this show many times." } },
-        { base: "build", past: "built", pp: "built", sentences: { base: "They ____ houses in this area.", past: "They ____ a small bridge.", pp: "They have ____ a new website." } },
-        { base: "burst", past: "burst", pp: "burst", sentences: { base: "Balloons ____ if you touch a needle.", past: "The pipe ____ last night.", pp: "The bag has ____ open." } },
-        { base: "buy", past: "bought", pp: "bought", sentences: { base: "I ____ bread every morning.", past: "I ____ a new jacket.", pp: "I have ____ too many snacks." } },
+  { base: "be", past: "was", pp: "been", sentences: { base: "I want to ____ more confident.", past: "I ____ at home yesterday.", pp: "I have ____ very busy this week." } },
+  { base: "beat", past: "beat", pp: "beaten", sentences: { base: "We often ____ our record in training.", past: "We ____ them last night.", pp: "They have ____ every team so far." } },
+  { base: "become", past: "became", pp: "become", sentences: { base: "I want to ____ a designer.", past: "He ____ famous quickly.", pp: "She has ____ more relaxed." } },
+  { base: "begin", past: "began", pp: "begun", sentences: { base: "Classes ____ at 9 a.m.", past: "The movie ____ late.", pp: "The meeting has ____ already." } },
+  { base: "bend", past: "bent", pp: "bent", sentences: { base: "I ____ my knees when I stretch.", past: "I ____ the wire by mistake.", pp: "The frame has ____ over time." } },
+  { base: "bet", past: "bet", pp: "bet", sentences: { base: "I never ____ money on games.", past: "I ____ €5 yesterday.", pp: "He has ____ on this match before." } },
+  { base: "bite", past: "bit", pp: "bitten", sentences: { base: "Dogs sometimes ____ when they are scared.", past: "The mosquito ____ me.", pp: "I have ____ my tongue." } },
+  { base: "blow", past: "blew", pp: "blown", sentences: { base: "The wind ____ hard in winter.", past: "The storm ____ the door open.", pp: "The candle has ____ out." } },
+  { base: "break", past: "broke", pp: "broken", sentences: { base: "I try not to ____ my phone.", past: "I ____ my glasses yesterday.", pp: "I have ____ the rule once." } },
+  { base: "bring", past: "brought", pp: "brought", sentences: { base: "I always ____ my notebook.", past: "She ____ a gift.", pp: "They have ____ enough food." } },
+  { base: "broadcast", past: "broadcast", pp: "broadcast", sentences: { base: "They ____ the news every evening.", past: "They ____ the interview yesterday.", pp: "They have ____ this show many times." } },
+  { base: "build", past: "built", pp: "built", sentences: { base: "They ____ houses in this area.", past: "They ____ a small bridge.", pp: "They have ____ a new website." } },
+  { base: "burst", past: "burst", pp: "burst", sentences: { base: "Balloons ____ if you touch a needle.", past: "The pipe ____ last night.", pp: "The bag has ____ open." } },
+  { base: "buy", past: "bought", pp: "bought", sentences: { base: "I ____ bread every morning.", past: "I ____ a new jacket.", pp: "I have ____ too many snacks." } },
   { base: "catch", past: "caught", pp: "caught", sentences: { base: "I ____ the bus at 8.", past: "I ____ a cold last week.", pp: "I have ____ a lot of fish." } },
   { base: "choose", past: "chose", pp: "chosen", sentences: { base: "I usually ____ the simple option.", past: "I ____ the wrong one.", pp: "I have ____ a new plan." } },
   { base: "come", past: "came", pp: "come", sentences: { base: "I ____ home at 6 p.m.", past: "They ____ late.", pp: "She has ____ back already." } },
@@ -278,10 +197,6 @@
   { base: "weep", past: "wept", pp: "wept", sentences: { base: "I ____ during sad movies.", past: "She ____ yesterday.", pp: "He has ____ a lot lately." } },
   { base: "win", past: "won", pp: "won", sentences: { base: "I usually ____ when I practice.", past: "We ____ the match yesterday.", pp: "They have ____ three times." } },
   { base: "write", past: "wrote", pp: "written", sentences: { base: "I ____ emails every day.", past: "I ____ a letter yesterday.", pp: "I have ____ a new story." } },
-
-  // --- Verbs you had in the list but not included above yet (fill remaining) ---
-  { base: "broadcast", past: "broadcast", pp: "broadcast", sentences: { base: "They ____ the news live.", past: "They ____ the interview.", pp: "They have ____ this show before." } },
-
 
       
     ];
