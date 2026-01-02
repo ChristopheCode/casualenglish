@@ -77,7 +77,7 @@
 
   <script>
     // ==========================================================
-    // DATA: 1 exercise per verb (realistic sentences per tense)
+    // DATA: verbs + realistic sentences (3 tenses per verb)
     // ==========================================================
     const verbs = [
       {
@@ -162,7 +162,7 @@
       }
     ];
 
-    // Rotation of tenses (1 per verb)
+    // Random tense each time
     const templates = [
       { label: "Present Simple", form: "base" },
       { label: "Past Simple", form: "past" },
@@ -177,8 +177,12 @@
     const feedbackEl = document.getElementById("feedback");
     const nextBtn = document.getElementById("nextExercise");
 
-    let index = 0;
     let locked = false;
+
+    // To avoid repeating the exact same exercise twice in a row
+    let lastKey = null;
+    let currentV = null;
+    let currentT = null;
 
     function shuffle(arr) {
       return arr
@@ -198,10 +202,17 @@
       feedbackEl.textContent = "";
       feedbackEl.className = "exercise-feedback";
 
-      if (index >= verbs.length) index = 0;
+      // pick random verb + random tense
+      let v, t, key;
+      do {
+        v = verbs[Math.floor(Math.random() * verbs.length)];
+        t = templates[Math.floor(Math.random() * templates.length)];
+        key = `${v.base}-${t.form}`;
+      } while (key === lastKey && verbs.length > 1);
 
-      const v = verbs[index];
-      const t = templates[index % templates.length]; // rotate tenses
+      lastKey = key;
+      currentV = v;
+      currentT = t;
 
       tenseLabel.textContent = `(${t.label})`;
       sentenceEl.textContent = v.sentences[t.form];
@@ -246,7 +257,6 @@
     }
 
     nextBtn.addEventListener("click", () => {
-      index++;
       renderExercise();
     });
 
@@ -254,3 +264,5 @@
   </script>
 </body>
 </html>
+
+
