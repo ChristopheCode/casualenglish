@@ -419,6 +419,55 @@ body {
   cursor: pointer;
 }
 
+/* -----------------------------
+   Tense rules page
+------------------------------ */
+.tense-card {
+  margin: auto;
+  width: clamp(275px, 100%, 420px);
+  background: var(--bg-color-secondary);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.08);
+}
+
+.tense-title {
+  color: var(--text-color-primary);
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.tense-rule {
+  color: var(--text-color-secondary);
+  font-size: 18px;
+  line-height: 1.35;
+  text-align: center;
+  margin: 8px 0 14px 0;
+}
+
+.tense-box {
+  background: rgba(255,255,255,0.22);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.tense-label {
+  color: var(--text-color-primary);
+  font-weight: bold;
+  margin-bottom: 6px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.tense-example,
+.tense-signals {
+  color: var(--text-color-secondary);
+  text-align: center;
+  font-size: 16px;
+}
 
 
 
