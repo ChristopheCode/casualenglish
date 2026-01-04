@@ -469,6 +469,55 @@ body {
   font-size: 16px;
 }
 
+/* Help language switcher */
+.help-title{
+  margin-bottom: 12px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.help-subtitle{
+  margin: 0 0 10px 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.help-lang{
+  margin-bottom: 18px;
+}
+
+.help-lang-buttons{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.help-lang-btn{
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--bg-color-secondary);
+  color: var(--text-color-primary);
+}
+
+.help-lang-btn:active{
+  transform: scale(0.98);
+}
+
+.help-text{
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* nicer on larger screens */
+@media (min-width: 420px){
+  .help-lang-buttons{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
 
 
