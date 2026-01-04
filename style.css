@@ -296,8 +296,11 @@ body {
     color: white;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    overflow-y: auto;
+    gap: 14px;
     z-index: 8;
     transition: 0.5s all;
 }
@@ -518,6 +521,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
 
 
 
