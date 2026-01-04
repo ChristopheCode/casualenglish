@@ -305,6 +305,10 @@ body {
     transition: 0.5s all;
 }
 
+.help-title {
+  margin-top: 0;
+}
+
 .help.show{
     opacity: 1;
     top: 50%;
@@ -521,6 +525,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
 
 
 
