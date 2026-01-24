@@ -11,6 +11,7 @@ const buttonImg = document.querySelector('.dark-mode img');
 const style = document.documentElement.style;
 const images = document.querySelectorAll('.container img');
 const ham = document.querySelector('.ham');
+const siteLogo = document.getElementById("siteLogo");
 
 const menu = document.querySelector('.menu');
 const overlay = document.querySelector('.menu-overlay'); // <-- NEW (add overlay div in HTML)
@@ -37,6 +38,8 @@ const changeTheme = () => {
     style.setProperty("--bg-color-secondary", "#AEAEAE");
     style.setProperty("--button-bg-primary", "#2A2727");
     style.setProperty("--prog-bar-color", "#2A2727");
+    if (siteLogo) siteLogo.src = "./img/logodark.png";
+
 
     images.forEach((ele) => ele.classList.add('dark'));
     ham.style.filter = 'grayscale() brightness(5)';
@@ -48,6 +51,8 @@ const changeTheme = () => {
     style.setProperty("--bg-color-secondary", "#FFFFFF88");
     style.setProperty("--button-bg-primary", "#3662C1");
     style.setProperty("--prog-bar-color", "#EE6D6B");
+    if (siteLogo) siteLogo.src = "./img/logo.png";
+
 
     images.forEach((ele) => ele.classList.remove('dark'));
 
@@ -99,3 +104,4 @@ if (overlay) {
 document.querySelectorAll('.menu a').forEach((link) => {
   link.addEventListener('click', closeMenu);
 });
+
