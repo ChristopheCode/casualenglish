@@ -42,6 +42,11 @@ body {
     filter: grayscale() brightness(3);
 }
 
+.logo.dark {
+  filter: none !important;
+}
+
+
 .home h2 {
     color: var(--text-color-primary);
     text-align: center;
@@ -534,6 +539,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
 
 
 
