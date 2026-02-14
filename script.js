@@ -111,7 +111,7 @@ document.querySelectorAll('.menu a').forEach((link) => {
 
 const pages = [
   { name: "Learn", link: "./iregularverbsenglish.html" },
-  { name: "Exercises", link: "./exercises.html" },
+  { name: "Exercise", link: "./exercises.html" },
   { name: "Exam", link: "./exam.html" }
 ];
 
@@ -142,5 +142,6 @@ if (mainAction && prevBtn && nextBtn) {
 
   updateSelector();
 }
+
 
 
