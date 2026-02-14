@@ -540,6 +540,33 @@ body {
   }
 }
 
+/* -----------------------------
+   Home selector (Learn / Exercises / Exam)
+------------------------------ */
+
+.play-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: auto;
+}
+
+.nav-btn {
+    background-color: var(--button-bg-primary);
+    color: white;
+    border: none;
+    font-size: 22px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
+}
+
+.nav-btn:active {
+    transform: scale(0.95);
+}
 
 
 
