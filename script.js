@@ -105,3 +105,42 @@ document.querySelectorAll('.menu a').forEach((link) => {
   link.addEventListener('click', closeMenu);
 });
 
+// -----------------------------
+// Home selector navigation
+// -----------------------------
+
+const pages = [
+  { name: "Learn", link: "./iregularverbsenglish.html" },
+  { name: "Exercises", link: "./exercises.html" },
+  { name: "Exam", link: "./exam.html" }
+];
+
+let currentIndex = 0;
+
+const mainAction = document.getElementById("mainAction");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+if (mainAction && prevBtn && nextBtn) {
+
+  function updateSelector() {
+    mainAction.textContent = pages[currentIndex].name;
+    mainAction.href = pages[currentIndex].link;
+  }
+
+  prevBtn.addEventListener("click", () => {
+    currentIndex--;
+    if (currentIndex < 0) currentIndex = pages.length - 1;
+    updateSelector();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    currentIndex++;
+    if (currentIndex >= pages.length) currentIndex = 0;
+    updateSelector();
+  });
+
+  updateSelector();
+}
+
+
