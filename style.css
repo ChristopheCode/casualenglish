@@ -65,17 +65,26 @@ body {
 
 .home .play a {
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    
     color: white;
-    font-size: 2.5rem;
+    font-size: 1.8rem;   /* légèrement plus petit */
     font-weight: bold;
     text-decoration: none;
     text-align: center;
-    padding: 5px 1em;
+
+    padding: 8px 1.2em;
     border-radius: 1em;
     background-color: var(--button-bg-primary);
-    display: block;
-    width: 100%;
-    margin-top: -25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 160px;   /* largeur minimale */
+    height: 55px;       /* hauteur fixe */
+    
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
     z-index: 2;
 }
@@ -567,6 +576,7 @@ body {
 .nav-btn:active {
     transform: scale(0.95);
 }
+
 
 
 
