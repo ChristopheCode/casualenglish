@@ -335,16 +335,17 @@ body {
 
 .menu {
     position: absolute;
-    width: 50%;
+    width: 80%;
+    max-width: 300px;
     height: 100vh;
     top: 0;
     left: -100%;
     z-index: 10;
-    border-radius: 0 2rem 2rem 0;
+    border-radius: 0 0.75rem 0.75rem 0;
     background: var(--button-bg-primary);
     display: flex;
     flex-direction: column;
-    padding: 5rem 0 0 1rem;
+    padding: 5rem 0 0 1.25rem;
     transition: 0.5s all;
 }
 
@@ -357,6 +358,24 @@ body {
     margin-top: 1.5rem;
     font-size: 18px;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-right: 1.25rem;
+}
+
+.menu a i {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.menu a svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    opacity: 0.9;
+    stroke: currentColor;
 }
 
 .help {
