@@ -106,41 +106,16 @@ document.querySelectorAll('.menu a').forEach((link) => {
 });
 
 // -----------------------------
-// Home selector navigation
+// Home Swiper slider
 // -----------------------------
-
-const pages = [
-  { name: "Learn", link: "./iregularverbsenglish.html" },
-  { name: "Exercise", link: "./exercises.html" },
-  { name: "Exam", link: "./exam.html" }
-];
-
-let currentIndex = 0;
-
-const mainAction = document.getElementById("mainAction");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-
-if (mainAction && prevBtn && nextBtn) {
-
-  function updateSelector() {
-    mainAction.textContent = pages[currentIndex].name;
-    mainAction.href = pages[currentIndex].link;
-  }
-
-  prevBtn.addEventListener("click", () => {
-    currentIndex--;
-    if (currentIndex < 0) currentIndex = pages.length - 1;
-    updateSelector();
+if (document.querySelector('.home-swiper')) {
+  new Swiper('.home-swiper', {
+    loop: true,
+    navigation: {
+      nextEl: '.home-nav-next',
+      prevEl: '.home-nav-prev',
+    },
   });
-
-  nextBtn.addEventListener("click", () => {
-    currentIndex++;
-    if (currentIndex >= pages.length) currentIndex = 0;
-    updateSelector();
-  });
-
-  updateSelector();
 }
 
 

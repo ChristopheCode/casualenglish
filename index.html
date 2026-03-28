@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="style.css">
     <title>English Irregular Verbs</title>
 </head>
@@ -16,24 +17,32 @@
             <a href="./index.html"><img src="./img/logo.png" alt="" class="logo" id="siteLogo"></a>
             <h2>Irregular Verb</h2>
             
-    <div class="play-selector">
-        <button class="nav-btn" id="prevBtn">◀</button>
-
-        <div class="play">
-          <!-- Bouton précédent -->
-          <button type="button" class="play-nav play-nav-prev" id="playPrev">&lsaquo;</button>
-
-          <!-- Bloc central avec l'image + le bouton bleu -->
-          <div class="play-main">
-            <img src="./img/big-ben.png" alt="">
-            <a href="./iregularverbsenglish.html" id="playLink">Learn</a>
-          </div>
-
-          <!-- Bouton suivant -->
-          <button type="button" class="play-nav play-nav-next" id="playNext">&rsaquo;</button>
-    </div>
-
-        <button class="nav-btn" id="nextBtn">▶</button>
+    <!-- Swiper Slider -->
+    <div class="slider-wrapper">
+        <div class="home-nav-prev"></div>
+        <div class="swiper home-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <img src="./img/big-ben.png" alt="Learn">
+                        <a href="./iregularverbsenglish.html" class="slide-btn">Learn</a>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <img src="./img/paper-rocket.png" alt="Exercises">
+                        <a href="./exercises.html" class="slide-btn">Exercises</a>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <img src="./img/Path 1065.png" alt="Exam">
+                        <a href="./exam.html" class="slide-btn">Exam</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="home-nav-next"></div>
     </div>
             <div class="footer">
                 <ul>
@@ -96,6 +105,7 @@
       </div>
       
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./script.js"></script>
 </body>
 

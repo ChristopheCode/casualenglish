@@ -54,71 +54,103 @@ body {
     margin-top: 1.5em;
 }
 
-.home .play {
-  margin: auto;
+/* -----------------------------
+   Home Swiper slider
+------------------------------ */
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0 3rem;
+  width: 100%;
+  height: 100%;
+}
+
+.home-swiper {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Triangle-in-circle nav buttons */
+.home-nav-prev,
+.home-nav-next {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--button-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.home-nav-prev::after,
+.home-nav-next::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.home-nav-prev::after {
+  border-width: 8px 13px 8px 0;
+  border-color: transparent white transparent transparent;
+  margin-right: 3px;
+}
+
+.home-nav-next::after {
+  border-width: 8px 0 8px 13px;
+  border-color: transparent transparent transparent white;
+  margin-left: 3px;
+}
+
+.home-nav-prev.swiper-button-disabled,
+.home-nav-next.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Slide content: fixed image area + half-overlapping button */
+.slide-content {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;              /* espace entre flèches et bloc central */
+  justify-content: center;
+  height: 220px;
+  margin-bottom: 28px; /* space for the half-overlapping button */
 }
 
-/* On garde ton image + bouton bleu dans un bloc */
-.play-main {
-  position: relative;
+.slide-content img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.home .play img {
-    display: block;
-}
-
-.home .play a {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    
-    color: white;
-    font-size: 1.8rem;   /* légèrement plus petit */
-    font-weight: bold;
-    text-decoration: none;
-    text-align: center;
-
-    padding: 8px 1.2em;
-    border-radius: 1em;
-    background-color: var(--button-bg-primary);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    min-width: 160px;   /* largeur minimale */
-    height: 55px;       /* hauteur fixe */
-    
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-}
-
-/* Boutons de navigation gauche / droite */
-.play-nav {
-  /* reset du style iOS */
-  -webkit-appearance: none;
-  appearance: none;
-  border: none;
-  background: transparent;
-  box-shadow: none;
-
-  /* style visuel */
-  font-size: 2.2rem;
-  line-height: 1;
-  padding: 4px 6px;
-  cursor: pointer;
-  color: var(--text-color-primary);
-
-  /* pour qu'ils ne ressemblent pas à un bouton gris iOS */
-  -webkit-tap-highlight-color: transparent;
-}
-
-.play-nav:focus {
-  outline: none;
+.slide-btn {
+  position: absolute;
+  bottom: -28px; /* half outside image area */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  padding: 8px 1.5em;
+  border-radius: 1em;
+  background-color: var(--button-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  height: 55px;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+  white-space: nowrap;
 }
 
 .words {
@@ -581,33 +613,6 @@ body {
   }
 }
 
-/* -----------------------------
-   Home selector (Learn / Exercises / Exam)
------------------------------- */
-
-.play-selector {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin: auto;
-}
-
-.nav-btn {
-    background-color: var(--button-bg-primary);
-    color: white;
-    border: none;
-    font-size: 22px;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
-}
-
-.nav-btn:active {
-    transform: scale(0.95);
-}
 
 
 
