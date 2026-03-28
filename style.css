@@ -13,6 +13,10 @@
     --bg-color-secondary: #FFFFFF88;
     --button-bg-primary: #3662C1;
     --prog-bar-color: #EE6D6B;
+    --btn-float-bg: rgba(255, 255, 255, 0.6);
+    --btn-float-icon: #3662C1;
+    --help-bg: #ffffff;
+    --help-text: #1e293b;
 }
 
 body {
@@ -294,20 +298,34 @@ body {
     position: absolute;
     top: 20px;
     right: 10px;
-    height: 35px;
-    width: 35px;
-    background-color: white;
+    height: 38px;
+    width: 38px;
+    background: var(--btn-float-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 50%;
     display: grid;
     place-content: center;
     z-index: 10;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.107);
-    border: none;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.35);
     cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.btn-float img {
-    height: 20px;
+.btn-float:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-float:active {
+    transform: scale(0.94);
+}
+
+.btn-float svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--btn-float-icon);
 }
 
 .dark {
@@ -381,34 +399,103 @@ body {
 .help {
     position: absolute;
     width: 90%;
-    height: 80vh;
-    top: -50%;
+    max-width: 380px;
+    max-height: 80vh;
+    top: -60%;
     left: 50%;
     opacity: 0;
-    transform: translate(-50%, -50%);
-    background-color: var(--button-bg-primary);
-    padding: 2rem 3rem;
-    border-radius: 2rem;
-    font-size: 18px;
-    color: white;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    transform: translate(-50%, -50%) scale(0.94);
+    background: var(--help-bg);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    overflow-y: auto;
-    gap: 14px;
-    z-index: 8;
-    transition: 0.5s all;
+    z-index: 20;
+    transition: opacity 0.3s, top 0.3s, transform 0.3s;
+    pointer-events: none;
 }
 
-.help-title {
-  margin-top: 0;
-}
-
-.help.show{
+.help.show {
     opacity: 1;
     top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+.help-header {
+    background: linear-gradient(135deg, #3662C1 0%, #6B96F5 100%);
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.help-header-title {
+    color: white;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.2px;
+}
+
+.help-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.help-close:hover {
+    background: rgba(255, 255, 255, 0.38);
+}
+
+.help-close svg {
+    width: 15px;
+    height: 15px;
+    stroke: white;
+}
+
+.help-body {
+    padding: 1.25rem 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.help-steps {
+    margin: 0;
+    padding-left: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--help-text);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.help-steps li::marker {
+    color: #3662C1;
+    font-weight: bold;
+}
+
+.help-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 19;
+}
+
+.help-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .ques {
@@ -430,10 +517,6 @@ body {
   pointer-events: auto;  /* capte les clics quand ouvert */
 }
 
-.ques img {
-    height: 30px;
-
-}
 
 /* -----------------------------
    Exercises page
@@ -584,6 +667,7 @@ body {
   margin: 0 0 10px 0;
   text-align: center;
   font-weight: bold;
+  color: var(--help-text);
 }
 
 .help-lang{
@@ -604,7 +688,7 @@ body {
   padding: 10px 12px;
   border-radius: 12px;
   background: var(--bg-color-secondary);
-  color: var(--text-color-primary);
+  color: var(--btn-float-icon);
 }
 
 .help-lang-btn:active{
@@ -618,11 +702,20 @@ body {
 
 .help-list{
   margin: 0;
-  padding-left: 1.2rem;
+  padding-left: 1.4rem;
   line-height: 1.5;
+  color: var(--help-text);
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .help-list li{
-  margin: 8px 0;
+  margin: 0;
+}
+.help-list li::marker {
+  color: #3662C1;
+  font-weight: bold;
 }
 
 /* nicer on larger screens */
@@ -630,6 +723,105 @@ body {
   .help-lang-buttons{
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* -----------------------------
+   Learn page — language float button
+------------------------------ */
+.lang-float {
+  position: absolute;
+  top: 110px;
+  right: 10px;
+  z-index: 10;
+  width: 38px;
+  max-height: 38px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--btn-float-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 19px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: max-height 0.35s ease, box-shadow 0.2s;
+}
+
+.lang-float.open {
+  max-height: 120px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.lang-float-opt {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--btn-float-icon);
+  order: 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+.lang-float-opt.active {
+  background: var(--button-bg-primary);
+  color: #ffffff;
+  order: -1;
+}
+
+.lang-float.open .lang-float-opt:not(.active):hover {
+  background: rgba(54, 98, 193, 0.1);
+}
+
+/* -----------------------------
+   Home help — sections
+------------------------------ */
+.help-section {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border-left: 3px solid var(--button-bg-primary);
+  background: rgba(54, 98, 193, 0.06);
+  margin-bottom: 10px;
+}
+
+.help-section--tip {
+  border-left-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.06);
+}
+
+.help-section-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--help-text);
+  margin-bottom: 4px;
+}
+
+.help-section-title svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--button-bg-primary);
+  flex-shrink: 0;
+}
+
+.help-section--tip .help-section-title svg {
+  stroke: #f59e0b;
+}
+
+.help-section-desc {
+  font-size: 13px;
+  color: var(--help-text);
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0.85;
 }
 
 

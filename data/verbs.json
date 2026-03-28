@@ -1,0 +1,821 @@
+[
+  {
+    "english": "be",
+    "fr": "être",
+    "hi": "होना",
+    "pastSimple": "was were",
+    "pastParticiple": "been"
+  },
+  {
+    "english": "beat",
+    "fr": "battre",
+    "hi": "पीटना मारना",
+    "pastSimple": "beat",
+    "pastParticiple": "beaten"
+  },
+  {
+    "english": "become",
+    "fr": "devenir",
+    "hi": "बनना",
+    "pastSimple": "became",
+    "pastParticiple": "become"
+  },
+  {
+    "english": "begin",
+    "fr": "commencer",
+    "hi": "शुरू करना",
+    "pastSimple": "began",
+    "pastParticiple": "begun"
+  },
+  {
+    "english": "bend",
+    "fr": "plier se courber",
+    "hi": "मोड़ना",
+    "pastSimple": "bent",
+    "pastParticiple": "bent"
+  },
+  {
+    "english": "bet",
+    "fr": "parier",
+    "hi": "शर्त लगाना",
+    "pastSimple": "bet",
+    "pastParticiple": "bet"
+  },
+  {
+    "english": "bite",
+    "fr": "mordre",
+    "hi": "काटना",
+    "pastSimple": "bit",
+    "pastParticiple": "bitten"
+  },
+  {
+    "english": "blow",
+    "fr": "souffler gonfler",
+    "hi": "फूंक मारना",
+    "pastSimple": "blew",
+    "pastParticiple": "blown"
+  },
+  {
+    "english": "break",
+    "fr": "casser",
+    "hi": "तोड़ना",
+    "pastSimple": "broke",
+    "pastParticiple": "broken"
+  },
+  {
+    "english": "bring",
+    "fr": "apporter",
+    "hi": "लाना",
+    "pastSimple": "brought",
+    "pastParticiple": "brought"
+  },
+  {
+    "english": "broadcast",
+    "fr": "diffuser émettre",
+    "hi": "प्रसारित करना",
+    "pastSimple": "broadcast",
+    "pastParticiple": "broadcast"
+  },
+  {
+    "english": "build",
+    "fr": "construire",
+    "hi": "बनाना",
+    "pastSimple": "built",
+    "pastParticiple": "built"
+  },
+  {
+    "english": "burst",
+    "fr": "éclater",
+    "hi": "फटना",
+    "pastSimple": "burst",
+    "pastParticiple": "burst"
+  },
+  {
+    "english": "buy",
+    "fr": "acheter",
+    "hi": "खरीदना",
+    "pastSimple": "bought",
+    "pastParticiple": "bought"
+  },
+  {
+    "english": "catch",
+    "fr": "attraper",
+    "hi": "पकड़ना",
+    "pastSimple": "caught",
+    "pastParticiple": "caught"
+  },
+  {
+    "english": "choose",
+    "fr": "choisir",
+    "hi": "चुनना",
+    "pastSimple": "chose",
+    "pastParticiple": "chosen"
+  },
+  {
+    "english": "come",
+    "fr": "venir",
+    "hi": "आना",
+    "pastSimple": "came",
+    "pastParticiple": "come"
+  },
+  {
+    "english": "cost",
+    "fr": "coûter",
+    "hi": "लागत होना खर्च होना",
+    "pastSimple": "cost",
+    "pastParticiple": "cost"
+  },
+  {
+    "english": "creep",
+    "fr": "ramper",
+    "hi": "रेंगना",
+    "pastSimple": "crept",
+    "pastParticiple": "crept"
+  },
+  {
+    "english": "cut",
+    "fr": "couper",
+    "hi": "काटना",
+    "pastSimple": "cut",
+    "pastParticiple": "cut"
+  },
+  {
+    "english": "deal",
+    "fr": "distribuer",
+    "hi": "सौदा करना व्यवहार करना",
+    "pastSimple": "dealt",
+    "pastParticiple": "dealt"
+  },
+  {
+    "english": "dig",
+    "fr": "creuser",
+    "hi": "खोदना",
+    "pastSimple": "dug",
+    "pastParticiple": "dug"
+  },
+  {
+    "english": "do",
+    "fr": "faire",
+    "hi": "करना",
+    "pastSimple": "did",
+    "pastParticiple": "done"
+  },
+  {
+    "english": "draw",
+    "fr": "dessiner tirer",
+    "hi": "चित्र बनाना खींचना",
+    "pastSimple": "drew",
+    "pastParticiple": "drawn"
+  },
+  {
+    "english": "drink",
+    "fr": "boire",
+    "hi": "पीना",
+    "pastSimple": "drank",
+    "pastParticiple": "drunk"
+  },
+  {
+    "english": "drive",
+    "fr": "conduire",
+    "hi": "चलाना",
+    "pastSimple": "drove",
+    "pastParticiple": "driven"
+  },
+  {
+    "english": "eat",
+    "fr": "manger",
+    "hi": "खाना",
+    "pastSimple": "ate",
+    "pastParticiple": "eaten"
+  },
+  {
+    "english": "fall",
+    "fr": "tomber",
+    "hi": "गिरना",
+    "pastSimple": "fell",
+    "pastParticiple": "fallen"
+  },
+  {
+    "english": "feed",
+    "fr": "nourrir",
+    "hi": "खाना देना",
+    "pastSimple": "fed",
+    "pastParticiple": "fed"
+  },
+  {
+    "english": "feel",
+    "fr": "se sentir ressentir",
+    "hi": "महसूस करना",
+    "pastSimple": "felt",
+    "pastParticiple": "felt"
+  },
+  {
+    "english": "fight",
+    "fr": "se battre",
+    "hi": "लड़ना",
+    "pastSimple": "fought",
+    "pastParticiple": "fought"
+  },
+  {
+    "english": "find",
+    "fr": "trouver",
+    "hi": "ढूँढना",
+    "pastSimple": "found",
+    "pastParticiple": "found"
+  },
+  {
+    "english": "flee",
+    "fr": "s'enfuir",
+    "hi": "भागना",
+    "pastSimple": "fled",
+    "pastParticiple": "fled"
+  },
+  {
+    "english": "fly",
+    "fr": "voler",
+    "hi": "उड़ना",
+    "pastSimple": "flew",
+    "pastParticiple": "flown"
+  },
+  {
+    "english": "forbid",
+    "fr": "interdire",
+    "hi": "मना करना",
+    "pastSimple": "forbade",
+    "pastParticiple": "forbidden"
+  },
+  {
+    "english": "forget",
+    "fr": "oublier",
+    "hi": "भूलना",
+    "pastSimple": "forgot",
+    "pastParticiple": "forgotten forgot"
+  },
+  {
+    "english": "forgive",
+    "fr": "pardonner",
+    "hi": "माफ करना",
+    "pastSimple": "forgave",
+    "pastParticiple": "forgiven"
+  },
+  {
+    "english": "freeze",
+    "fr": "geler",
+    "hi": "जमना",
+    "pastSimple": "froze",
+    "pastParticiple": "frozen"
+  },
+  {
+    "english": "get",
+    "fr": "obtenir",
+    "hi": "प्राप्त करना लेना",
+    "pastSimple": "got",
+    "pastParticiple": "gotten got"
+  },
+  {
+    "english": "give",
+    "fr": "donner",
+    "hi": "देना",
+    "pastSimple": "gave",
+    "pastParticiple": "given"
+  },
+  {
+    "english": "go",
+    "fr": "aller",
+    "hi": "जाना",
+    "pastSimple": "went",
+    "pastParticiple": "gone"
+  },
+  {
+    "english": "grow",
+    "fr": "grandir pousser",
+    "hi": "बढ़ना उगना",
+    "pastSimple": "grew",
+    "pastParticiple": "grown"
+  },
+  {
+    "english": "hang",
+    "fr": "tenir pendre",
+    "hi": "लटकाना झूलना",
+    "pastSimple": "hung",
+    "pastParticiple": "hung"
+  },
+  {
+    "english": "have",
+    "fr": "avoir",
+    "hi": "होना",
+    "pastSimple": "had",
+    "pastParticiple": "had"
+  },
+  {
+    "english": "hear",
+    "fr": "entendre",
+    "hi": "सुनना",
+    "pastSimple": "heard",
+    "pastParticiple": "heard"
+  },
+  {
+    "english": "hide",
+    "fr": "cacher",
+    "hi": "छिपाना",
+    "pastSimple": "hid",
+    "pastParticiple": "hidden"
+  },
+  {
+    "english": "hit",
+    "fr": "taper appuyer",
+    "hi": "मारना",
+    "pastSimple": "hit",
+    "pastParticiple": "hit"
+  },
+  {
+    "english": "hold",
+    "fr": "tenir",
+    "hi": "पकड़ना",
+    "pastSimple": "held",
+    "pastParticiple": "held"
+  },
+  {
+    "english": "hurt",
+    "fr": "blesser",
+    "hi": "चोट पहुँचाना दुख पहुँचाना",
+    "pastSimple": "hurt",
+    "pastParticiple": "hurt"
+  },
+  {
+    "english": "keep",
+    "fr": "garder",
+    "hi": "रखना",
+    "pastSimple": "kept",
+    "pastParticiple": "kept"
+  },
+  {
+    "english": "kneel",
+    "fr": "s'agenouiller",
+    "hi": "घुटने टेकना",
+    "pastSimple": "knelt kneeled",
+    "pastParticiple": "knelt kneeled"
+  },
+  {
+    "english": "know",
+    "fr": "connaître savoir",
+    "hi": "जानना",
+    "pastSimple": "knew",
+    "pastParticiple": "known"
+  },
+  {
+    "english": "lay",
+    "fr": "poser",
+    "hi": "रखना बिछाना",
+    "pastSimple": "laid",
+    "pastParticiple": "laid"
+  },
+  {
+    "english": "lead",
+    "fr": "mener guider",
+    "hi": "मार्गदर्शन करना नेतृत्व करना",
+    "pastSimple": "led",
+    "pastParticiple": "led"
+  },
+  {
+    "english": "learn",
+    "fr": "apprendre",
+    "hi": "सीखना",
+    "pastSimple": "learnt",
+    "pastParticiple": "learnt"
+  },
+  {
+    "english": "leave",
+    "fr": "laisser quitter partir",
+    "hi": "छोड़ना",
+    "pastSimple": "left",
+    "pastParticiple": "left"
+  },
+  {
+    "english": "lend",
+    "fr": "prêter",
+    "hi": "उधार देना",
+    "pastSimple": "lent",
+    "pastParticiple": "lent"
+  },
+  {
+    "english": "let",
+    "fr": "permettre louer",
+    "hi": "देना छोड़ना",
+    "pastSimple": "let",
+    "pastParticiple": "let"
+  },
+  {
+    "english": "lie",
+    "fr": "s'allonger",
+    "hi": "झूठ बोलना लेटना",
+    "pastSimple": "lay",
+    "pastParticiple": "lain"
+  },
+  {
+    "english": "light",
+    "fr": "allumer",
+    "hi": "जगाना जलाना",
+    "pastSimple": "lit lighted",
+    "pastParticiple": "lit lighted"
+  },
+  {
+    "english": "lose",
+    "fr": "perdre",
+    "hi": "खोना",
+    "pastSimple": "lost",
+    "pastParticiple": "lost"
+  },
+  {
+    "english": "make",
+    "fr": "fabriquer",
+    "hi": "बनाना",
+    "pastSimple": "made",
+    "pastParticiple": "made"
+  },
+  {
+    "english": "mean",
+    "fr": "signifier",
+    "hi": "मतलब होना",
+    "pastSimple": "meant",
+    "pastParticiple": "meant"
+  },
+  {
+    "english": "meet",
+    "fr": "rencontrer",
+    "hi": "मिलना",
+    "pastSimple": "met",
+    "pastParticiple": "met"
+  },
+  {
+    "english": "pay",
+    "fr": "payer",
+    "hi": "भुगतान करना पैसे देना",
+    "pastSimple": "paid",
+    "pastParticiple": "paid"
+  },
+  {
+    "english": "put",
+    "fr": "mettre",
+    "hi": "रखना",
+    "pastSimple": "put",
+    "pastParticiple": "put"
+  },
+  {
+    "english": "read",
+    "fr": "lire",
+    "hi": "पढ़ना",
+    "pastSimple": "read",
+    "pastParticiple": "read"
+  },
+  {
+    "english": "ride",
+    "fr": "conduire faire du cheval",
+    "hi": "सवारी करना चढ़ना",
+    "pastSimple": "rode",
+    "pastParticiple": "ridden"
+  },
+  {
+    "english": "ring",
+    "fr": "sonner téléphoner",
+    "hi": "बजना घंटी बजाना फोन करना",
+    "pastSimple": "rang",
+    "pastParticiple": "rung"
+  },
+  {
+    "english": "rise",
+    "fr": "lever",
+    "hi": "उठना उठाना",
+    "pastSimple": "rose",
+    "pastParticiple": "risen"
+  },
+  {
+    "english": "run",
+    "fr": "courir",
+    "hi": "दौड़ना",
+    "pastSimple": "ran",
+    "pastParticiple": "run"
+  },
+  {
+    "english": "say",
+    "fr": "dire",
+    "hi": "कहना",
+    "pastSimple": "said",
+    "pastParticiple": "said"
+  },
+  {
+    "english": "see",
+    "fr": "voir",
+    "hi": "देखना",
+    "pastSimple": "saw",
+    "pastParticiple": "seen"
+  },
+  {
+    "english": "seek",
+    "fr": "chercher",
+    "hi": "खोजना",
+    "pastSimple": "sought",
+    "pastParticiple": "sought"
+  },
+  {
+    "english": "sell",
+    "fr": "vendre",
+    "hi": "बेचना",
+    "pastSimple": "sold",
+    "pastParticiple": "sold"
+  },
+  {
+    "english": "send",
+    "fr": "envoyer",
+    "hi": "भेजना",
+    "pastSimple": "sent",
+    "pastParticiple": "sent"
+  },
+  {
+    "english": "set",
+    "fr": "fixer",
+    "hi": "तय करना",
+    "pastSimple": "set",
+    "pastParticiple": "set"
+  },
+  {
+    "english": "sew",
+    "fr": "coudre",
+    "hi": "सिलना",
+    "pastSimple": "sewed",
+    "pastParticiple": "sewn sewed"
+  },
+  {
+    "english": "shake",
+    "fr": "secouer",
+    "hi": "हिलाना",
+    "pastSimple": "shook",
+    "pastParticiple": "shaken"
+  },
+  {
+    "english": "shine",
+    "fr": "briller",
+    "hi": "चमकना",
+    "pastSimple": "shone",
+    "pastParticiple": "shone"
+  },
+  {
+    "english": "shoot",
+    "fr": "tirer fusiller",
+    "hi": "गोली मारना",
+    "pastSimple": "shot",
+    "pastParticiple": "shot"
+  },
+  {
+    "english": "show",
+    "fr": "montrer",
+    "hi": "दिखाना",
+    "pastSimple": "showed",
+    "pastParticiple": "shown"
+  },
+  {
+    "english": "shrink",
+    "fr": "retrecir",
+    "hi": "सिकुड़ना",
+    "pastSimple": "shrank",
+    "pastParticiple": "shrunk"
+  },
+  {
+    "english": "shut",
+    "fr": "fermer",
+    "hi": "बंद करना",
+    "pastSimple": "shut",
+    "pastParticiple": "shut"
+  },
+  {
+    "english": "sing",
+    "fr": "chanter",
+    "hi": "गाना",
+    "pastSimple": "sang",
+    "pastParticiple": "sung"
+  },
+  {
+    "english": "sink",
+    "fr": "couler",
+    "hi": "डूबना",
+    "pastSimple": "sank sunk",
+    "pastParticiple": "sunk sunken"
+  },
+  {
+    "english": "sit",
+    "fr": "s'asseoir",
+    "hi": "बैठना",
+    "pastSimple": "sat",
+    "pastParticiple": "sat"
+  },
+  {
+    "english": "sleep",
+    "fr": "dormir",
+    "hi": "सोना",
+    "pastSimple": "slept",
+    "pastParticiple": "slept"
+  },
+  {
+    "english": "slide",
+    "fr": "glisser",
+    "hi": "फिसलना",
+    "pastSimple": "slid",
+    "pastParticiple": "slid"
+  },
+  {
+    "english": "speak",
+    "fr": "parler",
+    "hi": "बोलना",
+    "pastSimple": "spoke",
+    "pastParticiple": "spoken"
+  },
+  {
+    "english": "spend",
+    "fr": "dépenser passer du temps",
+    "hi": "खर्च करना",
+    "pastSimple": "spent",
+    "pastParticiple": "spent"
+  },
+  {
+    "english": "spit",
+    "fr": "cracher",
+    "hi": "थूकना",
+    "pastSimple": "spat spit",
+    "pastParticiple": "spat spit"
+  },
+  {
+    "english": "split",
+    "fr": "fendre",
+    "hi": "विभाजित करना",
+    "pastSimple": "split",
+    "pastParticiple": "split"
+  },
+  {
+    "english": "spread",
+    "fr": "répandre",
+    "hi": "फैलाना",
+    "pastSimple": "spread",
+    "pastParticiple": "spread"
+  },
+  {
+    "english": "spring",
+    "fr": "surgir jaillir bondir",
+    "hi": "उछलना",
+    "pastSimple": "sprang",
+    "pastParticiple": "sprung"
+  },
+  {
+    "english": "stand",
+    "fr": "être debout",
+    "hi": "खड़ा होना",
+    "pastSimple": "stood",
+    "pastParticiple": "stood"
+  },
+  {
+    "english": "steal",
+    "fr": "voler dérober",
+    "hi": "चुराना",
+    "pastSimple": "stole",
+    "pastParticiple": "stolen"
+  },
+  {
+    "english": "stick",
+    "fr": "coller",
+    "hi": "चिपकना",
+    "pastSimple": "stuck",
+    "pastParticiple": "stuck"
+  },
+  {
+    "english": "sting",
+    "fr": "piquer",
+    "hi": "डंक मारना",
+    "pastSimple": "stung",
+    "pastParticiple": "stung"
+  },
+  {
+    "english": "stink",
+    "fr": "puer",
+    "hi": "बदबू आना",
+    "pastSimple": "stank",
+    "pastParticiple": "stunk"
+  },
+  {
+    "english": "strike",
+    "fr": "frapper",
+    "hi": "प्रहार करना",
+    "pastSimple": "struck",
+    "pastParticiple": "struck"
+  },
+  {
+    "english": "swear",
+    "fr": "jurer",
+    "hi": "कसम खाना",
+    "pastSimple": "swore",
+    "pastParticiple": "sworn"
+  },
+  {
+    "english": "sweep",
+    "fr": "balayer",
+    "hi": "झाडू लगाना",
+    "pastSimple": "swept",
+    "pastParticiple": "swept"
+  },
+  {
+    "english": "swim",
+    "fr": "nager",
+    "hi": "तैरना",
+    "pastSimple": "swam",
+    "pastParticiple": "swum"
+  },
+  {
+    "english": "swing",
+    "fr": "se balancer",
+    "hi": "झूलना",
+    "pastSimple": "swung swang",
+    "pastParticiple": "swung swang"
+  },
+  {
+    "english": "take",
+    "fr": "prendre",
+    "hi": "लेना",
+    "pastSimple": "took",
+    "pastParticiple": "taken"
+  },
+  {
+    "english": "teach",
+    "fr": "enseigner",
+    "hi": "पढ़ाना",
+    "pastSimple": "taught",
+    "pastParticiple": "taught"
+  },
+  {
+    "english": "tear",
+    "fr": "déchirer",
+    "hi": "फाड़ना",
+    "pastSimple": "tore",
+    "pastParticiple": "torn"
+  },
+  {
+    "english": "tell",
+    "fr": "dire raconter",
+    "hi": "कहना बताना",
+    "pastSimple": "told",
+    "pastParticiple": "told"
+  },
+  {
+    "english": "think",
+    "fr": "penser",
+    "hi": "सोचना",
+    "pastSimple": "thought",
+    "pastParticiple": "thought"
+  },
+  {
+    "english": "throw",
+    "fr": "jeter",
+    "hi": "फेंकना",
+    "pastSimple": "threw",
+    "pastParticiple": "thrown"
+  },
+  {
+    "english": "understand",
+    "fr": "comprendre",
+    "hi": "समझना",
+    "pastSimple": "understood",
+    "pastParticiple": "understood"
+  },
+  {
+    "english": "wake",
+    "fr": "réveiller",
+    "hi": "जागना",
+    "pastSimple": "woke",
+    "pastParticiple": "woken"
+  },
+  {
+    "english": "wear",
+    "fr": "porter (avoir sur soi)",
+    "hi": "पहनना",
+    "pastSimple": "wore",
+    "pastParticiple": "worn"
+  },
+  {
+    "english": "weep",
+    "fr": "pleurer",
+    "hi": "रोना",
+    "pastSimple": "wept",
+    "pastParticiple": "wept"
+  },
+  {
+    "english": "win",
+    "fr": "gagner",
+    "hi": "जीतना",
+    "pastSimple": "won",
+    "pastParticiple": "won"
+  },
+  {
+    "english": "write",
+    "fr": "écrire",
+    "hi": "लिखना",
+    "pastSimple": "wrote",
+    "pastParticiple": "written"
+  }
+]

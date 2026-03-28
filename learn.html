@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn Irregular Verbs</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <button onclick="toggleMenu()" class="ham">
+      <img src="./img/hamburger.svg" alt="Menu" />
+    </button>
+
+    <div class="words">
+      <h1>Irregular Verbs</h1>
+
+      <div class="word">
+        <p id="french"></p>
+        <div class="progressbar">
+          <span></span>
+        </div>
+      </div>
+
+      <div class="answer">
+        <p id="english"></p>
+      </div>
+
+      <div class="btn-deck">
+        <button id="speakButton" type="button">
+          <img src="./img/speak.png" alt="Speak" />
+        </button>
+        <button id="nextButton" type="button">
+          <img src="./img/next.png" alt="Next" />
+        </button>
+      </div>
+
+      <div class="footer">
+        <ul>
+          <li><a class="legal" href="./mention.html" target="_blank" rel="noopener">Legal Notice</a></li>
+          <li><a class="legal" href="./cookies.html" target="_blank" rel="noopener">Cookie Policy</a></li>
+          <li><a class="legal" href="./confidentialite.html" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a class="legal" href="./condition.html" target="_blank" rel="noopener">General Terms and Conditions of Sale (GTCS)</a></li>
+        </ul>
+        <a href="./index.html">
+          <img src="./img/logo.png" alt="Casual English" />
+        </a>
+      </div>
+    </div>
+
+    <button onclick="toggleDark()" class="btn-float dark-mode"><i data-lucide="moon"></i></button>
+    <button onclick="toggleQues()" class="btn-float ques"><i data-lucide="circle-help"></i></button>
+
+    <!-- language float -->
+    <div class="lang-float" id="langFloat" onclick="toggleLangFloat(event)">
+      <button class="lang-float-opt" data-lang="en" onclick="switchLang(event,'en')">EN</button>
+      <button class="lang-float-opt" data-lang="fr" onclick="switchLang(event,'fr')">FR</button>
+      <button class="lang-float-opt" data-lang="hi" onclick="switchLang(event,'hi')">हि</button>
+    </div>
+
+    <!-- menu -->
+    <div class="menu">
+      <a href="./index.html"><i data-lucide="home"></i>Back to Main Page</a>
+    </div>
+
+    <!-- overlay -->
+    <div class="menu-overlay" onclick="closeMenu()" aria-hidden="true"></div>
+
+    <!-- help -->
+    <div class="help">
+      <div class="help-header">
+        <span class="help-header-title">Help</span>
+        <button class="help-close" onclick="toggleQues()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="help-body">
+        <ol class="help-list">
+          <li>Pick your language with the <strong>EN / FR / हि</strong> buttons</li>
+          <li>In phone settings, set language to <strong>English</strong></li>
+          <li>Press <strong>Play</strong> — a word appears</li>
+          <li>You have <strong>2 seconds</strong> to recall the past tenses</li>
+          <li>The answer is revealed automatically</li>
+          <li>Press the <strong>speaker</strong> to listen</li>
+          <li>Press the <strong>arrow</strong> for the next word</li>
+        </ol>
+      </div>
+    </div>
+    <div class="help-overlay" onclick="toggleQues()" aria-hidden="true"></div>
+  </div>
+
+  <script src="./script.js"></script>
+  <script src="./learn.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

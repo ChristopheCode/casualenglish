@@ -25,7 +25,7 @@
                 <div class="swiper-slide">
                     <div class="slide-content">
                         <img src="./img/big-ben.png" alt="Learn">
-                        <a href="./iregularverbsenglish.html" class="slide-btn">Learn</a>
+                        <a href="./learn.html" class="slide-btn">Learn</a>
                     </div>
                 </div>
                 <div class="swiper-slide">
@@ -58,12 +58,12 @@
                     href="https://github.com/ChristopheCode/casualenglish?tab=MIT-1-ov-file#readme" target="_blank" rel="external"><img id="copyright" src="./img/MITLicense.png" alt=""></a>
             </div>
         </div>
-        <button onclick="toggleDark()" class="btn-float dark-mode"><img src="./img/moon.svg" alt=""></button>
-        <button onclick="toggleQues()" class="btn-float ques"><img src="./img/question.svg" alt=""></button>
+        <button onclick="toggleDark()" class="btn-float dark-mode"><i data-lucide="moon"></i></button>
+        <button onclick="toggleQues()" class="btn-float ques"><i data-lucide="circle-help"></i></button>
 
         <!-- menu -->
         <div class="menu">
-            <a href="./iregularverbsenglish.html"><i data-lucide="book-open"></i>Learn</a>
+            <a href="./learn.html"><i data-lucide="book-open"></i>Learn</a>
             <!-- <a href="./iregularverbs.html">French</a>
             <a href="./iregularverbshindi.html">Hindi</a> -->
             <a href="./exercises.html"><i data-lucide="pencil"></i>Exercises</a>
@@ -75,34 +75,31 @@
         <div class="menu-overlay" onclick="closeMenu()" aria-hidden="true"></div>
 
         <!-- help -->
-    <div class="help">
-        <p>1. In the settings
-          set your phone
-          to English
-          <br>
-          <br>
-          2. In the menu, choose
-          the language
-          <br>
-          <br>
-          3. Press play
-          <br>
-          <br>
-          4. You have 2 seconds
-          to find the answer
-          <br>
-          <br>
-          5. The result is displayed
-          <br>
-          <br>
-          6. To listen, press
-          the speaker
-          <br>
-          <br>
-          7. To go to the next,
-          press the arrow
-        </p>
-      </div>
+        <div class="help">
+          <div class="help-header">
+            <span class="help-header-title">How to use</span>
+            <button class="help-close" onclick="toggleQues()"><i data-lucide="x"></i></button>
+          </div>
+          <div class="help-body">
+            <div class="help-section">
+              <p class="help-section-title"><i data-lucide="book-open"></i> Learn</p>
+              <p class="help-section-desc">Flashcards — a word appears, you have <strong>2 seconds</strong> to recall its past tense forms. Choose your prompt language (EN / FR / हि).</p>
+            </div>
+            <div class="help-section">
+              <p class="help-section-title"><i data-lucide="pencil"></i> Exercises</p>
+              <p class="help-section-desc">Read the sentence and the tense, then pick the <strong>correct form</strong> from the choices.</p>
+            </div>
+            <div class="help-section">
+              <p class="help-section-title"><i data-lucide="clipboard-check"></i> Exam</p>
+              <p class="help-section-desc">Answer <strong>10 questions</strong> and see your score at the end.</p>
+            </div>
+            <div class="help-section help-section--tip">
+              <p class="help-section-title"><i data-lucide="lightbulb"></i> Tip</p>
+              <p class="help-section-desc">Set your phone language to <strong>English</strong> for the best speech experience.</p>
+            </div>
+          </div>
+        </div>
+        <div class="help-overlay" onclick="toggleQues()" aria-hidden="true"></div>
       
     </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
