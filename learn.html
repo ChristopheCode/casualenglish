@@ -5,13 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Learn Irregular Verbs</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
   <div class="container">
     <button onclick="toggleMenu()" class="ham">
-      <img src="./img/hamburger.svg" alt="Menu" />
+      <i data-lucide="align-justify"></i>
     </button>
 
     <div class="words">
@@ -30,10 +32,10 @@
 
       <div class="btn-deck">
         <button id="speakButton" type="button">
-          <img src="./img/speak.png" alt="Speak" />
+          <i data-lucide="volume-2"></i>
         </button>
         <button id="nextButton" type="button">
-          <img src="./img/next.png" alt="Next" />
+          <i data-lucide="chevrons-right"></i>
         </button>
       </div>
 
@@ -89,8 +91,8 @@
     <div class="help-overlay" onclick="toggleQues()" aria-hidden="true"></div>
   </div>
 
-  <script src="./script.js"></script>
-  <script src="./learn.js"></script>
+  <script src="./js/script.js"></script>
+  <script src="./js/learn.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>lucide.createIcons();</script>
 </body>

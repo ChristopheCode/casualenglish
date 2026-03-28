@@ -106,8 +106,10 @@ function showNewVerb() {
     if (countdown === -1) {
       clearInterval(intervalId);
       intervalId = null;
-      answerEl.textContent =
-        `${currentVerb.english}  ${currentVerb.pastSimple}  ${currentVerb.pastParticiple}`;
+      answerEl.textContent = `${currentVerb.english}  ${currentVerb.pastSimple}  ${currentVerb.pastParticiple}`;
+      answerEl.classList.remove('anim-pop');
+      void answerEl.offsetWidth;
+      answerEl.classList.add('anim-pop');
     }
   }, 1000);
 }

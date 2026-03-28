@@ -5,7 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tense Rules</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
@@ -48,13 +50,8 @@
       </div>
     </div>
 
-    <button onclick="toggleDark()" class="btn-float dark-mode">
-      <img src="./img/moon.svg" alt="Dark mode" />
-    </button>
-
-    <button onclick="toggleQues()" class="btn-float ques">
-      <img src="./img/question.svg" alt="Help" />
-    </button>
+    <button onclick="toggleDark()" class="btn-float dark-mode"><i data-lucide="moon"></i></button>
+    <button onclick="toggleQues()" class="btn-float ques"><i data-lucide="circle-help"></i></button>
 
     <!-- menu -->
     <div class="menu">
@@ -69,68 +66,38 @@
 
     <!-- help -->
     <div class="help">
-      <p>
-        1. Read the rule and the example.<br><br>
-        2. Look at the signal words.<br><br>
-        3. Press Next to review the next tense.
-      </p>
+      <div class="help-header">
+        <span class="help-header-title">How to use</span>
+        <button class="help-close" onclick="toggleQues()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="help-body">
+        <ol class="help-steps">
+          <li>Read the tense rule</li>
+          <li>Study the <strong>example sentence</strong></li>
+          <li>Note the <strong>signal words</strong></li>
+          <li>Press <strong>Next</strong> to cycle through all 5 tenses</li>
+        </ol>
+      </div>
     </div>
+    <div class="help-overlay" onclick="toggleQues()" aria-hidden="true"></div>
   </div>
 
-  <script src="./script.js"></script>
+  <script src="./js/script.js"></script>
 
   <script>
-    // =====================
-    // DATA
-    // =====================
-    const tenses = [
-      {
-        title: "Present Simple 1/5",
-        rule:
-          "Use it for habits, routines, facts, and regular actions. (I/you/we/they + base verb).",
-        example: "I go to the gym on Mondays.",
-        signals: "always, usually, often, sometimes, never, every day/week"
-      },
-      {
-        title: "Past Simple 2/5",
-        rule:
-          "Use it for finished actions in the past. Time is finished (yesterday, last week...).",
-        example: "We went to Paris yesterday.",
-        signals: "yesterday, last night, last week, in 2020, two days ago"
-      },
-      {
-        title: "Present Perfect 3/5",
-        rule:
-          "Use it for life experience, recent actions with a result now, or actions that started in the past and continue now. (have/has + past participle).",
-        example: "I have been to London three times.",
-        signals: "ever, never, already, yet, just, since, for, recently"
-      },
-      {
-        title: "Present Continuous 4/5",
-        rule:
-          "Use it for actions happening now or temporary situations. (am/is/are + verb-ing).",
-        example: "I am studying right now.",
-        signals: "now, right now, at the moment, today"
-      },
-      {
-        title: "Future, will 5/5",
-        rule:
-          "Use it for quick decisions, predictions, promises, and offers. (will + base verb).",
-        example: "I will call you later.",
-        signals: "tomorrow, later, soon, I think..., probably"
-      }
-    ];
-
-    // =====================
-    // UI
-    // =====================
     const titleEl = document.getElementById("tenseTitle");
     const ruleEl = document.getElementById("tenseRule");
     const exampleEl = document.getElementById("tenseExample");
     const signalsEl = document.getElementById("tenseSignals");
     const nextBtn = document.getElementById("nextTense");
+    const card = document.querySelector('.tense-card');
 
+    let tenses = [];
     let index = 0;
+
+    fetch('./data/tense-rules.json')
+      .then(r => r.json())
+      .then(data => { tenses = data; renderCard(); });
 
     function renderCard() {
       const t = tenses[index];
@@ -138,15 +105,17 @@
       ruleEl.textContent = t.rule;
       exampleEl.textContent = t.example;
       signalsEl.textContent = t.signals;
+
+      // Re-trigger slide-up animation
+      card.style.animation = 'none';
+      card.offsetWidth;
+      card.style.animation = '';
     }
 
     nextBtn.addEventListener("click", () => {
-      index++;
-      if (index >= tenses.length) index = 0;
+      index = (index + 1) % tenses.length;
       renderCard();
     });
-
-    document.addEventListener("DOMContentLoaded", renderCard);
   </script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>lucide.createIcons();</script>
