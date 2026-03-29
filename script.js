@@ -125,18 +125,50 @@ document.querySelectorAll('.menu a').forEach((link) => {
 });
 
 // -----------------------------
-// Home slider (pure JS)
+// Home slider (infinite loop)
 // -----------------------------
 if (document.querySelector('.home-swiper')) {
   const wrapper = document.querySelector('.swiper-wrapper');
-  const slides = wrapper.querySelectorAll('.swiper-slide');
+  const slides = Array.from(wrapper.querySelectorAll('.swiper-slide'));
   const total = slides.length;
-  let current = 0;
+
+  // Prepend clone of last slide, append clone of first slide
+  const firstClone = slides[0].cloneNode(true);
+  const lastClone  = slides[total - 1].cloneNode(true);
+  firstClone.setAttribute('aria-hidden', 'true');
+  lastClone.setAttribute('aria-hidden', 'true');
+  wrapper.appendChild(firstClone);
+  wrapper.insertBefore(lastClone, slides[0]);
+
+  // Start at real first slide (index 1 because of prepended clone)
+  let current = 1;
+  let transitioning = false;
+
+  wrapper.style.transition = 'none';
+  wrapper.style.transform = `translateX(-${current * 100}%)`;
 
   function slideTo(index) {
-    current = ((index % total) + total) % total;
+    if (transitioning) return;
+    transitioning = true;
+    current = index;
+    wrapper.style.transition = 'transform 0.35s ease';
     wrapper.style.transform = `translateX(-${current * 100}%)`;
   }
+
+  wrapper.addEventListener('transitionend', () => {
+    transitioning = false;
+    if (current === 0) {
+      // Slid left past lastClone → snap to real last slide
+      wrapper.style.transition = 'none';
+      current = total;
+      wrapper.style.transform = `translateX(-${current * 100}%)`;
+    } else if (current === total + 1) {
+      // Slid right past firstClone → snap to real first slide
+      wrapper.style.transition = 'none';
+      current = 1;
+      wrapper.style.transform = `translateX(-${current * 100}%)`;
+    }
+  });
 
   document.querySelector('.home-nav-prev').addEventListener('click', () => slideTo(current - 1));
   document.querySelector('.home-nav-next').addEventListener('click', () => slideTo(current + 1));

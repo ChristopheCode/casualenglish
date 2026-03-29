@@ -138,6 +138,29 @@ body {
   min-width: 0;
   padding: 1rem 0;
   overflow: hidden;
+  position: relative;
+}
+
+/* Infinite-loop edge fades */
+.home-swiper::before,
+.home-swiper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 28px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.home-swiper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-color-primary), transparent);
+}
+
+.home-swiper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-color-primary), transparent);
 }
 
 /* Pure JS slider — replaces Swiper CDN CSS */
