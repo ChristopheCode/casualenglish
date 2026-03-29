@@ -19,11 +19,10 @@ let show = false;
 const help = document.querySelector('.help');
 const helpOverlay = document.querySelector('.help-overlay');
 
-const swapDarkIcon = (iconName) => {
-  const btn = document.querySelector('.dark-mode');
-  if (!btn) return;
-  btn.innerHTML = `<i data-lucide="${iconName}"></i>`;
-  if (typeof lucide !== 'undefined') lucide.createIcons();
+const swapDarkIcon = (isDark) => {
+  const btnImg = document.querySelector('.dark-mode img');
+  if (!btnImg) return;
+  btnImg.src = isDark ? './img/sun.svg' : './img/moon.svg';
 };
 
 const toggleDark = () => {
@@ -39,7 +38,7 @@ const toggleQues = () => {
 
 const changeTheme = () => {
   if (dark === true) {
-    swapDarkIcon('sun');
+    swapDarkIcon(true);
     style.setProperty("--text-color-primary", "#e8f4ff");
     style.setProperty("--text-color-secondary", "#b8d4f0");
     style.setProperty("--bg-color-primary", "#0c1a2e");
@@ -60,7 +59,7 @@ const changeTheme = () => {
     images.forEach((ele) => ele.classList.add('dark'));
     ham.style.filter = 'grayscale() brightness(5)';
   } else {
-    swapDarkIcon('moon');
+    swapDarkIcon(false);
     style.setProperty("--text-color-primary", "#0071BC");
     style.setProperty("--text-color-secondary", "#0071BC");
     style.setProperty("--bg-color-primary", "#DDE8FD");

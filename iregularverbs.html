@@ -54,7 +54,7 @@
       <img src="./img/moon.svg" alt="Dark mode" />
     </button>
     <button onclick="toggleQues()" class="btn-float ques">
-      <img src="./img/question.svg" alt="Help" />
+      <img src="./img/question.svg" alt="Help" style="width:28px;height:28px;" />
     </button>
 
     <!-- menu -->
@@ -67,22 +67,29 @@
 
     <!-- help -->
     <div class="help">
-      <p>
-        1. In the settings set your phone to English
-        <br><br>
-        2. In the menu, choose the language
-        <br><br>
-        3. Press play
-        <br><br>
-        4. You have 2 seconds to find the answer
-        <br><br>
-        5. The result is displayed
-        <br><br>
-        6. To listen, press the speaker
-        <br><br>
-        7. To go to the next, press the arrow
-      </p>
+      <div class="help-header">
+        <span class="help-header-title">Help</span>
+        <button class="help-close" onclick="toggleQues()">&#x2715;</button>
+      </div>
+      <div class="help-body">
+        <div class="help-lang">
+          <p class="help-subtitle">Choose your language:</p>
+          <div class="help-lang-buttons">
+            <a class="help-lang-btn" href="./iregularverbsenglish.html">English</a>
+            <a class="help-lang-btn" href="./iregularverbs.html">Français</a>
+            <a class="help-lang-btn" href="./iregularverbshindi.html">हिन्दी</a>
+          </div>
+        </div>
+        <ol class="help-list">
+          <li>Set your phone language to <strong>English</strong>.</li>
+          <li>Press play — you have <strong>2 seconds</strong> to recall the answer.</li>
+          <li>The answer is then revealed.</li>
+          <li>Tap the speaker to hear pronunciation.</li>
+          <li>Tap the arrow to go to the next verb.</li>
+        </ol>
+      </div>
     </div>
+    <div class="help-overlay" onclick="toggleQues()" aria-hidden="true"></div>
   </div>
 
   <!-- If you still use functions from script.js (toggleMenu/toggleDark/toggleQues), keep this. -->
@@ -253,12 +260,12 @@
       countdown = 2;
       frenchEl.textContent = "";
       englishEl.textContent = "";
+      speakButton.disabled = true;
 
       // Pick a verb
       const randomIndex = Math.floor(Math.random() * irregularVerbs.length);
       currentVerb = irregularVerbs[randomIndex];
 
-      // Show prompt (you used "french" but values are currently English in your data)
       frenchEl.textContent = currentVerb.french;
 
       // Restart progress animation safely
@@ -272,6 +279,7 @@
           intervalId = null;
           englishEl.textContent =
             `${currentVerb.english} ${currentVerb.pastSimple} ${currentVerb.pastParticiple}`;
+          speakButton.disabled = false;
         }
       }, 1000);
     }
@@ -302,17 +310,11 @@
 
       speakButton.addEventListener("click", () => {
         if (!currentVerb) return;
-
-        // iOS / Instagram WebView often needs cancel() to avoid stuck queues
         window.speechSynthesis.cancel();
-
+        if (window.speechSynthesis.paused) window.speechSynthesis.resume();
         const utterance = new SpeechSynthesisUtterance(
           `${currentVerb.english}, ${currentVerb.pastSimple}, ${currentVerb.pastParticiple}`
         );
-
-        // Use a valid BCP-47 tag (en-UK is not valid). en-GB is the common choice.
-        utterance.lang = "en-GB";
-
         window.speechSynthesis.speak(utterance);
       });
     }
