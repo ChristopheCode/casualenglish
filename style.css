@@ -413,7 +413,6 @@ body {
 .exercise-card { 
     margin: auto; 
     width: clamp(275px, 100%, 420px); 
-    /* background: var(--bg-color-secondary); */
     border-radius: 16px; 
     padding: 18px; 
     box-shadow: 0px 5px 10px rgba(0,0,0,0.08); 
@@ -427,7 +426,6 @@ body {
 }
 
 .exercise-sentence {
-  /* color: var(--text-color-secondary); */
   color: var(--text-color-primary);
   font-size: 20px;
   text-align: center;
@@ -448,9 +446,7 @@ body {
 
 .exercise-choice {
   border: none;
-  /* background-color: var(--button-bg-primary); */
   background-color: var(--bg-color-secondary);
-  /* color: white; */
   color: var(--text-color-secondary);
   font-weight: bold;
   padding: 12px 14px;
