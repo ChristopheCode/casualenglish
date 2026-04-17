@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    transition: color, background 0.5s;
+    transition: color 0.5s, background 0.5s;
 }
 
 :root {
@@ -37,7 +37,7 @@ body {
     margin-inline: auto;
     height: 3.5rem;
 }
-
+/*
 .logo.dark {
     filter: grayscale() brightness(3);
 }
@@ -45,7 +45,7 @@ body {
 .logo.dark {
   filter: none !important;
 }
-
+*/
 
 .home h2 {
     color: var(--text-color-primary);
