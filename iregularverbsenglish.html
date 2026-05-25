@@ -219,21 +219,6 @@
     let currentVerb = null;
     let countdown = -1;
     let intervalId = null;
-    let speechReady = false;
-    let voices = [];
-
-
-    function loadVoices() {
-      voices = window.speechSynthesis.getVoices();
-    }
-
-    // Muat voices langsung
-    loadVoices();
-
-    // Chrome/Android requires this event
-    if (window.speechSynthesis.onvoiceschanged !== undefined) {
-      window.speechSynthesis.onvoiceschanged = loadVoices;
-    }
 
     // ── Init 
     document.addEventListener("DOMContentLoaded", () => {
@@ -245,7 +230,7 @@
         showNewVerb();
       });
 
-      // setupSpeech();
+      setupSpeech();
     });
 
     // ── Show Verb  
@@ -319,42 +304,29 @@
 
     // ── Speak button 
 
-    function speakCurrentVerb() {
-  if (!currentVerb) return;
+    function setupSpeech() {
+      if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
+        speakButton.disabled = true;
+        speakButton.title = "Text-to-speech not supported";
+        return;
+      }
 
-  if (!("speechSynthesis" in window)) {
-    alert("La synthèse vocale n'est pas supportée par ce navigateur.");
-    return;
-  }
+      speakButton.addEventListener("click", () => {
+        if (!currentVerb) return;
 
-  const voices = window.speechSynthesis.getVoices();
+        window.speechSynthesis.cancel();
 
-  const utt = new SpeechSynthesisUtterance(
-    `${currentVerb.english}. ${currentVerb.pastSimple}. ${currentVerb.pastParticiple}`
-  );
+        const utterance = new SpeechSynthesisUtterance(
+          `${currentVerb.english}, ${currentVerb.pastSimple}, ${currentVerb.pastParticiple}`
+        );
 
-  utt.lang = "en-US";
-  utt.rate = 0.9;
-  utt.volume = 1;
+        utterance.lang = "en-GB";
 
-  const enVoice =
-    voices.find(v => v.lang === "en-US") ||
-    voices.find(v => v.lang.startsWith("en")) ||
-    voices[0];
-
-  if (enVoice) {
-    utt.voice = enVoice;
-  }
-
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utt);
-}
-
-speakButton.addEventListener("click", speakCurrentVerb);
+        window.speechSynthesis.speak(utterance);
+      });
+    }
 
 
-
-    
     // ── Instagram detection ───────────────────────────────
     function isInstagramWebView() {
       const ua = navigator.userAgent || "";
