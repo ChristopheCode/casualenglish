@@ -2,35 +2,54 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>English Irregular Verbs</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+
     <div class="container">
-        <button onclick="toggleMenu()" class="ham"><img src="./img/hamburger.svg" alt=""></button>
+
+        <!-- Hamburger -->
+        <button onclick="toggleMenu()" class="ham">
+            <img src="./img/hamburger.svg" alt="Menu" id="hamImg" />
+        </button>
+
         <div class="home">
-            <a href="./index.html"><img src="./img/logo.png" alt="" class="logo" id="siteLogo"></a>
-            <h2>Irregular Verb</h2>
-            
-    <div class="play-selector">
-        <button class="nav-btn" id="prevBtn">◀</button>
 
-        <div class="play"> 
+            <!-- Logo -->
+            <a href="./index.html">
+                <img src="./img/logo.png" alt="Casual English" class="logo" id="siteLogo" />
+            </a>
 
-          <!-- Bloc central avec l'image + le bouton bleu -->
-          <div class="play-main">
-            <img src="./img/big-ben.png" alt="">
-            <a href="./iregularverbsenglish.html" id="mainAction">Learn</a>
-          </div>
- 
-    </div>
+            <h2>Irregular Verbs</h2>
 
-        <button class="nav-btn" id="nextBtn">▶</button>
-    </div>
+            <!-- Page selector -->
+            <div class="play-selector">
+                <button class="nav-btn" id="prevBtn">&#9664;</button>
+
+                <div class="play">
+                    <div class="play-main">
+                        <img src="./img/big-ben.png" alt="" />
+                        <a href="./iregularverbsenglish.html" id="mainAction">Learn</a>
+                    </div>
+                </div>
+
+                <button class="nav-btn" id="nextBtn">&#9654;</button>
+            </div>
+
+            <!-- Difficulty selector -->
+            <div class="difficulty-btn-group" id="btnGroup" role="group" aria-label="Difficulty selector">
+                <div class="slider" id="slider"></div>
+                <button class="diff-btn active" data-value="easy" aria-pressed="true">Easy</button>
+                <button class="diff-btn" data-value="medium" aria-pressed="false">Medium</button>
+                <button class="diff-btn" data-value="hard" aria-pressed="false">Hard</button>
+            </div>
+
+            <!-- Footer -->
             <div class="footer">
                 <ul>
                     <li><a class="legal" href="./mention.html" target="_blank">Legal Notice</a></li>
@@ -39,68 +58,66 @@
                     <li><a class="legal" href="./confidentialite.html" target="_blank">Privacy Policy</a></li>
                     <li><a class="legal" href="./condition.html" target="_blank">General Terms and Conditions of Sale (GTCS)</a></li>
                 </ul>
-                <a href="https://github.com/ChristopheCode/casualenglish?tab=readme-ov-file#readme"><img src="./img/Github.png" alt=""></a>
-                <a href="https://www.instagram.com/casualenglish__/"><img src="./img/instagram.png" alt=""></a>
-                <a class="legal" title=" Open Source MIT License "
-                    href="https://github.com/ChristopheCode/casualenglish?tab=MIT-1-ov-file#readme" target="_blank" rel="external"><img id="copyright" src="./img/MITLicense.png" alt=""></a>
+                <div class="more-info">
+                   <div class="social-container">
+                     <a href="https://github.com/ChristopheCode/casualenglish?tab=readme-ov-file#readme" class="social github">
+                        <span> <img src="./img/Github.png" alt="Facebook" /></span>
+                    </a>
+                    <a href="https://www.instagram.com/casualenglish__/" class="social instagram">
+                        <span> <img src="./img/instagram.png" alt="Instagram" /></span>
+                    </a>
+                   </div>
+                   <div class="legal-container">
+                     <a class="legal" title="Open Source MIT License"
+                        href="https://github.com/ChristopheCode/casualenglish?tab=MIT-1-ov-file#readme" target="_blank"
+                        rel="external">
+                        <img id="copyright" src="./img/MITLicense.png" alt="Copyright France" />
+                    </a>
+                   </div>
+                </div>
             </div>
-        </div>
-        <button onclick="toggleDark()" class="btn-float dark-mode"><img src="./img/moon.svg" alt=""></button>
-        <button onclick="toggleQues()" class="btn-float ques"><img src="./img/question.svg" alt=""></button>
 
-        <!-- menu -->
-        <div class="menu">
+        </div>
+
+        <!-- Dark mode toggle -->
+        <button onclick="toggleDark()" class="btn-float dark-mode">
+            <img src="./img/moon.svg" alt="Dark mode" />
+        </button>
+
+        <!-- Help toggle -->
+        <button onclick="toggleQues()" class="btn-float ques">
+            <img src="./img/question.svg" alt="Help" />
+        </button>
+
+        <!-- Slide-in menu -->
+        <div class="menu" id="menuPanel">
             <a href="./iregularverbsenglish.html">Learn</a>
-            <!-- <a href="./iregularverbs.html">French</a>
-            <a href="./iregularverbshindi.html">Hindi</a> -->
             <a href="./exercises.html">Exercises</a>
             <a href="./exam.html">Exam</a>
             <a href="./tense-rules.html">Tense Rules</a>
         </div>
 
-        <!-- overlay -->
-        <div class="menu-overlay" onclick="closeMenu()" aria-hidden="true"></div>
+        <!-- Overlay -->
+        <div class="menu-overlay" id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
 
-        <!-- help -->
-    <div class="help">
-        <p>1. In the settings
-          set your phone
-          to English
-          <br>
-          <br>
-          2. In the menu, choose
-          the language
-          <br>
-          <br>
-          3. Press play
-          <br>
-          <br>
-          4. You have 2 seconds
-          to find the answer
-          <br>
-          <br>
-          5. The result is displayed
-          <br>
-          <br>
-          6. To listen, press
-          the speaker
-          <br>
-          <br>
-          7. To go to the next,
-          press the arrow
-        </p>
-      </div>
-      
+        <!-- Help panel -->
+        <div class="help" id="helpPanel">
+            <h3 class="help-title">How to use</h3>
+            <ol class="help-list">
+                <li>In your phone settings, set the language to English.</li>
+                <li>Choose a difficulty level (Easy, Medium or Hard).</li>
+                <li>Tap <strong>Learn</strong> to start the flashcards.</li>
+                <li>A verb appears — try to recall its forms.</li>
+                <li>You have 2 seconds before the answer is revealed.</li>
+                <li>Press the speaker icon to hear it pronounced.</li>
+                <li>Press the arrow to go to the next verb.</li>
+            </ol>
+        </div>
+
     </div>
+
     <script src="./script.js"></script>
+
 </body>
 
 </html>
-
-
-
-
-
-
-
-
