@@ -304,27 +304,43 @@
 
     // ── Speak button 
 
-    function setupSpeech() {
-      if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
-        speakButton.disabled = true;
-        speakButton.title = "Text-to-speech not supported";
-        return;
-      }
+function setupSpeech() {
+  if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
+    speakButton.disabled = true;
+    speakButton.title = "Text-to-speech not supported";
+    return;
+  }
 
-      speakButton.addEventListener("click", () => {
-        if (!currentVerb) return;
+  speakButton.addEventListener("click", () => {
+    if (!currentVerb) return;
 
-        window.speechSynthesis.cancel();
+    window.speechSynthesis.cancel();
 
-        const utterance = new SpeechSynthesisUtterance(
-          `${currentVerb.english}, ${currentVerb.pastSimple}, ${currentVerb.pastParticiple}`
-        );
+    const utterance = new SpeechSynthesisUtterance(
+      `${currentVerb.english}, ${currentVerb.pastSimple}, ${currentVerb.pastParticiple}`
+    );
 
-        utterance.lang = "en-GB";
+    utterance.rate = 0.9;
+    utterance.volume = 1;
 
-        window.speechSynthesis.speak(utterance);
-      });
+    // Cherche une voix anglaise disponible
+    const voices = window.speechSynthesis.getVoices();
+
+    const englishVoice =
+      voices.find(v => v.lang === "en-US") ||
+      voices.find(v => v.lang === "en-GB") ||
+      voices.find(v => v.lang.startsWith("en"));
+
+    if (englishVoice) {
+      utterance.voice = englishVoice;
+      utterance.lang = englishVoice.lang;
+    } else {
+      utterance.lang = "en-US";
     }
+
+    window.speechSynthesis.speak(utterance);
+  });
+}
 
 
     // ── Instagram detection ───────────────────────────────
