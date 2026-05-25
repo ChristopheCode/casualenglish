@@ -5,13 +5,15 @@ const style    = document.documentElement.style;
 const images   = document.querySelectorAll('.container img');
 const ham      = document.querySelector('.ham');
 const siteLogo = document.getElementById('siteLogo');
-const menu     = document.getElementById('menuPanel');
-const overlay  = document.getElementById('overlay');
+const menu = document.querySelector('.menu');
+const overlay = document.querySelector('.menu-overlay'); 
 const help     = document.getElementById('helpPanel');
 const btnGroup = document.getElementById('btnGroup');
 const socialContainer = document.querySelector('.social-container');
 
-let menuOpen = false;
+
+let menuOpen = false;  
+let show = false;
 
 const toggleDark = () => {
   dark = !dark;
@@ -53,6 +55,7 @@ const applyTheme = () => {
 };
 
 applyTheme();
+
 
 // ── Menu (burger)
 const closeMenu = () => {

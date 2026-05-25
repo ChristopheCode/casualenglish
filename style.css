@@ -37,7 +37,7 @@ body {
   margin-inline: auto;
   height: 3.5rem;
 }
-
+/*
 .logo.dark {
   filter: grayscale() brightness(3);
 }
@@ -45,7 +45,7 @@ body {
 .logo.dark {
   filter: none !important;
 }
-
+*/
 
 .home h2 {
   color: var(--text-color-primary);
@@ -59,8 +59,7 @@ body {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
-  /* espace entre flèches et bloc central */
+  gap: 12px; 
 }
 
 /* On garde ton image + bouton bleu dans un bloc */
@@ -417,9 +416,37 @@ img.dark {
   z-index: 8;
   transition: 0.5s all;
 }
-
+ 
 .help {
   height: 80vh;
+}
+
+.help,
+.language-options {
+    position: absolute;
+    width: 90%;
+    top: -50%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    background-color: var(--button-bg-primary);
+    padding: 2rem 3rem;
+    border-radius: 2rem;
+    font-size: 18px;
+    color: white;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    overflow-y: auto;
+    gap: 14px;
+    z-index: 8;
+    transition: 0.5s all; 
+}
+
+.help{
+    height: 80vh;
 }
 
 .help-title {
@@ -440,6 +467,15 @@ img.dark {
   top: 50%;
 }
 
+.language-options{
+  height: auto;  
+}
+
+.language-options.show{
+    opacity: 1;
+    top: 50%;
+}
+
 .ques {
   top: 65px;
 }
@@ -449,6 +485,14 @@ img.dark {
 }
 
 .btn-float.language img {
+  height: 25px;
+}
+
+.language{ 
+  top: 110px;
+}
+
+.btn-float.language img{
   height: 25px;
 }
 
@@ -479,6 +523,7 @@ img.dark {
 /* -----------------------------
    Exercises page
 ------------------------------ */
+
 .exercise-card {
   margin: auto;
   width: clamp(275px, 100%, 420px);
@@ -496,7 +541,6 @@ img.dark {
 }
 
 .exercise-sentence {
-  /* color: var(--text-color-secondary); */
   color: var(--text-color-primary);
   font-size: 20px;
   text-align: center;
@@ -517,9 +561,7 @@ img.dark {
 
 .exercise-choice {
   border: none;
-  /* background-color: var(--button-bg-primary); */
   background-color: var(--bg-color-secondary);
-  /* color: white; */
   color: var(--text-color-secondary);
   font-weight: bold;
   padding: 12px 14px;
