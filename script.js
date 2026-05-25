@@ -1,4 +1,4 @@
-// ── Theme (dark / light) ───────────────────────────────
+// ── Theme (dark / light) 
 let dark = localStorage.getItem('dark') === 'true';
 
 const style    = document.documentElement.style;
@@ -54,7 +54,7 @@ const applyTheme = () => {
 
 applyTheme();
 
-// ── Menu (burger) ──────────────────────────────────────
+// ── Menu (burger)
 const closeMenu = () => {
   menuOpen = false;
   if (menu)    menu.classList.remove('show');
@@ -78,7 +78,7 @@ if (menu) {
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 }
 
-// ── Help panel ─────────────────────────────────────────
+// ── Help panel 
 const toggleQues = () => {
   if (help) help.classList.toggle('show');
 };
@@ -123,7 +123,7 @@ if (mainAction && prevBtn && nextBtn) {
   updateSelector();
 }
 
-// ── Difficulty buttons ─────────────────────────────────
+// ── Difficulty buttons 
 const slider   = document.getElementById('slider');
 
 if (btnGroup && slider) {

@@ -59,7 +59,7 @@
         </a>
       </div>
 
-    </div><!-- /.words -->
+    </div>
 
     <!-- Dark mode toggle -->
     <button onclick="toggleDark()" class="btn-float dark-mode">
@@ -230,7 +230,7 @@
     // Muat voices langsung
     loadVoices();
 
-    // Chrome/Android membutuhkan event ini
+    // Chrome/Android requires this event
     if (window.speechSynthesis.onvoiceschanged !== undefined) {
       window.speechSynthesis.onvoiceschanged = loadVoices;
     }
@@ -334,7 +334,7 @@
         utt.lang = "en-GB";
         utt.rate = 0.9;
 
-        // Pilih voice en-GB jika tersedia
+        // Select en-GB voice if available
         const enVoice = voices.find(v => v.lang === "en-GB") ||
           voices.find(v => v.lang.startsWith("en"));
         if (enVoice) utt.voice = enVoice;
