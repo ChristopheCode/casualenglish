@@ -5,39 +5,47 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>English Irregular Verbs</title>
+  <title>Learn — Irregular Verbs</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+
   <div class="container">
+
+    <!-- Hamburger -->
     <button onclick="toggleMenu()" class="ham">
-      <img src="./img/hamburger.svg" alt="Menu" />
+      <img src="./img/hamburger.svg" alt="Menu" id="hamImg" />
     </button>
 
     <div class="words">
+
       <h1>Irregular Verbs</h1>
 
+      <!-- Verb prompt + progress bar -->
       <div class="word">
-        <p id="french"></p>
+        <p id="verbPrompt"></p>
         <div class="progressbar">
-          <span></span>
+          <span id="progBar"></span>
         </div>
       </div>
 
+      <!-- Answer reveal -->
       <div class="answer">
-        <p id="english"></p>
+        <p id="answerText"></p>
       </div>
 
+      <!-- Speak / Next buttons -->
       <div class="btn-deck">
         <button id="speakButton" type="button">
-          <img src="./img/speak.png" alt="Speak" />
+          <img src="./img/speak.png" alt="Speak" id="speakImg" />
         </button>
         <button id="nextButton" type="button">
-          <img src="./img/next.png" alt="Next" />
+          <img src="./img/next.png" alt="Next" id="nextImg" />
         </button>
       </div>
 
+      <!-- Footer -->
       <div class="footer">
         <ul>
           <li><a class="legal" href="./mention.html" target="_blank" rel="noopener noreferrer">Legal Notice</a></li>
@@ -47,295 +55,294 @@
               Sale (GTCS)</a></li>
         </ul>
         <a href="./index.html">
-          <img src="./img/logo.png" alt="Casual English" />
+          <img src="./img/logo.png" alt="Casual English" id="siteLogo" />
         </a>
       </div>
+
     </div>
 
+    <!-- Dark mode toggle -->
     <button onclick="toggleDark()" class="btn-float dark-mode">
       <img src="./img/moon.svg" alt="Dark mode" />
     </button>
+
+    <!-- Help toggle -->
     <button onclick="toggleQues()" class="btn-float ques">
       <img src="./img/question.svg" alt="Help" />
-    </button>
-      <button onclick="toggleLanguages()" class="btn-float language">
-      <img src="./img/button_language.svg" alt="Button language" />
-    </button>
+    </button> 
 
-    <!-- menu -->
-    <div class="menu">
-      <a href="./index.html">Back to Main Page</a>
-      <a href="./iregularverbsenglish.html">Learn</a>
+    <!-- Slide-in menu -->
+    <div class="menu" id="menuPanel">
+      <a href="./index.html">Home</a>
       <a href="./exercises.html">Exercises</a>
       <a href="./exam.html">Exam</a>
       <a href="./tense-rules.html">Tense Rules</a>
     </div>
 
-    <!-- overlay -->
-    <div class="menu-overlay" onclick="closeMenu()" aria-hidden="true"></div>
-
-    <!-- help --> 
-    <div class="help">
-      <h3 class="help-title">Help</h3>
-
-
-
+    <!-- Overlay -->
+    <div class="menu-overlay" id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
+ 
+    <!-- Help panel -->
+    <div class="help" id="helpPanel">
+      <h3 class="help-title">How to use</h3>
       <ol class="help-list">
-        <li>In the settings, set your phone to English.</li>
-        <li>In the menu, choose the language.</li>
-        <li>Press play.</li>
-        <li>You have 2 seconds to find the answer.</li>
-        <li>The result is displayed.</li>
-        <li>To listen, press the speaker.</li>
-        <li>To go to the next, press the arrow.</li>
-      </ol>
+        <li>In your phone settings, set the language to English.</li>
+        <li>A verb appears — try to recall its forms.</li>
+        <li>You have 2 seconds before the answer is revealed.</li>
+        <li>Press the speaker icon to hear it pronounced.</li>
+        <li>Press the arrow to go to the next verb.</li>
+        <li>To change difficulty, go back to the home page.</li>
+      </ol>  
     </div>
 
-    <!-- language options -->
-    <div class="language-options">
-        <div class="help-lang">
-    <p class="help-subtitle">Choose your language:</p>
-    <div class="help-lang-buttons">
-      <a class="help-lang-btn" href="./iregularverbsenglish.html">English</a>
-      <a class="help-lang-btn" href="./iregularverbs.html">Français</a>
-      <a class="help-lang-btn" href="./iregularverbshindi.html">हिन्दी</a>
-    </div>
   </div>
-    </div>
-  </div>
-
-  <!-- If you still use functions from script.js (toggleMenu/toggleDark/toggleQues), keep this. -->
+  
   <script src="./script.js"></script>
 
   <script>
-    // =====================
-    // DATA
-    // =====================
+
+    // ── Verb data
     const irregularVerbs = [
-      { english: "be", french: "be", pastSimple: "was were", pastParticiple: "been" },
-      { english: "beat", french: "beat", pastSimple: "beat", pastParticiple: "beaten" },
-      { english: "become", french: "become", pastSimple: "became", pastParticiple: "become" },
-      { english: "begin", french: "begin", pastSimple: "began", pastParticiple: "begun" },
-      { english: "bend", french: "bend", pastSimple: "bent", pastParticiple: "bent" },
-      { english: "bet", french: "bet", pastSimple: "bet", pastParticiple: "bet" },
-      { english: "bite", french: "bite", pastSimple: "bit", pastParticiple: "bitten" },
-      { english: "blow", french: "blow", pastSimple: "blew", pastParticiple: "blown" },
-      { english: "break", french: "break", pastSimple: "broke", pastParticiple: "broken" },
-      { english: "bring", french: "bring", pastSimple: "brought", pastParticiple: "brought" },
-      { english: "broadcast", french: "broadcast", pastSimple: "broadcast", pastParticiple: "broadcast" },
-      { english: "build", french: "build", pastSimple: "built", pastParticiple: "built" },
-      { english: "burst", french: "burst", pastSimple: "burst", pastParticiple: "burst" },
-      { english: "buy", french: "buy", pastSimple: "bought", pastParticiple: "bought" },
-      { english: "catch", french: "catch", pastSimple: "caught", pastParticiple: "caught" },
-      { english: "choose", french: "choose", pastSimple: "chose", pastParticiple: "chosen" },
-      { english: "come", french: "come", pastSimple: "came", pastParticiple: "come" },
-      { english: "cost", french: "cost", pastSimple: "cost", pastParticiple: "cost" },
-      { english: "creep", french: "creep", pastSimple: "crept", pastParticiple: "crept" },
-      { english: "cut", french: "cut", pastSimple: "cut", pastParticiple: "cut" },
-      { english: "deal", french: "deal", pastSimple: "dealt", pastParticiple: "dealt" },
-      { english: "dig", french: "dig", pastSimple: "dug", pastParticiple: "dug" },
-      { english: "do", french: "do", pastSimple: "did", pastParticiple: "done" },
-      { english: "draw", french: "draw", pastSimple: "drew", pastParticiple: "drawn" },
-      { english: "drink", french: "drink", pastSimple: "drank", pastParticiple: "drunk" },
-      { english: "drive", french: "drive", pastSimple: "drove", pastParticiple: "driven" },
-      { english: "eat", french: "eat", pastSimple: "ate", pastParticiple: "eaten" },
-      { english: "fall", french: "fall", pastSimple: "fell", pastParticiple: "fallen" },
-      { english: "feed", french: "feed", pastSimple: "fed", pastParticiple: "fed" },
-      { english: "feel", french: "feel", pastSimple: "felt", pastParticiple: "felt" },
-      { english: "fight", french: "fight", pastSimple: "fought", pastParticiple: "fought" },
-      { english: "find", french: "find", pastSimple: "found", pastParticiple: "found" },
-      { english: "flee", french: "flee", pastSimple: "fled", pastParticiple: "fled" },
-      { english: "fly", french: "fly", pastSimple: "flew", pastParticiple: "flown" },
-      { english: "forbid", french: "forbid", pastSimple: "forbade", pastParticiple: "forbidden" },
-      { english: "forget", french: "forget", pastSimple: "forgot", pastParticiple: "forgotten forgot" },
-      { english: "forgive", french: "forgive", pastSimple: "forgave", pastParticiple: "forgiven" },
-      { english: "freeze", french: "freeze", pastSimple: "froze", pastParticiple: "frozen" },
-      { english: "get", french: "get", pastSimple: "got", pastParticiple: "gotten got" },
-      { english: "give", french: "give", pastSimple: "gave", pastParticiple: "given" },
-      { english: "go", french: "go", pastSimple: "went", pastParticiple: "gone" },
-      { english: "grow", french: "grow", pastSimple: "grew", pastParticiple: "grown" },
-      { english: "hang", french: "hang", pastSimple: "hung", pastParticiple: "hung" },
-      { english: "have", french: "have", pastSimple: "had", pastParticiple: "had" },
-      { english: "hear", french: "hear", pastSimple: "heard", pastParticiple: "heard" },
-      { english: "hide", french: "hide", pastSimple: "hid", pastParticiple: "hidden" },
-      { english: "hit", french: "hit", pastSimple: "hit", pastParticiple: "hit" },
-      { english: "hold", french: "hold", pastSimple: "held", pastParticiple: "held" },
-      { english: "hurt", french: "hurt", pastSimple: "hurt", pastParticiple: "hurt" },
-      { english: "keep", french: "keep", pastSimple: "kept", pastParticiple: "kept" },
-      { english: "kneel", french: "kneel", pastSimple: "knelt knelled", pastParticiple: "knelt kneeled" },
-      { english: "know", french: "know", pastSimple: "knew", pastParticiple: "known" },
-      { english: "lay", french: "lay", pastSimple: "laid", pastParticiple: "laid" },
-      { english: "lead", french: "lead", pastSimple: "led", pastParticiple: "led" },
-      { english: "learn", french: "learn", pastSimple: "learnt", pastParticiple: "learnt" },
-      { english: "leave", french: "leave", pastSimple: "left", pastParticiple: "left" },
-      { english: "lend", french: "lend", pastSimple: "lent", pastParticiple: "lent" },
-      { english: "let", french: "let", pastSimple: "let", pastParticiple: "let" },
-      { english: "lie", french: "lie", pastSimple: "lay", pastParticiple: "lain" },
-      { english: "light", french: "light", pastSimple: "lit lighted", pastParticiple: "lit lighted" },
-      { english: "lose", french: "lose", pastSimple: "lost", pastParticiple: "lost" },
-      { english: "make", french: "make", pastSimple: "made", pastParticiple: "made" },
-      { english: "mean", french: "mean", pastSimple: "meant", pastParticiple: "meant" },
-      { english: "meet", french: "meet", pastSimple: "met", pastParticiple: "met" },
-      { english: "pay", french: "pay", pastSimple: "paid", pastParticiple: "paid" },
-      { english: "put", french: "put", pastSimple: "put", pastParticiple: "put" },
-      { english: "read", french: "read", pastSimple: "read", pastParticiple: "read" },
-      { english: "ride", french: "ride", pastSimple: "rode", pastParticiple: "ridden" },
-      { english: "ring", french: "ring", pastSimple: "rang", pastParticiple: "rung" },
-      { english: "rise", french: "rise", pastSimple: "rose", pastParticiple: "risen" },
-      { english: "run", french: "run", pastSimple: "ran", pastParticiple: "run" },
-      { english: "say", french: "say", pastSimple: "said", pastParticiple: "said" },
-      { english: "see", french: "see", pastSimple: "saw", pastParticiple: "seen" },
-      { english: "seek", french: "seek", pastSimple: "sought", pastParticiple: "sought" },
-      { english: "sell", french: "sell", pastSimple: "sold", pastParticiple: "sold" },
-      { english: "send", french: "send", pastSimple: "sent", pastParticiple: "sent" },
-      { english: "set", french: "set", pastSimple: "set", pastParticiple: "set" },
-      { english: "shake", french: "shake", pastSimple: "shook", pastParticiple: "shaken" },
-      { english: "sew", french: "sew", pastSimple: "sewed", pastParticiple: "sewn sewed" },
-      { english: "shine", french: "shine", pastSimple: "shone", pastParticiple: "shone" },
-      { english: "shoot", french: "shoot", pastSimple: "shot", pastParticiple: "shot" },
-      { english: "show", french: "show", pastSimple: "showed", pastParticiple: "shown" },
-      { english: "shrink", french: "shrink", pastSimple: "shrank", pastParticiple: "shrunk" },
-      { english: "shut", french: "shut", pastSimple: "shut", pastParticiple: "shut" },
-      { english: "sing", french: "sing", pastSimple: "sang", pastParticiple: "sung" },
-      { english: "sink", french: "sink", pastSimple: "sank sunk", pastParticiple: "sunk sunken" },
-      { english: "sit", french: "sit", pastSimple: "sat", pastParticiple: "sat" },
-      { english: "sleep", french: "sleep", pastSimple: "slept", pastParticiple: "slept" },
-      { english: "slide", french: "slide", pastSimple: "slid", pastParticiple: "slid" },
-      { english: "speak", french: "speak", pastSimple: "spoke", pastParticiple: "spoken" },
-      { english: "spend", french: "spend", pastSimple: "spent", pastParticiple: "spent" },
-      { english: "spit", french: "spit", pastSimple: "spat spit", pastParticiple: "spat spit" },
-      { english: "split", french: "split", pastSimple: "split", pastParticiple: "split" },
-      { english: "spread", french: "spread", pastSimple: "spread", pastParticiple: "spread" },
-      { english: "spring", french: "spring", pastSimple: "sprang", pastParticiple: "sprung" },
-      { english: "stand", french: "stand", pastSimple: "stood", pastParticiple: "stood" },
-      { english: "steal", french: "steal", pastSimple: "stole", pastParticiple: "stolen" },
-      { english: "stick", french: "stick", pastSimple: "stuck", pastParticiple: "stuck" },
-      { english: "sting", french: "sting", pastSimple: "stung", pastParticiple: "stung" },
-      { english: "stink", french: "stink", pastSimple: "stank", pastParticiple: "stunk" },
-      { english: "strike", french: "strike", pastSimple: "struck", pastParticiple: "struck" },
-      { english: "swear", french: "swear", pastSimple: "swore", pastParticiple: "sworn" },
-      { english: "sweep", french: "sweep", pastSimple: "swept", pastParticiple: "swept" },
-      { english: "swim", french: "swim", pastSimple: "swam", pastParticiple: "swum" },
-      { english: "swing", french: "swing", pastSimple: "swung swang", pastParticiple: "swung swang" },
-      { english: "take", french: "take", pastSimple: "took", pastParticiple: "taken" },
-      { english: "teach", french: "teach", pastSimple: "taught", pastParticiple: "taught" },
-      { english: "tear", french: "tear", pastSimple: "tore", pastParticiple: "torn" },
-      { english: "tell", french: "tell", pastSimple: "told", pastParticiple: "told" },
-      { english: "think", french: "think", pastSimple: "thought", pastParticiple: "thought" },
-      { english: "throw", french: "throw", pastSimple: "threw", pastParticiple: "thrown" },
-      { english: "understand", french: "understand", pastSimple: "understood", pastParticiple: "understood" },
-      { english: "wake", french: "wake", pastSimple: "woke", pastParticiple: "woken" },
-      { english: "wear", french: "wear", pastSimple: "wore", pastParticiple: "worn" },
-      { english: "weep", french: "weep", pastSimple: "wept", pastParticiple: "wept" },
-      { english: "win", french: "win", pastSimple: "won", pastParticiple: "won" },
-      { english: "write", french: "write", pastSimple: "wrote", pastParticiple: "written" }
+      // EASY
+      { english: "be", pastSimple: "was were", pastParticiple: "been", difficulty: "easy" },
+      { english: "become", pastSimple: "became", pastParticiple: "become", difficulty: "easy" },
+      { english: "begin", pastSimple: "began", pastParticiple: "begun", difficulty: "easy" },
+      { english: "break", pastSimple: "broke", pastParticiple: "broken", difficulty: "easy" },
+      { english: "bring", pastSimple: "brought", pastParticiple: "brought", difficulty: "easy" },
+      { english: "build", pastSimple: "built", pastParticiple: "built", difficulty: "easy" },
+      { english: "buy", pastSimple: "bought", pastParticiple: "bought", difficulty: "easy" },
+      { english: "come", pastSimple: "came", pastParticiple: "come", difficulty: "easy" },
+      { english: "do", pastSimple: "did", pastParticiple: "done", difficulty: "easy" },
+      { english: "drink", pastSimple: "drank", pastParticiple: "drunk", difficulty: "easy" },
+      { english: "drive", pastSimple: "drove", pastParticiple: "driven", difficulty: "easy" },
+      { english: "eat", pastSimple: "ate", pastParticiple: "eaten", difficulty: "easy" },
+      { english: "find", pastSimple: "found", pastParticiple: "found", difficulty: "easy" },
+      { english: "get", pastSimple: "got", pastParticiple: "gotten got", difficulty: "easy" },
+      { english: "give", pastSimple: "gave", pastParticiple: "given", difficulty: "easy" },
+      { english: "go", pastSimple: "went", pastParticiple: "gone", difficulty: "easy" },
+      { english: "have", pastSimple: "had", pastParticiple: "had", difficulty: "easy" },
+      { english: "know", pastSimple: "knew", pastParticiple: "known", difficulty: "easy" },
+      { english: "make", pastSimple: "made", pastParticiple: "made", difficulty: "easy" },
+      { english: "run", pastSimple: "ran", pastParticiple: "run", difficulty: "easy" },
+      { english: "say", pastSimple: "said", pastParticiple: "said", difficulty: "easy" },
+      { english: "see", pastSimple: "saw", pastParticiple: "seen", difficulty: "easy" },
+      { english: "take", pastSimple: "took", pastParticiple: "taken", difficulty: "easy" },
+      { english: "tell", pastSimple: "told", pastParticiple: "told", difficulty: "easy" },
+      { english: "think", pastSimple: "thought", pastParticiple: "thought", difficulty: "easy" },
+      { english: "write", pastSimple: "wrote", pastParticiple: "written", difficulty: "easy" },
+      { english: "read", pastSimple: "read", pastParticiple: "read", difficulty: "easy" },
+      { english: "speak", pastSimple: "spoke", pastParticiple: "spoken", difficulty: "easy" },
+      { english: "meet", pastSimple: "met", pastParticiple: "met", difficulty: "easy" },
+      { english: "leave", pastSimple: "left", pastParticiple: "left", difficulty: "easy" },
+
+      // MEDIUM
+      { english: "beat", pastSimple: "beat", pastParticiple: "beaten", difficulty: "medium" },
+      { english: "bite", pastSimple: "bit", pastParticiple: "bitten", difficulty: "medium" },
+      { english: "blow", pastSimple: "blew", pastParticiple: "blown", difficulty: "medium" },
+      { english: "catch", pastSimple: "caught", pastParticiple: "caught", difficulty: "medium" },
+      { english: "choose", pastSimple: "chose", pastParticiple: "chosen", difficulty: "medium" },
+      { english: "draw", pastSimple: "drew", pastParticiple: "drawn", difficulty: "medium" },
+      { english: "fall", pastSimple: "fell", pastParticiple: "fallen", difficulty: "medium" },
+      { english: "feel", pastSimple: "felt", pastParticiple: "felt", difficulty: "medium" },
+      { english: "fight", pastSimple: "fought", pastParticiple: "fought", difficulty: "medium" },
+      { english: "fly", pastSimple: "flew", pastParticiple: "flown", difficulty: "medium" },
+      { english: "forget", pastSimple: "forgot", pastParticiple: "forgotten", difficulty: "medium" },
+      { english: "freeze", pastSimple: "froze", pastParticiple: "frozen", difficulty: "medium" },
+      { english: "grow", pastSimple: "grew", pastParticiple: "grown", difficulty: "medium" },
+      { english: "hear", pastSimple: "heard", pastParticiple: "heard", difficulty: "medium" },
+      { english: "hide", pastSimple: "hid", pastParticiple: "hidden", difficulty: "medium" },
+      { english: "hold", pastSimple: "held", pastParticiple: "held", difficulty: "medium" },
+      { english: "keep", pastSimple: "kept", pastParticiple: "kept", difficulty: "medium" },
+      { english: "lead", pastSimple: "led", pastParticiple: "led", difficulty: "medium" },
+      { english: "lose", pastSimple: "lost", pastParticiple: "lost", difficulty: "medium" },
+      { english: "pay", pastSimple: "paid", pastParticiple: "paid", difficulty: "medium" },
+      { english: "ride", pastSimple: "rode", pastParticiple: "ridden", difficulty: "medium" },
+      { english: "ring", pastSimple: "rang", pastParticiple: "rung", difficulty: "medium" },
+      { english: "rise", pastSimple: "rose", pastParticiple: "risen", difficulty: "medium" },
+      { english: "sell", pastSimple: "sold", pastParticiple: "sold", difficulty: "medium" },
+      { english: "send", pastSimple: "sent", pastParticiple: "sent", difficulty: "medium" },
+      { english: "shake", pastSimple: "shook", pastParticiple: "shaken", difficulty: "medium" },
+      { english: "shoot", pastSimple: "shot", pastParticiple: "shot", difficulty: "medium" },
+      { english: "sing", pastSimple: "sang", pastParticiple: "sung", difficulty: "medium" },
+      { english: "sit", pastSimple: "sat", pastParticiple: "sat", difficulty: "medium" },
+      { english: "sleep", pastSimple: "slept", pastParticiple: "slept", difficulty: "medium" },
+
+      // HARD
+      { english: "broadcast", pastSimple: "broadcast", pastParticiple: "broadcast", difficulty: "hard" },
+      { english: "creep", pastSimple: "crept", pastParticiple: "crept", difficulty: "hard" },
+      { english: "deal", pastSimple: "dealt", pastParticiple: "dealt", difficulty: "hard" },
+      { english: "dig", pastSimple: "dug", pastParticiple: "dug", difficulty: "hard" },
+      { english: "flee", pastSimple: "fled", pastParticiple: "fled", difficulty: "hard" },
+      { english: "forbid", pastSimple: "forbade", pastParticiple: "forbidden", difficulty: "hard" },
+      { english: "forgive", pastSimple: "forgave", pastParticiple: "forgiven", difficulty: "hard" },
+      { english: "kneel", pastSimple: "knelt", pastParticiple: "knelt", difficulty: "hard" },
+      { english: "lay", pastSimple: "laid", pastParticiple: "laid", difficulty: "hard" },
+      { english: "lend", pastSimple: "lent", pastParticiple: "lent", difficulty: "hard" },
+      { english: "light", pastSimple: "lit", pastParticiple: "lit", difficulty: "hard" },
+      { english: "seek", pastSimple: "sought", pastParticiple: "sought", difficulty: "hard" },
+      { english: "sew", pastSimple: "sewed", pastParticiple: "sewn", difficulty: "hard" },
+      { english: "shrink", pastSimple: "shrank", pastParticiple: "shrunk", difficulty: "hard" },
+      { english: "slide", pastSimple: "slid", pastParticiple: "slid", difficulty: "hard" },
+      { english: "spin", pastSimple: "spun", pastParticiple: "spun", difficulty: "hard" },
+      { english: "split", pastSimple: "split", pastParticiple: "split", difficulty: "hard" },
+      { english: "spring", pastSimple: "sprang", pastParticiple: "sprung", difficulty: "hard" },
+      { english: "stick", pastSimple: "stuck", pastParticiple: "stuck", difficulty: "hard" },
+      { english: "sting", pastSimple: "stung", pastParticiple: "stung", difficulty: "hard" },
+      { english: "stink", pastSimple: "stank", pastParticiple: "stunk", difficulty: "hard" },
+      { english: "strike", pastSimple: "struck", pastParticiple: "struck", difficulty: "hard" },
+      { english: "swear", pastSimple: "swore", pastParticiple: "sworn", difficulty: "hard" },
+      { english: "sweep", pastSimple: "swept", pastParticiple: "swept", difficulty: "hard" },
+      { english: "swim", pastSimple: "swam", pastParticiple: "swum", difficulty: "hard" },
+      { english: "swing", pastSimple: "swung", pastParticiple: "swung", difficulty: "hard" },
+      { english: "tear", pastSimple: "tore", pastParticiple: "torn", difficulty: "hard" },
+      { english: "throw", pastSimple: "threw", pastParticiple: "thrown", difficulty: "hard" },
+      { english: "weep", pastSimple: "wept", pastParticiple: "wept", difficulty: "hard" },
+      { english: "withdraw", pastSimple: "withdrew", pastParticiple: "withdrawn", difficulty: "hard" }
     ];
 
-    // =====================
-    // STATE
-    // =====================
-    let countdown = -1;
-    let currentVerb = null;
-    let intervalId = null;
+    // ── Difficulty 
+    const difficulty = localStorage.getItem("selectedDifficulty") || "easy";
 
+    const filteredVerbs = irregularVerbs.filter(
+      v => v.difficulty === difficulty
+    );
+
+    // ── DOM 
     const speakButton = document.getElementById("speakButton");
+    const verbPrompt = document.getElementById("verbPrompt");
+    const answerText = document.getElementById("answerText");
     const nextButton = document.getElementById("nextButton");
-    const frenchEl = document.getElementById("french");
-    const englishEl = document.getElementById("english");
-    const progressSpan = document.querySelector(".words .word .progressbar span");
+    const progBar = document.getElementById("progBar");
 
-    // =====================
-    // INIT
-    // =====================
+
+    // ── State 
+    let currentVerb = null;
+    let countdown = -1;
+    let intervalId = null;
+    let speechReady = false;
+    let voices = [];
+
+
+    function loadVoices() {
+      voices = window.speechSynthesis.getVoices();
+    }
+
+    // Muat voices langsung
+    loadVoices();
+
+    // Chrome/Android requires this event
+    if (window.speechSynthesis.onvoiceschanged !== undefined) {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
+    // ── Init 
     document.addEventListener("DOMContentLoaded", () => {
       // Start immediately (visual part). This is fine in Instagram WebView.
       showNewVerb();
 
-      // Next button
-      nextButton.addEventListener("click", () => showNewVerb());
+      // Warmup fires on the very first Next button click (real user gesture)
+      nextButton.addEventListener("click", () => {
+        showNewVerb();
+      });
 
-      // Speak button: MUST be triggered by a real user gesture on mobile / Instagram.
-      setupSpeech();
+      // setupSpeech();
     });
 
-    // =====================
-    // FUNCTIONS
-    // =====================
+    // ── Show Verb  
     function showNewVerb() {
-      // Reset any running countdown
+
+      // reset timer
       if (intervalId) {
         clearInterval(intervalId);
         intervalId = null;
       }
 
-      // Reset UI
       countdown = 2;
-      frenchEl.textContent = "";
-      englishEl.textContent = "";
 
-      // Pick a verb
-      const randomIndex = Math.floor(Math.random() * irregularVerbs.length);
-      currentVerb = irregularVerbs[randomIndex];
+      // clear answer
+      answerText.textContent = "";
 
-      // Show prompt (you used "french" but values are currently English in your data)
-      frenchEl.textContent = currentVerb.french;
+      // random verb
+      const randomIndex = Math.floor(
+        Math.random() * filteredVerbs.length
+      );
 
-      // Restart progress animation safely
+      currentVerb = filteredVerbs[randomIndex];
+
+      // show main word
+      verbPrompt.textContent = currentVerb.english;
+
+      // restart progress animation
       restartProgressAnimation((countdown + 1) * 1000);
 
-      // Countdown then reveal answer
+      // countdown
       intervalId = setInterval(() => {
+
         countdown--;
+
         if (countdown === -1) {
+
           clearInterval(intervalId);
           intervalId = null;
-          englishEl.textContent =
+
+          answerText.textContent =
             `${currentVerb.english} ${currentVerb.pastSimple} ${currentVerb.pastParticiple}`;
         }
+
       }, 1000);
     }
 
+
+    // ── Progress animation 
     function restartProgressAnimation(durationMs) {
-      if (!progressSpan) return;
 
-      // Cancel previous animation by removing/re-adding style
-      progressSpan.getAnimations().forEach(anim => anim.cancel());
-      progressSpan.style.width = "0%";
+      if (!progBar) return;
 
-      // Trigger reflow so the next animation starts correctly
-      // eslint-disable-next-line no-unused-expressions
-      progressSpan.offsetWidth;
+      progBar.getAnimations().forEach(anim => anim.cancel());
 
-      progressSpan.animate(
-        [{ width: "0%" }, { width: "100%" }],
-        { duration: durationMs, fill: "forwards" }
+      progBar.style.width = "0%";
+
+      progBar.offsetWidth;
+
+      progBar.animate(
+        [
+          { width: "0%" },
+          { width: "100%" }
+        ],
+        {
+          duration: durationMs,
+          fill: "forwards"
+        }
       );
     }
 
-    function setupSpeech() {
-      if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
-        speakButton.disabled = true;
-        speakButton.title = "Text-to-speech not supported";
-        return;
-      }
 
+    // ── Speak button 
+
+    if (!("speechSynthesis" in window)) {
+      speakButton.disabled = true;
+    } else {
       speakButton.addEventListener("click", () => {
         if (!currentVerb) return;
 
-        // iOS / Instagram WebView often needs cancel() to avoid stuck queues
         window.speechSynthesis.cancel();
 
-        const utterance = new SpeechSynthesisUtterance(
-          `${currentVerb.english}, ${currentVerb.pastSimple}, ${currentVerb.pastParticiple}`
+        const utt = new SpeechSynthesisUtterance(
+          `${currentVerb.english}. ${currentVerb.pastSimple}. ${currentVerb.pastParticiple}`
         );
 
-        // Use a valid BCP-47 tag (en-UK is not valid). en-GB is the common choice.
-        utterance.lang = "en-GB";
+        utt.lang = "en-GB";
+        utt.rate = 0.9;
 
-        window.speechSynthesis.speak(utterance);
+        // Select en-GB voice if available
+        const enVoice = voices.find(v => v.lang === "en-GB") ||
+          voices.find(v => v.lang.startsWith("en"));
+        if (enVoice) utt.voice = enVoice;
+
+        window.speechSynthesis.speak(utt);
       });
     }
-
+    // ── Instagram detection ───────────────────────────────
     function isInstagramWebView() {
       const ua = navigator.userAgent || "";
       return ua.includes("Instagram");
@@ -349,8 +356,8 @@
         speakButton.style.display = "none";
       }
     });
+  </script> 
 
-  </script>
 </body>
 
-</html>
+</html> 
