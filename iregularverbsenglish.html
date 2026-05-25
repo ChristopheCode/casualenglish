@@ -319,29 +319,42 @@
 
     // ── Speak button 
 
-    if (!("speechSynthesis" in window)) {
-      speakButton.disabled = true;
-    } else {
-      speakButton.addEventListener("click", () => {
-        if (!currentVerb) return;
+    function speakCurrentVerb() {
+  if (!currentVerb) return;
 
-        window.speechSynthesis.cancel();
+  if (!("speechSynthesis" in window)) {
+    alert("La synthèse vocale n'est pas supportée par ce navigateur.");
+    return;
+  }
 
-        const utt = new SpeechSynthesisUtterance(
-          `${currentVerb.english}. ${currentVerb.pastSimple}. ${currentVerb.pastParticiple}`
-        );
+  const voices = window.speechSynthesis.getVoices();
 
-        utt.lang = "en-GB";
-        utt.rate = 0.9;
+  const utt = new SpeechSynthesisUtterance(
+    `${currentVerb.english}. ${currentVerb.pastSimple}. ${currentVerb.pastParticiple}`
+  );
 
-        // Select en-GB voice if available
-        const enVoice = voices.find(v => v.lang === "en-GB") ||
-          voices.find(v => v.lang.startsWith("en"));
-        if (enVoice) utt.voice = enVoice;
+  utt.lang = "en-US";
+  utt.rate = 0.9;
+  utt.volume = 1;
 
-        window.speechSynthesis.speak(utt);
-      });
-    }
+  const enVoice =
+    voices.find(v => v.lang === "en-US") ||
+    voices.find(v => v.lang.startsWith("en")) ||
+    voices[0];
+
+  if (enVoice) {
+    utt.voice = enVoice;
+  }
+
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utt);
+}
+
+speakButton.addEventListener("click", speakCurrentVerb);
+
+
+
+    
     // ── Instagram detection ───────────────────────────────
     function isInstagramWebView() {
       const ua = navigator.userAgent || "";
