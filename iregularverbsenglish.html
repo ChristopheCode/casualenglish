@@ -219,21 +219,6 @@
     let currentVerb = null;
     let countdown = -1;
     let intervalId = null;
-    let speechReady = false;
-    let voices = [];
-
-
-    function loadVoices() {
-      voices = window.speechSynthesis.getVoices();
-    }
-
-    // Muat voices langsung
-    loadVoices();
-
-    // Chrome/Android requires this event
-    if (window.speechSynthesis.onvoiceschanged !== undefined) {
-      window.speechSynthesis.onvoiceschanged = loadVoices;
-    }
 
     // ── Init 
     document.addEventListener("DOMContentLoaded", () => {
@@ -317,31 +302,46 @@
     }
 
 
-    // ── Speak button 
+    // ── Speak button  
 
-    if (!("speechSynthesis" in window)) {
-      speakButton.disabled = true;
+function setupSpeech() {
+  if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
+    speakButton.disabled = true;
+    speakButton.title = "Text-to-speech not supported";
+    return;
+  }
+
+  speakButton.addEventListener("click", () => {
+    if (!currentVerb) return;
+
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(
+      `${currentVerb.english}, ${currentVerb.pastSimple}, ${currentVerb.pastParticiple}`
+    );
+
+    utterance.rate = 0.9;
+    utterance.volume = 1;
+
+    // Cherche une voix anglaise disponible
+    const voices = window.speechSynthesis.getVoices();
+
+    const englishVoice =
+      voices.find(v => v.lang === "en-US") ||
+      voices.find(v => v.lang === "en-GB") ||
+      voices.find(v => v.lang.startsWith("en"));
+
+    if (englishVoice) {
+      utterance.voice = englishVoice;
+      utterance.lang = englishVoice.lang;
     } else {
-      speakButton.addEventListener("click", () => {
-        if (!currentVerb) return;
-
-        window.speechSynthesis.cancel();
-
-        const utt = new SpeechSynthesisUtterance(
-          `${currentVerb.english}. ${currentVerb.pastSimple}. ${currentVerb.pastParticiple}`
-        );
-
-        utt.lang = "en-GB";
-        utt.rate = 0.9;
-
-        // Select en-GB voice if available
-        const enVoice = voices.find(v => v.lang === "en-GB") ||
-          voices.find(v => v.lang.startsWith("en"));
-        if (enVoice) utt.voice = enVoice;
-
-        window.speechSynthesis.speak(utt);
-      });
+      utterance.lang = "en-US";
     }
+
+    window.speechSynthesis.speak(utterance);
+  });
+}
+
     // ── Instagram detection ───────────────────────────────
     function isInstagramWebView() {
       const ua = navigator.userAgent || "";
