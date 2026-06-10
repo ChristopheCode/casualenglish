@@ -358,8 +358,58 @@ img.dark {
   z-index: 15;
 }
 
+.ham{
+  z-index: 15;
+}
+
+.ham ,
+.back-button {
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  height: 36px;
+  width: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
 .ham img {
   height: 20px;
+}
+
+.back-button {
+  top: 60px; 
+  z-index: 9;
+}
+
+.back-button .arrow-back-icon{
+  height: 90%;
+  width: 90%;
+
+  border-radius: 1000px;
+  background-color: var(--button-bg-primary);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-button img{
+  width: 60%;
+}
+
+.back-button .arrow-back-icon.dark{
+  background-color: rgb(235, 235, 235);
+}
+
+.back-button img.dark {
+ filter: brightness(0.45);
 }
 
 .ham img.dark {
@@ -537,6 +587,21 @@ img.dark {
   font-weight: bold;
   text-align: center;
   margin-bottom: 10px;
+
+  font-size: 22px;
+}
+
+#badge{
+  font-size: 100px;
+}
+
+
+.hidden-question #progress,
+.hidden-question #sentence,
+.hidden-question #hint,
+.hidden-question #choices,
+.hidden-question #feedback {
+  display: none;
 }
 
 .exercise-sentence {

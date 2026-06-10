@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
   <title>Learn — Irregular Verbs</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -17,6 +17,13 @@
     <button onclick="toggleMenu()" class="ham">
       <img src="./img/hamburger.svg" alt="Menu" id="hamImg" />
     </button>
+
+    <!-- back button -->
+    <div class="back-button">
+      <div class="arrow-back-icon">
+        <img src="./img/arrow-back.svg" alt="arrow_back" />
+      </div>
+    </div>
 
     <div class="words">
 
@@ -50,8 +57,10 @@
         <ul>
           <li><a class="legal" href="./mention.html" target="_blank" rel="noopener noreferrer">Legal Notice</a></li>
           <li><a class="legal" href="./cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a></li>
-          <li><a class="legal" href="./confidentialite.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
-          <li><a class="legal" href="./condition.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions of
+          <li><a class="legal" href="./confidentialite.html" target="_blank" rel="noopener noreferrer">Privacy
+              Policy</a></li>
+          <li><a class="legal" href="./condition.html" target="_blank" rel="noopener noreferrer">General Terms and
+              Conditions of
               Sale (GTCS)</a></li>
         </ul>
         <a href="./index.html">
@@ -69,19 +78,21 @@
     <!-- Help toggle -->
     <button onclick="toggleQues()" class="btn-float ques">
       <img src="./img/question.svg" alt="Help" />
-    </button> 
+    </button>
 
-    <!-- Slide-in menu -->
+
+    <!-- menu -->
     <div class="menu" id="menuPanel">
-      <a href="./index.html">Home</a>
+      <a href="./iregularverbsenglish.html">Learn</a>
       <a href="./exercises.html">Exercises</a>
       <a href="./exam.html">Exam</a>
       <a href="./tense-rules.html">Tense Rules</a>
     </div>
 
+
     <!-- Overlay -->
     <div class="menu-overlay" id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
- 
+
     <!-- Help panel -->
     <div class="help" id="helpPanel">
       <h3 class="help-title">How to use</h3>
@@ -92,11 +103,11 @@
         <li>Press the speaker icon to hear it pronounced.</li>
         <li>Press the arrow to go to the next verb.</li>
         <li>To change difficulty, go back to the home page.</li>
-      </ol>  
+      </ol>
     </div>
 
   </div>
-  
+
   <script src="./script.js"></script>
 
   <script>
@@ -304,43 +315,43 @@
 
     // ── Speak button 
 
-function setupSpeech() {
-  if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
-    speakButton.disabled = true;
-    speakButton.title = "Text-to-speech not supported";
-    return;
-  }
+    function setupSpeech() {
+      if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
+        speakButton.disabled = true;
+        speakButton.title = "Text-to-speech not supported";
+        return;
+      }
 
-  speakButton.addEventListener("click", () => {
-    if (!currentVerb) return;
+      speakButton.addEventListener("click", () => {
+        if (!currentVerb) return;
 
-    window.speechSynthesis.cancel();
+        window.speechSynthesis.cancel();
 
-    const utterance = new SpeechSynthesisUtterance(
-      `${currentVerb.english}, ${currentVerb.pastSimple}, ${currentVerb.pastParticiple}`
-    );
+        const utterance = new SpeechSynthesisUtterance(
+          `${currentVerb.english}, ${currentVerb.pastSimple}, ${currentVerb.pastParticiple}`
+        );
 
-    utterance.rate = 0.9;
-    utterance.volume = 1;
+        utterance.rate = 0.9;
+        utterance.volume = 1;
 
-    // Cherche une voix anglaise disponible
-    const voices = window.speechSynthesis.getVoices();
+        // Cherche une voix anglaise disponible
+        const voices = window.speechSynthesis.getVoices();
 
-    const englishVoice =
-      voices.find(v => v.lang === "en-US") ||
-      voices.find(v => v.lang === "en-GB") ||
-      voices.find(v => v.lang.startsWith("en"));
+        const englishVoice =
+          voices.find(v => v.lang === "en-US") ||
+          voices.find(v => v.lang === "en-GB") ||
+          voices.find(v => v.lang.startsWith("en"));
 
-    if (englishVoice) {
-      utterance.voice = englishVoice;
-      utterance.lang = englishVoice.lang;
-    } else {
-      utterance.lang = "en-US";
+        if (englishVoice) {
+          utterance.voice = englishVoice;
+          utterance.lang = englishVoice.lang;
+        } else {
+          utterance.lang = "en-US";
+        }
+
+        window.speechSynthesis.speak(utterance);
+      });
     }
-
-    window.speechSynthesis.speak(utterance);
-  });
-}
 
 
     // ── Instagram detection ───────────────────────────────
@@ -357,8 +368,8 @@ function setupSpeech() {
         speakButton.style.display = "none";
       }
     });
-  </script> 
+  </script>
 
 </body>
 
-</html> 
+</html>

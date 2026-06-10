@@ -10,7 +10,8 @@ const overlay = document.querySelector('.menu-overlay');
 const help     = document.getElementById('helpPanel');
 const btnGroup = document.getElementById('btnGroup');
 const socialContainer = document.querySelector('.social-container');
-
+const arrowBackIcon = document.querySelector('.arrow-back-icon');
+const container = document.querySelector('.container');
 
 let menuOpen = false;  
 let show = false;
@@ -37,7 +38,9 @@ const applyTheme = () => {
     if (ham) ham.style.filter = 'grayscale() brightness(5)';
 
     if (btnGroup) btnGroup.classList.add('dark');  
+    if (arrowBackIcon) arrowBackIcon.classList.add('dark');
     if (socialContainer) socialContainer.classList.add('dark');  
+    if (container) container.classList.add('dark');  
   } else {
     if (moonImg)   moonImg.src = './img/moon.svg';
     style.setProperty('--text-color-primary',    '#0071BC');
@@ -50,6 +53,8 @@ const applyTheme = () => {
     images.forEach(img => img.classList.remove('dark'));
     if (ham) ham.style.filter = menuOpen ? 'grayscale() brightness(5)' : '';
     if (btnGroup) btnGroup.classList.remove('dark');  
+    if (container) container.classList.remove('dark');
+    if (arrowBackIcon) arrowBackIcon.classList.remove('dark');
     if (socialContainer) socialContainer.classList.remove('dark'); 
   }
 };
@@ -80,6 +85,18 @@ if (overlay) overlay.addEventListener('click', closeMenu);
 if (menu) {
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 }
+
+// Arrow Back Button Previous page
+document.querySelector('.back-button')?.addEventListener('click', () => {
+  const back = sessionStorage.getItem('backPage');
+  if (back) {
+    sessionStorage.removeItem('backPage'); // clean up
+    window.location.href = back;
+  } else {
+    window.history.back(); // fallback
+  }
+});
+
 
 // ── Help panel 
 const toggleQues = () => {
