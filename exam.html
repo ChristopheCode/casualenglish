@@ -3,8 +3,9 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"> 
+  
   <title>Exam — Irregular Verbs</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -17,6 +18,13 @@
     <button onclick="toggleMenu()" class="ham">
       <img src="./img/hamburger.svg" alt="Menu" id="hamImg" />
     </button>
+
+    <!-- back button -->
+    <div class="back-button">
+      <div class="arrow-back-icon">
+        <img src="./img/arrow-back.svg" alt="arrow_back" />
+      </div>
+    </div>
 
     <div class="words">
 
@@ -37,7 +45,7 @@
         <button class="exercise-next" id="nextExamBtn" type="button">Next</button>
 
         <!-- Result block — hidden until end -->
-        <div id="result" style="display:none; margin-top:14px; text-align:center;">
+        <div id="result" style="display:none;  text-align:center;">
           <p class="exercise-tense" id="resultTitle"></p>
           <p class="exercise-sentence" id="resultScore" style="font-weight:bold;"></p>
           <div id="badge" style="
@@ -62,8 +70,10 @@
         <ul>
           <li><a class="legal" href="./mention.html" target="_blank" rel="noopener noreferrer">Legal Notice</a></li>
           <li><a class="legal" href="./cookies.html" target="_blank" rel="noopener noreferrer">Cookie Policy</a></li>
-          <li><a class="legal" href="./confidentialite.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
-          <li><a class="legal" href="./condition.html" target="_blank" rel="noopener noreferrer">General Terms and Conditions of Sale (GTCS)</a></li>
+          <li><a class="legal" href="./confidentialite.html" target="_blank" rel="noopener noreferrer">Privacy
+              Policy</a></li>
+          <li><a class="legal" href="./condition.html" target="_blank" rel="noopener noreferrer">General Terms and
+              Conditions of Sale (GTCS)</a></li>
         </ul>
         <a href="./index.html">
           <img src="./img/logo.png" alt="Casual English" id="siteLogo" />
@@ -84,11 +94,11 @@
     </button>
 
     <!-- menu -->
-    <div class="menu">
-      <a href="./index.html">Back to Main Page</a>
-      <a href="./iregularverbsenglish.html">Irregular Verbs</a>
+    <div class="menu" id="menuPanel">
+      <a href="./iregularverbsenglish.html">Learn</a>
       <a href="./exercises.html">Exercises</a>
       <a href="./exam.html">Exam</a>
+      <a href="./tense-rules.html">Tense Rules</a>
     </div>
 
     <!-- Overlay -->
@@ -268,8 +278,10 @@
       return { v, t };
     }
 
-    // ── Render a question ──────────────────────────────────
+    // ── Render a question 
     function renderQuestion() {
+      document.getElementById('card').classList.remove('hidden-question');
+
       locked = false;
       feedbackEl.textContent = '';
       feedbackEl.className = 'exercise-feedback';
@@ -322,30 +334,33 @@
       }
     }
 
-    // ── Show final result ──────────────────────────────────
+    // ── Show final result
     function showResult() {
       nextExamBtn.style.display = 'none';
+
+      document.getElementById('card').classList.add('hidden-question');
+
       resultBox.style.display = 'block';
       choicesEl.innerHTML = '';
       sentenceEl.textContent = '';
       hintEl.textContent = '';
       feedbackEl.textContent = '';
-      progressEl.textContent = '(Result)';
+      progressEl.textContent = '';
       resultScore.textContent = `${score} / ${TOTAL}`;
 
       if (score <= 4) {
         resultTitle.textContent = 'Keep going 💪';
-        badge.textContent = '🏅 Training Badge';
+        badge.textContent = '🏅';
       } else if (score <= 7) {
         resultTitle.textContent = 'Good job 👍';
-        badge.textContent = '🥈 Progress Badge';
+        badge.textContent = '🥈';
       } else {
         resultTitle.textContent = 'Congratulations 🎉';
-        badge.textContent = '🏆 Champion Badge';
+        badge.textContent = '🏆';
       }
     }
 
-    // ── Next / Finish button ───────────────────────────────
+    // ── Next / Finish button 
     nextExamBtn.addEventListener('click', () => {
       if (!locked) {
         feedbackEl.textContent = 'Please choose an answer first 🙂';
@@ -357,7 +372,7 @@
       renderQuestion();
     });
 
-    // ── Restart button ─────────────────────────────────────
+    // ── Restart button 
     restartBtn.addEventListener('click', () => {
       qIndex = 0;
       score = 0;
@@ -365,7 +380,7 @@
       renderQuestion();
     });
 
-    // ── Start ──────────────────────────────────────────────
+    // ── Start 
     renderQuestion();
   </script>
 
