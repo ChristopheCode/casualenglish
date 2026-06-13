@@ -214,7 +214,9 @@
     ];
 
     // ── Difficulty 
-    const difficulty = localStorage.getItem("selectedDifficulty") || "easy";
+    const storedDifficulty = safeGet(localStorage, "selectedDifficulty");
+    const allowedDifficulties = ["easy", "medium", "hard"];
+    const difficulty = allowedDifficulties.includes(storedDifficulty) ? storedDifficulty : "easy";
 
     const filteredVerbs = irregularVerbs.filter(
       v => v.difficulty === difficulty
