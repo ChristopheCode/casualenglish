@@ -95,9 +95,12 @@ if (menu) {
 
 // Arrow Back Button Previous page
 document.querySelector('.back-button')?.addEventListener('click', () => {
-  const back = sessionStorage.getItem('backPage');
+  let back = null;
+  try {
+    back = sessionStorage.getItem('backPage');
+    if (back) sessionStorage.removeItem('backPage'); // clean up
+  } catch {}
   if (back) {
-    sessionStorage.removeItem('backPage'); // clean up
     try {
       const backUrl = new URL(back, window.location.origin);
       if (backUrl.origin === window.location.origin) {
