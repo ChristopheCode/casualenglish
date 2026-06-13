@@ -329,11 +329,13 @@
 
       tenseLabel.textContent = `(${t.label})`;
       sentenceEl.textContent = v.sentences[t.form];
-      hintEl.innerHTML = `Verb: <strong>${v.base}</strong>`;
+      const hintStrong = document.createElement('strong');
+      hintStrong.textContent = v.base;
+      hintEl.replaceChildren(document.createTextNode('Verb: '), hintStrong);
 
       // Build 3 shuffled choices (base / past / pp)
       const options = shuffle([v.base, v.past, v.pp]);
-      choicesEl.innerHTML = '';
+      choicesEl.replaceChildren();
 
       options.forEach(opt => {
         const btn = document.createElement('button');
