@@ -283,7 +283,9 @@
     ];
 
     // ── Read difficulty from home page ─────────────────────
-    const difficulty = localStorage.getItem('selectedDifficulty') || 'easy';
+    const storedDifficulty = safeGet(localStorage, 'selectedDifficulty');
+    const allowedDifficulties = ['easy', 'medium', 'hard'];
+    const difficulty = allowedDifficulties.includes(storedDifficulty) ? storedDifficulty : 'easy';
     const filteredVerbs = verbs.filter(v => v.difficulty === difficulty);
 
     // ── DOM refs ───────────────────────────────────────────
