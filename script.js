@@ -91,7 +91,16 @@ document.querySelector('.back-button')?.addEventListener('click', () => {
   const back = sessionStorage.getItem('backPage');
   if (back) {
     sessionStorage.removeItem('backPage'); // clean up
-    window.location.href = back;
+    try {
+      const backUrl = new URL(back, window.location.origin);
+      if (backUrl.origin === window.location.origin) {
+        window.location.href = backUrl.pathname + backUrl.search + backUrl.hash;
+      } else {
+        window.history.back(); // fallback
+      }
+    } catch {
+      window.history.back(); // fallback
+    }
   } else {
     window.history.back(); // fallback
   }
