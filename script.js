@@ -1,5 +1,10 @@
 // ── Theme (dark / light) 
-let dark = localStorage.getItem('dark') === 'true';
+let dark;
+try {
+  dark = localStorage.getItem('dark') === 'true';
+} catch {
+  dark = false;
+}
 
 const style    = document.documentElement.style;
 const images   = document.querySelectorAll('.container img');
@@ -18,7 +23,9 @@ let show = false;
 
 const toggleDark = () => {
   dark = !dark;
-  localStorage.setItem('dark', dark);
+  try {
+    localStorage.setItem('dark', dark);
+  } catch {}
   applyTheme();
 };
 
