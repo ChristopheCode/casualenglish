@@ -114,7 +114,7 @@ const toggleQues = () => {
 
 document.addEventListener('click', e => {
   const clickedHelp    = help    && help.contains(e.target);
-  const clickedHelpBtn = e.target.closest('.ques');
+  const clickedHelpBtn = e.target instanceof Element && e.target.closest('.ques');
   if (!clickedHelp && !clickedHelpBtn && help) {
     help.classList.remove('show');
   }
