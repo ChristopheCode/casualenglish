@@ -297,10 +297,19 @@
       currentT = t;
 
       sentenceEl.textContent = v.sentences[t.form];
-      hintEl.innerHTML = `Tense: <strong>${t.label}</strong> · Verb: <strong>${v.base}</strong>`;
+      const tenseStrong = document.createElement('strong');
+      tenseStrong.textContent = t.label;
+      const verbStrong = document.createElement('strong');
+      verbStrong.textContent = v.base;
+      hintEl.replaceChildren(
+        document.createTextNode('Tense: '),
+        tenseStrong,
+        document.createTextNode(' · Verb: '),
+        verbStrong
+      );
 
       const options = shuffle([v.base, v.past, v.pp]);
-      choicesEl.innerHTML = '';
+      choicesEl.replaceChildren();
       options.forEach(opt => {
         const btn = document.createElement('button');
         btn.type = 'button';
@@ -343,7 +352,7 @@
       document.getElementById('card').classList.add('hidden-question');
 
       resultBox.style.display = 'block';
-      choicesEl.innerHTML = '';
+      choicesEl.replaceChildren();
       sentenceEl.textContent = '';
       hintEl.textContent = '';
       feedbackEl.textContent = '';
