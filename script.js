@@ -157,7 +157,9 @@ const slider   = document.getElementById('slider');
 
 if (btnGroup && slider) {
   const diffBtns = btnGroup.querySelectorAll('.diff-btn');
-  const savedDiff = localStorage.getItem('selectedDifficulty') || 'easy';
+  const allowedDiffs = ['easy', 'medium', 'hard'];
+  const storedDiff = localStorage.getItem('selectedDifficulty');
+  const savedDiff = allowedDiffs.includes(storedDiff) ? storedDiff : 'easy';
 
   const moveSlider = btn => {
     const groupRect = btnGroup.getBoundingClientRect();
