@@ -1,10 +1,26 @@
+// ── Safe browser storage helpers
+const safeGet = (storage, key) => {
+  try {
+    return storage.getItem(key);
+  } catch {
+    return null;
+  }
+};
+
+const safeSet = (storage, key, value) => {
+  try {
+    storage.setItem(key, value);
+  } catch {}
+};
+
+const safeRemove = (storage, key) => {
+  try {
+    storage.removeItem(key);
+  } catch {}
+};
+
 // ── Theme (dark / light) 
-let dark;
-try {
-  dark = localStorage.getItem('dark') === 'true';
-} catch {
-  dark = false;
-}
+let dark = safeGet(localStorage, 'dark') === 'true';
 
 const style    = document.documentElement.style;
 const images   = document.querySelectorAll('.container img');
@@ -23,9 +39,7 @@ let show = false;
 
 const toggleDark = () => {
   dark = !dark;
-  try {
-    localStorage.setItem('dark', dark);
-  } catch {}
+  safeSet(localStorage, 'dark', dark);
   applyTheme();
 };
 
@@ -95,11 +109,8 @@ if (menu) {
 
 // Arrow Back Button Previous page
 document.querySelector('.back-button')?.addEventListener('click', () => {
-  let back = null;
-  try {
-    back = sessionStorage.getItem('backPage');
-    if (back) sessionStorage.removeItem('backPage'); // clean up
-  } catch {}
+  const back = safeGet(sessionStorage, 'backPage');
+  if (back) safeRemove(sessionStorage, 'backPage'); // clean up
   if (back) {
     try {
       const backUrl = new URL(back, window.location.origin);
@@ -168,7 +179,7 @@ const slider   = document.getElementById('slider');
 if (btnGroup && slider) {
   const diffBtns = btnGroup.querySelectorAll('.diff-btn');
   const allowedDiffs = ['easy', 'medium', 'hard'];
-  const storedDiff = localStorage.getItem('selectedDifficulty');
+  const storedDiff = safeGet(localStorage, 'selectedDifficulty');
   const savedDiff = allowedDiffs.includes(storedDiff) ? storedDiff : 'easy';
 
   const moveSlider = btn => {
@@ -186,7 +197,7 @@ if (btnGroup && slider) {
     });
     btn.classList.add('active');
     btn.setAttribute('aria-pressed', 'true');
-    localStorage.setItem('selectedDifficulty', selectedDiff);
+    safeSet(localStorage, 'selectedDifficulty', selectedDiff);
     moveSlider(btn);
   };
 
