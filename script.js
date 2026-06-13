@@ -169,13 +169,14 @@ if (btnGroup && slider) {
   };
 
   const activateDiff = btn => {
+    const selectedDiff = allowedDiffs.includes(btn.dataset.value) ? btn.dataset.value : 'easy';
     diffBtns.forEach(b => {
       b.classList.remove('active');
       b.setAttribute('aria-pressed', 'false');
     });
     btn.classList.add('active');
     btn.setAttribute('aria-pressed', 'true');
-    localStorage.setItem('selectedDifficulty', btn.dataset.value);
+    localStorage.setItem('selectedDifficulty', selectedDiff);
     moveSlider(btn);
   };
 
