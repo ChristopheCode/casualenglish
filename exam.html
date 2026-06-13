@@ -225,7 +225,9 @@
     ];
 
     // ── Read difficulty from home page ─────────────────────
-    const difficulty = localStorage.getItem('selectedDifficulty') || 'easy';
+    const storedDifficulty = safeGet(localStorage, 'selectedDifficulty');
+    const allowedDifficulties = ['easy', 'medium', 'hard'];
+    const difficulty = allowedDifficulties.includes(storedDifficulty) ? storedDifficulty : 'easy';
     const verbMap = { easy: easyVerbs, medium: mediumVerbs, hard: hardVerbs };
     const verbs = verbMap[difficulty] || easyVerbs;
 
