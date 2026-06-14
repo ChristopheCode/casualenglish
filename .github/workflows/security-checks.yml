@@ -30,6 +30,12 @@ jobs:
           TEXT_EXTENSIONS = {'.html', '.css', '.js', '.md'}
           SKIP_DIRS = {'.git'}
           CONFLICT_MARKER_RE = re.compile(r'^(<<<<<<<|=======|>>>>>>>)', re.MULTILINE)
+          REQUIRED_CSP_DIRECTIVES = [
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "connect-src 'none'",
+          ]
 
           failures = []
 
@@ -50,6 +56,9 @@ jobs:
                       failures.append(f'{path}: missing Content-Security-Policy meta tag')
                   if 'name="referrer"' not in text:
                       failures.append(f'{path}: missing referrer meta tag')
+                  for directive in REQUIRED_CSP_DIRECTIVES:
+                      if directive not in text:
+                          failures.append(f'{path}: missing CSP directive {directive}')
 
               if CONFLICT_MARKER_RE.search(text):
                   failures.append(f'{path}: contains Git conflict markers')
