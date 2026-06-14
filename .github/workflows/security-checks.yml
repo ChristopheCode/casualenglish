@@ -42,6 +42,7 @@ jobs:
               'mention.html',
           }
           INLINE_SCRIPT_FREE_HTML = {
+              'index.html',
               'tense-rules.html',
           }
           REQUIRED_CSP_DIRECTIVES = [
