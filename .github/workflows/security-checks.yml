@@ -36,6 +36,10 @@ jobs:
               'exercises.html',
               'exam.html',
               'tense-rules.html',
+              'condition.html',
+              'cookies.html',
+              'confidentialite.html',
+              'mention.html',
           }
           REQUIRED_CSP_DIRECTIVES = [
               "default-src 'self'",
