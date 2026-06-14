@@ -79,8 +79,11 @@ jobs:
               if path.as_posix() in INLINE_HANDLER_FREE_HTML and re.search(r'\son\w+=', text, re.IGNORECASE):
                   failures.append(f'{path}: uses inline event handlers')
 
-              if path.as_posix() in INLINE_SCRIPT_FREE_HTML and re.search(r'<script(?![^>]*\bsrc=)[^>]*>', text, re.IGNORECASE):
-                  failures.append(f'{path}: uses inline script tags')
+              if path.as_posix() in INLINE_SCRIPT_FREE_HTML:
+                  if re.search(r'<script(?![^>]*\bsrc=)[^>]*>', text, re.IGNORECASE):
+                      failures.append(f'{path}: uses inline script tags')
+                  if re.search(r"script-src[^;]*'unsafe-inline'", text, re.IGNORECASE):
+                      failures.append(f'{path}: allows unsafe-inline scripts in CSP')
 
               if CONFLICT_MARKER_RE.search(text):
                   failures.append(f'{path}: contains Git conflict markers')
