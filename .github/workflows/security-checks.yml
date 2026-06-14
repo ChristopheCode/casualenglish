@@ -62,6 +62,9 @@ jobs:
                       if directive not in text:
                           failures.append(f'{path}: missing CSP directive {directive}')
 
+              if path.as_posix() == 'tense-rules.html' and re.search(r'\son\w+=', text, re.IGNORECASE):
+                  failures.append(f'{path}: uses inline event handlers')
+
               if CONFLICT_MARKER_RE.search(text):
                   failures.append(f'{path}: contains Git conflict markers')
 
