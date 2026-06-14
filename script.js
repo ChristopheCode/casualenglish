@@ -34,6 +34,13 @@ const socialContainer = document.querySelector('.social-container');
 const arrowBackIcon = document.querySelector('.arrow-back-icon');
 const container = document.querySelector('.container');
 
+if (document.querySelector('.words .footer') && !document.querySelector('link[href="./app-footer.css"]')) {
+  const appFooterStyles = document.createElement('link');
+  appFooterStyles.rel = 'stylesheet';
+  appFooterStyles.href = './app-footer.css';
+  document.head.appendChild(appFooterStyles);
+}
+
 let menuOpen = false;  
 let show = false;
 
