@@ -1,0 +1,17 @@
+@media screen and (max-width: 600px) {
+  .words .footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    column-gap: 1rem;
+  }
+
+  .words .footer ul {
+    max-width: none;
+  }
+
+  .words .footer > a {
+    justify-self: end;
+    margin-left: 0;
+  }
+}
