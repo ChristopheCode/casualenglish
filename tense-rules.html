@@ -15,7 +15,7 @@
   <div class="container">
 
     <!-- Hamburger -->
-    <button onclick="toggleMenu()" class="ham">
+    <button class="ham">
       <img src="./img/hamburger.svg" alt="Menu" />
     </button>
 
@@ -61,11 +61,11 @@
       </div>
     </div>
 
-    <button onclick="toggleDark()" class="btn-float dark-mode">
+    <button class="btn-float dark-mode">
       <img src="./img/moon.svg" alt="Dark mode" />
     </button>
 
-    <button onclick="toggleQues()" class="btn-float ques">
+    <button class="btn-float ques">
       <img src="./img/question.svg" alt="Help" />
     </button>
 
@@ -80,7 +80,7 @@
 
 
     <!-- overlay -->
-    <div class="menu-overlay" id="overlay" onclick="closeMenu()" aria-hidden="true">
+    <div class="menu-overlay" id="overlay" aria-hidden="true">
 
 
 
@@ -143,6 +143,11 @@
       const exampleEl = document.getElementById("tenseExample");
       const signalsEl = document.getElementById("tenseSignals");
       const nextTenseBtn = document.getElementById("nextTense");
+
+      document.querySelector(".ham")?.addEventListener("click", toggleMenu);
+      document.querySelector(".dark-mode")?.addEventListener("click", toggleDark);
+      document.querySelector(".ques")?.addEventListener("click", toggleQues);
+      document.getElementById("overlay")?.addEventListener("click", closeMenu);
 
       let index = 0;
 
