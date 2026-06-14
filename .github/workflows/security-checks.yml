@@ -30,6 +30,13 @@ jobs:
           TEXT_EXTENSIONS = {'.html', '.css', '.js', '.md'}
           SKIP_DIRS = {'.git'}
           CONFLICT_MARKER_RE = re.compile(r'^(<<<<<<<|=======|>>>>>>>)', re.MULTILINE)
+          INLINE_HANDLER_FREE_HTML = {
+              'index.html',
+              'iregularverbsenglish.html',
+              'exercises.html',
+              'exam.html',
+              'tense-rules.html',
+          }
           REQUIRED_CSP_DIRECTIVES = [
               "default-src 'self'",
               "object-src 'none'",
@@ -62,7 +69,7 @@ jobs:
                       if directive not in text:
                           failures.append(f'{path}: missing CSP directive {directive}')
 
-              if path.as_posix() == 'tense-rules.html' and re.search(r'\son\w+=', text, re.IGNORECASE):
+              if path.as_posix() in INLINE_HANDLER_FREE_HTML and re.search(r'\son\w+=', text, re.IGNORECASE):
                   failures.append(f'{path}: uses inline event handlers')
 
               if CONFLICT_MARKER_RE.search(text):
