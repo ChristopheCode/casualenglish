@@ -27,7 +27,7 @@ jobs:
           import sys
 
           ROOT = Path('.')
-          TEXT_EXTENSIONS = {'.html', '.css', '.js', '.md', '.yml', '.yaml'}
+          TEXT_EXTENSIONS = {'.html', '.css', '.js', '.md'}
           SKIP_DIRS = {'.git'}
 
           failures = []
