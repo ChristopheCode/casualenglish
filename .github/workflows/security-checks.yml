@@ -31,10 +31,12 @@ jobs:
           SKIP_DIRS = {'.git'}
           CONFLICT_MARKER_RE = re.compile(r'^(<<<<<<<|=======|>>>>>>>)', re.MULTILINE)
           REQUIRED_CSP_DIRECTIVES = [
+              "default-src 'self'",
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self'",
               "connect-src 'none'",
+              "upgrade-insecure-requests",
           ]
 
           failures = []
