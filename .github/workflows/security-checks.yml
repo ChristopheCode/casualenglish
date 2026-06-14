@@ -41,6 +41,9 @@ jobs:
               'confidentialite.html',
               'mention.html',
           }
+          INLINE_SCRIPT_FREE_HTML = {
+              'tense-rules.html',
+          }
           REQUIRED_CSP_DIRECTIVES = [
               "default-src 'self'",
               "object-src 'none'",
@@ -75,6 +78,9 @@ jobs:
 
               if path.as_posix() in INLINE_HANDLER_FREE_HTML and re.search(r'\son\w+=', text, re.IGNORECASE):
                   failures.append(f'{path}: uses inline event handlers')
+
+              if path.as_posix() in INLINE_SCRIPT_FREE_HTML and re.search(r'<script(?![^>]*\bsrc=)[^>]*>', text, re.IGNORECASE):
+                  failures.append(f'{path}: uses inline script tags')
 
               if CONFLICT_MARKER_RE.search(text):
                   failures.append(f'{path}: contains Git conflict markers')
