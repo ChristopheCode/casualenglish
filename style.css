@@ -234,6 +234,10 @@ body {
   .footer ul {
     max-width: 60%;
   }
+
+  .words .footer > a {
+    margin-left: auto;
+  }
 }
 
 .footer .legal {
