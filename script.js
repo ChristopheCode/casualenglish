@@ -105,8 +105,6 @@ const toggleMenu = () => {
 if (ham && !ham.hasAttribute('onclick')) ham.addEventListener('click', toggleMenu);
 const darkModeButton = document.querySelector('.dark-mode');
 if (darkModeButton && !darkModeButton.hasAttribute('onclick')) darkModeButton.addEventListener('click', toggleDark);
-const helpButton = document.querySelector('.ques');
-if (helpButton && !helpButton.hasAttribute('onclick')) helpButton.addEventListener('click', toggleQues);
 
 if (overlay) overlay.addEventListener('click', closeMenu);
 if (menu) {
@@ -138,6 +136,9 @@ document.querySelector('.back-button')?.addEventListener('click', () => {
 const toggleQues = () => {
   if (help) help.classList.toggle('show');
 };
+
+const helpButton = document.querySelector('.ques');
+if (helpButton && !helpButton.hasAttribute('onclick')) helpButton.addEventListener('click', toggleQues);
 
 document.addEventListener('click', e => {
   const clickedHelp    = help    && help.contains(e.target);
