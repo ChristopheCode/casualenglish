@@ -73,6 +73,7 @@ jobs:
                   (r'\bdocument\.write\s*\(', 'document.write()'),
                   (r'\blocalStorage\.getItem\s*\(', 'direct localStorage.getItem()'),
                   (r'\bsessionStorage\.getItem\s*\(', 'direct sessionStorage.getItem()'),
+                  (r'http://', 'insecure http:// reference'),
               ]:
                   if re.search(pattern, text):
                       failures.append(f'{path}: uses {label}')
