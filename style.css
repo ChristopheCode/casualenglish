@@ -235,8 +235,20 @@ body {
     max-width: 60%;
   }
 
+  .words .footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    column-gap: 1rem;
+  }
+
+  .words .footer ul {
+    max-width: none;
+  }
+
   .words .footer > a {
-    margin-left: auto;
+    justify-self: end;
+    margin-left: 0;
   }
 }
 
