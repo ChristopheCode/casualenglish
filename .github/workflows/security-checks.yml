@@ -29,6 +29,7 @@ jobs:
           ROOT = Path('.')
           TEXT_EXTENSIONS = {'.html', '.css', '.js', '.md'}
           SKIP_DIRS = {'.git'}
+          CONFLICT_MARKER_RE = re.compile(r'^(<<<<<<<|=======|>>>>>>>)', re.MULTILINE)
 
           failures = []
 
@@ -44,7 +45,7 @@ jobs:
           for path in tracked_text_files():
               text = path.read_text(encoding='utf-8', errors='replace')
 
-              if any(marker in text for marker in ('<<<<<<<', '=======', '>>>>>>>')):
+              if CONFLICT_MARKER_RE.search(text):
                   failures.append(f'{path}: contains Git conflict markers')
 
               for pattern, label in [
