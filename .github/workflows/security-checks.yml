@@ -45,6 +45,12 @@ jobs:
           for path in tracked_text_files():
               text = path.read_text(encoding='utf-8', errors='replace')
 
+              if path.suffix.lower() == '.html':
+                  if 'Content-Security-Policy' not in text:
+                      failures.append(f'{path}: missing Content-Security-Policy meta tag')
+                  if 'name="referrer"' not in text:
+                      failures.append(f'{path}: missing referrer meta tag')
+
               if CONFLICT_MARKER_RE.search(text):
                   failures.append(f'{path}: contains Git conflict markers')
 
