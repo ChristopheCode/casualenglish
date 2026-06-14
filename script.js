@@ -102,6 +102,12 @@ const toggleMenu = () => {
   }
 };
 
+if (ham && !ham.hasAttribute('onclick')) ham.addEventListener('click', toggleMenu);
+const darkModeButton = document.querySelector('.dark-mode');
+if (darkModeButton && !darkModeButton.hasAttribute('onclick')) darkModeButton.addEventListener('click', toggleDark);
+const helpButton = document.querySelector('.ques');
+if (helpButton && !helpButton.hasAttribute('onclick')) helpButton.addEventListener('click', toggleQues);
+
 if (overlay) overlay.addEventListener('click', closeMenu);
 if (menu) {
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
