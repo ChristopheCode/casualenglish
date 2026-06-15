@@ -117,6 +117,7 @@ jobs:
                   (r'vbscript:', 'vbscript: URL'),
                   (r'data:text/html', 'data:text/html URL'),
                   (r'<base\b', 'base tag'),
+                  (r'<form\b', 'form tag'),
                   (r'<iframe\b', 'iframe tag'),
                   (r'<object\b', 'object tag'),
                   (r'<embed\b', 'embed tag'),
