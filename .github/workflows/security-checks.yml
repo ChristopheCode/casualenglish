@@ -61,6 +61,10 @@ jobs:
               "connect-src 'none'",
               "upgrade-insecure-requests",
           ]
+          HTML_ONLY_PATTERNS = [
+              (r'<img\b[^>]*\bsrc=["\']https?://', 'external image URL'),
+              (r'<img\b[^>]*\bsrc=["\']//', 'protocol-relative image URL'),
+          ]
 
           failures = []
 
@@ -84,6 +88,9 @@ jobs:
                   for directive in REQUIRED_CSP_DIRECTIVES:
                       if directive not in text:
                           failures.append(f'{path}: missing CSP directive {directive}')
+                  for pattern, label in HTML_ONLY_PATTERNS:
+                      if re.search(pattern, text, re.IGNORECASE):
+                          failures.append(f'{path}: uses {label}')
 
               if path.as_posix() in INLINE_HANDLER_FREE_HTML and re.search(r'\son\w+=', text, re.IGNORECASE):
                   failures.append(f'{path}: uses inline event handlers')
@@ -113,8 +120,6 @@ jobs:
                   (r'<script\b[^>]*\bsrc=["\']//', 'protocol-relative script URL'),
                   (r'<link\b[^>]*\brel=["\']stylesheet["\'][^>]*\bhref=["\']https?://', 'external stylesheet URL'),
                   (r'<link\b[^>]*\brel=["\']stylesheet["\'][^>]*\bhref=["\']//', 'protocol-relative stylesheet URL'),
-                  (r'<img\b[^>]*\bsrc=["\']https?://', 'external image URL'),
-                  (r'<img\b[^>]*\bsrc=["\']//', 'protocol-relative image URL'),
                   (r'javascript:', 'javascript: URL'),
                   (r'vbscript:', 'vbscript: URL'),
                   (r'data:text/html', 'data:text/html URL'),
