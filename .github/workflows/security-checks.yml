@@ -113,6 +113,8 @@ jobs:
                   (r'<script\b[^>]*\bsrc=["\']//', 'protocol-relative script URL'),
                   (r'<link\b[^>]*\brel=["\']stylesheet["\'][^>]*\bhref=["\']https?://', 'external stylesheet URL'),
                   (r'<link\b[^>]*\brel=["\']stylesheet["\'][^>]*\bhref=["\']//', 'protocol-relative stylesheet URL'),
+                  (r'<img\b[^>]*\bsrc=["\']https?://', 'external image URL'),
+                  (r'<img\b[^>]*\bsrc=["\']//', 'protocol-relative image URL'),
                   (r'javascript:', 'javascript: URL'),
                   (r'vbscript:', 'vbscript: URL'),
                   (r'data:text/html', 'data:text/html URL'),
