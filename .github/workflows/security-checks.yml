@@ -111,7 +111,7 @@ jobs:
                   (r'vbscript:', 'vbscript: URL'),
                   (r'data:text/html', 'data:text/html URL'),
               ]:
-                  if re.search(pattern, text):
+                  if re.search(pattern, text, re.IGNORECASE):
                       failures.append(f'{path}: uses {label}')
 
               for match in re.finditer(r'<a\b[^>]*target=["\']_blank["\'][^>]*>', text, re.IGNORECASE):
