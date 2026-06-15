@@ -98,6 +98,7 @@ jobs:
                   (r'\blocalStorage\.getItem\s*\(', 'direct localStorage.getItem()'),
                   (r'\bsessionStorage\.getItem\s*\(', 'direct sessionStorage.getItem()'),
                   (r'http://', 'insecure http:// reference'),
+                  (r'javascript:', 'javascript: URL'),
               ]:
                   if re.search(pattern, text):
                       failures.append(f'{path}: uses {label}')
