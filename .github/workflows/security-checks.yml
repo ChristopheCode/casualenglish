@@ -113,6 +113,7 @@ jobs:
                   (r'<iframe\b', 'iframe tag'),
                   (r'<object\b', 'object tag'),
                   (r'<embed\b', 'embed tag'),
+                  (r'<meta\b[^>]*http-equiv=["\']?refresh', 'meta refresh redirect'),
               ]:
                   if re.search(pattern, text, re.IGNORECASE):
                       failures.append(f'{path}: uses {label}')
