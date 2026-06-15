@@ -108,6 +108,8 @@ jobs:
                   (r'\bsessionStorage\.getItem\s*\(', 'direct sessionStorage.getItem()'),
                   (r'http://', 'insecure http:// reference'),
                   (r'javascript:', 'javascript: URL'),
+                  (r'vbscript:', 'vbscript: URL'),
+                  (r'data:text/html', 'data:text/html URL'),
               ]:
                   if re.search(pattern, text):
                       failures.append(f'{path}: uses {label}')
