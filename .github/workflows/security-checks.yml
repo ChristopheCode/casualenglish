@@ -103,6 +103,8 @@ jobs:
                   (r'\binsertAdjacentHTML\b', 'insertAdjacentHTML'),
                   (r'\beval\s*\(', 'eval()'),
                   (r'\bnew\s+Function\s*\(', 'new Function()'),
+                  (r'\bsetTimeout\s*\(\s*["\']', 'string-based setTimeout()'),
+                  (r'\bsetInterval\s*\(\s*["\']', 'string-based setInterval()'),
                   (r'\bdocument\.write\s*\(', 'document.write()'),
                   (r'\blocalStorage\.getItem\s*\(', 'direct localStorage.getItem()'),
                   (r'\bsessionStorage\.getItem\s*\(', 'direct sessionStorage.getItem()'),
