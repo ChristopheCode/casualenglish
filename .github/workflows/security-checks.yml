@@ -64,6 +64,8 @@ jobs:
           HTML_ONLY_PATTERNS = [
               (r'<img\b[^>]*\bsrc=["\']https?://', 'external image URL'),
               (r'<img\b[^>]*\bsrc=["\']//', 'protocol-relative image URL'),
+              (r'\bsrcset=["\'][^"\']*https?://', 'external srcset URL'),
+              (r'\bsrcset=["\'][^"\']*(?<!:)//', 'protocol-relative srcset URL'),
           ]
 
           failures = []
