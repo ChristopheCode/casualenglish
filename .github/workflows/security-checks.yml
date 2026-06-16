@@ -72,6 +72,9 @@ jobs:
               (r'<video\b[^>]*\bposter=["\']//', 'protocol-relative video poster URL'),
               (r'<link\b(?=[^>]*\brel=["\'][^"\']*(?:stylesheet|preload|modulepreload|prefetch|preconnect|dns-prefetch|manifest|icon|apple-touch-icon)[^"\']*["\'])(?=[^>]*\bhref=["\']https?://)', 'external link resource URL'),
               (r'<link\b(?=[^>]*\brel=["\'][^"\']*(?:stylesheet|preload|modulepreload|prefetch|preconnect|dns-prefetch|manifest|icon|apple-touch-icon)[^"\']*["\'])(?=[^>]*\bhref=["\']//)', 'protocol-relative link resource URL'),
+              (r'\sping=', 'link ping attribute'),
+              (r'\ssrcdoc=', 'srcdoc attribute'),
+              (r'\sformaction=', 'formaction attribute'),
           ]
           CSS_RESOURCE_PATTERNS = [
               (r'url\(\s*["\']?https?://', 'external CSS url()'),
@@ -138,6 +141,12 @@ jobs:
                   (r'\bEventSource\s*\(', 'EventSource'),
                   (r'\bnavigator\.sendBeacon\s*\(', 'navigator.sendBeacon()'),
                   (r'\bimportScripts\s*\(', 'importScripts()'),
+                  (r'\bdocument\.cookie\b', 'document.cookie'),
+                  (r'\bindexedDB\b', 'indexedDB'),
+                  (r'\bwindow\.open\s*\(', 'window.open()'),
+                  (r'\bpostMessage\s*\(', 'postMessage()'),
+                  (r'\b(?:Worker|SharedWorker)\s*\(', 'web workers'),
+                  (r'\bserviceWorker\b', 'service workers'),
                   (r'http://', 'insecure http:// reference'),
                   (r'<script\b[^>]*\bsrc=["\']https?://', 'external script URL'),
                   (r'<script\b[^>]*\bsrc=["\']//', 'protocol-relative script URL'),
