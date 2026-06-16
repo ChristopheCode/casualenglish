@@ -128,13 +128,6 @@ function correctAnswer(verb, template) {
   return verb[template.form];
 }
 
-function buildChoices(verb, answer) {
-  const ownForms = [...new Set([verb.base, verb.past, verb.pp])];
-  const distractorPool = [...new Set(verbs.flatMap(item => [item.base, item.past, item.pp]))]
-    .filter(form => form !== answer && !ownForms.includes(form));
-  return shuffle([answer, ...shuffle(distractorPool).slice(0, 2)]);
-}
-
 function renderExercise() {
   locked = false;
   feedbackEl.textContent = "";
@@ -157,7 +150,7 @@ function renderExercise() {
   hintEl.replaceChildren(document.createTextNode("Verb: "), hintStrong);
 
   const answer = correctAnswer(verb, template);
-  const options = buildChoices(verb, answer);
+  const options = shuffle([verb.base, verb.past, verb.pp]);
   choicesEl.replaceChildren();
 
   options.forEach(option => {
