@@ -47,20 +47,11 @@
         <button class="exercise-next" id="nextExamBtn" type="button">Next</button>
 
         <!-- Result block — hidden until end -->
-        <div id="result" style="display:none;  text-align:center;">
+        <div id="result" class="exam-result">
           <p class="exercise-tense" id="resultTitle"></p>
-          <p class="exercise-sentence" id="resultScore" style="font-weight:bold;"></p>
-          <div id="badge" style="
-            margin: 12px auto 0;
-            width: fit-content;
-            padding: 10px 14px;
-            border-radius: 999px;
-            background: var(--bg-color-secondary);
-            color: var(--text-color-primary);
-            font-weight: bold;
-            box-shadow: 0px 5px 10px rgba(0,0,0,0.08);
-          "></div>
-          <button class="exercise-next" id="restartBtn" type="button" style="margin-top:14px;">
+          <p class="exercise-sentence exam-result-score" id="resultScore"></p>
+          <div id="badge" class="exam-badge"></div>
+          <button class="exercise-next exam-restart" id="restartBtn" type="button">
             Restart Exam
           </button>
         </div>
