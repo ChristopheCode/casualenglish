@@ -1,12 +1,16 @@
-# Security Policy
+# 🔐 Security Policy
 
-## Supported versions
+---
+
+## 📌 Supported versions
 
 The project is currently maintained on the `main` branch.
 
 Security updates, when needed, will be applied to the latest version of the project.
 
-## Reporting a vulnerability
+---
+
+## 🛡 Reporting a vulnerability
 
 If you discover a security vulnerability, please report it responsibly.
 
