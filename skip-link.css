@@ -1,0 +1,23 @@
+.skip-link {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  transform: translateY(-150%);
+  background: var(--button-bg-primary);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.18);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 3px solid white;
+}
+
+#main-content:focus {
+  outline: none;
+}
