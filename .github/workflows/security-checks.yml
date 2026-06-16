@@ -70,6 +70,8 @@ jobs:
               (r'<(?:audio|video|source|track)\b[^>]*\bsrc=["\']//', 'protocol-relative media URL'),
               (r'<video\b[^>]*\bposter=["\']https?://', 'external video poster URL'),
               (r'<video\b[^>]*\bposter=["\']//', 'protocol-relative video poster URL'),
+              (r'<link\b(?=[^>]*\brel=["\'][^"\']*(?:stylesheet|preload|modulepreload|prefetch|preconnect|dns-prefetch|manifest|icon|apple-touch-icon)[^"\']*["\'])(?=[^>]*\bhref=["\']https?://)', 'external link resource URL'),
+              (r'<link\b(?=[^>]*\brel=["\'][^"\']*(?:stylesheet|preload|modulepreload|prefetch|preconnect|dns-prefetch|manifest|icon|apple-touch-icon)[^"\']*["\'])(?=[^>]*\bhref=["\']//)', 'protocol-relative link resource URL'),
           ]
           CSS_RESOURCE_PATTERNS = [
               (r'url\(\s*["\']?https?://', 'external CSS url()'),
