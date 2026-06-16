@@ -66,6 +66,14 @@ jobs:
               (r'<img\b[^>]*\bsrc=["\']//', 'protocol-relative image URL'),
               (r'\bsrcset=["\'][^"\']*https?://', 'external srcset URL'),
               (r'\bsrcset=["\'][^"\']*(?<!:)//', 'protocol-relative srcset URL'),
+              (r'<(?:audio|video|source|track)\b[^>]*\bsrc=["\']https?://', 'external media URL'),
+              (r'<(?:audio|video|source|track)\b[^>]*\bsrc=["\']//', 'protocol-relative media URL'),
+              (r'<video\b[^>]*\bposter=["\']https?://', 'external video poster URL'),
+              (r'<video\b[^>]*\bposter=["\']//', 'protocol-relative video poster URL'),
+          ]
+          CSS_RESOURCE_PATTERNS = [
+              (r'url\(\s*["\']?https?://', 'external CSS url()'),
+              (r'url\(\s*["\']?//', 'protocol-relative CSS url()'),
           ]
 
           failures = []
@@ -91,6 +99,11 @@ jobs:
                       if directive not in text:
                           failures.append(f'{path}: missing CSP directive {directive}')
                   for pattern, label in HTML_ONLY_PATTERNS:
+                      if re.search(pattern, text, re.IGNORECASE):
+                          failures.append(f'{path}: uses {label}')
+
+              if path.suffix.lower() in {'.html', '.css'}:
+                  for pattern, label in CSS_RESOURCE_PATTERNS:
                       if re.search(pattern, text, re.IGNORECASE):
                           failures.append(f'{path}: uses {label}')
 
