@@ -257,6 +257,15 @@ const setupExerciseKeyboardControls = () => {
     const choices = [...choicesContainer.querySelectorAll(choiceSelector)];
     const answerSelected = choices.length > 0 && choices.every(choice => choice.disabled);
     const continueKey = event.key === 'Enter' || event.key === ' ';
+    const resultBox = document.getElementById('result');
+    const restartButton = document.getElementById('restartBtn');
+    const resultVisible = resultBox && resultBox.style.display !== 'none';
+
+    if (resultVisible && restartButton && continueKey) {
+      event.preventDefault();
+      restartButton.click();
+      return;
+    }
 
     if (answerSelected && continueKey && document.activeElement !== nextButton()) {
       event.preventDefault();
