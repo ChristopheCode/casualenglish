@@ -235,6 +235,42 @@ if (btnGroup && slider) {
   });
 }
 
+// Keyboard controls for Exercises answer choices
+const setupExerciseKeyboardControls = () => {
+  const choicesContainer = document.getElementById('choices');
+  if (!choicesContainer) return;
+
+  const choiceSelector = '.exercise-choice';
+  const moveKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'];
+
+  document.addEventListener('keydown', event => {
+    if (!moveKeys.includes(event.key)) return;
+
+    const choices = [...choicesContainer.querySelectorAll(choiceSelector)]
+      .filter(choice => !choice.disabled);
+
+    if (choices.length === 0) return;
+
+    event.preventDefault();
+
+    const currentIndex = choices.indexOf(document.activeElement);
+    const movingForward = event.key === 'ArrowDown' || event.key === 'ArrowRight';
+
+    if (currentIndex === -1) {
+      choices[movingForward ? 0 : choices.length - 1].focus();
+      return;
+    }
+
+    const nextIndex = movingForward
+      ? (currentIndex + 1) % choices.length
+      : (currentIndex - 1 + choices.length) % choices.length;
+
+    choices[nextIndex].focus();
+  });
+};
+
+setupExerciseKeyboardControls();
+
 // block zoom in mobile
 document.addEventListener('touchmove', (e) => {
   if (e.touches.length > 1 || (e.scale && e.scale !== 1)) {
