@@ -242,40 +242,49 @@ const setupExerciseKeyboardControls = () => {
 
   const choiceSelector = '.exercise-choice';
   const moveKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'];
+  const nextButton = () => document.getElementById('nextExercise') || document.getElementById('nextExamBtn');
 
   choicesContainer.addEventListener('click', event => {
     const clickedChoice = event.target instanceof Element && event.target.closest(choiceSelector);
     if (!clickedChoice) return;
 
     window.setTimeout(() => {
-      const nextButton = document.getElementById('nextExercise') || document.getElementById('nextExamBtn');
-      nextButton?.focus();
+      nextButton()?.focus();
     }, 0);
   });
 
   document.addEventListener('keydown', event => {
+    const choices = [...choicesContainer.querySelectorAll(choiceSelector)];
+    const answerSelected = choices.length > 0 && choices.every(choice => choice.disabled);
+    const continueKey = event.key === 'Enter' || event.key === ' ';
+
+    if (answerSelected && continueKey && document.activeElement !== nextButton()) {
+      event.preventDefault();
+      nextButton()?.click();
+      return;
+    }
+
     if (!moveKeys.includes(event.key)) return;
 
-    const choices = [...choicesContainer.querySelectorAll(choiceSelector)]
-      .filter(choice => !choice.disabled);
+    const enabledChoices = choices.filter(choice => !choice.disabled);
 
-    if (choices.length === 0) return;
+    if (enabledChoices.length === 0) return;
 
     event.preventDefault();
 
-    const currentIndex = choices.indexOf(document.activeElement);
+    const currentIndex = enabledChoices.indexOf(document.activeElement);
     const movingForward = event.key === 'ArrowDown' || event.key === 'ArrowRight';
 
     if (currentIndex === -1) {
-      choices[movingForward ? 0 : choices.length - 1].focus();
+      enabledChoices[movingForward ? 0 : enabledChoices.length - 1].focus();
       return;
     }
 
     const nextIndex = movingForward
-      ? (currentIndex + 1) % choices.length
-      : (currentIndex - 1 + choices.length) % choices.length;
+      ? (currentIndex + 1) % enabledChoices.length
+      : (currentIndex - 1 + enabledChoices.length) % enabledChoices.length;
 
-    choices[nextIndex].focus();
+    enabledChoices[nextIndex].focus();
   });
 };
 
