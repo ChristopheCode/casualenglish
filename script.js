@@ -243,6 +243,15 @@ const setupExerciseKeyboardControls = () => {
   const choiceSelector = '.exercise-choice';
   const moveKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'];
 
+  choicesContainer.addEventListener('click', event => {
+    const clickedChoice = event.target instanceof Element && event.target.closest(choiceSelector);
+    if (!clickedChoice) return;
+
+    window.setTimeout(() => {
+      document.getElementById('nextExercise')?.focus();
+    }, 0);
+  });
+
   document.addEventListener('keydown', event => {
     if (!moveKeys.includes(event.key)) return;
 
