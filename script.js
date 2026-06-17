@@ -248,7 +248,8 @@ const setupExerciseKeyboardControls = () => {
     if (!clickedChoice) return;
 
     window.setTimeout(() => {
-      document.getElementById('nextExercise')?.focus();
+      const nextButton = document.getElementById('nextExercise') || document.getElementById('nextExamBtn');
+      nextButton?.focus();
     }, 0);
   });
 
