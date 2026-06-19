@@ -235,6 +235,69 @@ if (btnGroup && slider) {
   });
 }
 
+// Keyboard controls for Home page selectors
+const setupHomeKeyboardControls = () => {
+  if (!mainAction || !prevBtn || !nextBtn || !btnGroup) return;
+
+  const difficultyButtons = [...btnGroup.querySelectorAll('.diff-btn')];
+  if (difficultyButtons.length === 0) return;
+
+  const activeDifficulty = () => difficultyButtons.find(btn => btn.classList.contains('active')) || difficultyButtons[0];
+
+  const focusDifficulty = () => {
+    activeDifficulty()?.focus();
+  };
+
+  const moveDifficulty = direction => {
+    const focusedIndex = difficultyButtons.indexOf(document.activeElement);
+    const activeIndex = difficultyButtons.indexOf(activeDifficulty());
+    const startIndex = focusedIndex !== -1 ? focusedIndex : activeIndex;
+    const nextIndex = (startIndex + direction + difficultyButtons.length) % difficultyButtons.length;
+    difficultyButtons[nextIndex].click();
+    difficultyButtons[nextIndex].focus();
+  };
+
+  document.addEventListener('keydown', event => {
+    const onMainAction = document.activeElement === mainAction;
+    const onDifficulty = difficultyButtons.includes(document.activeElement);
+
+    if (!onMainAction && !onDifficulty) return;
+
+    if (onMainAction && (event.key === 'ArrowLeft' || event.key === 'ArrowRight')) {
+      event.preventDefault();
+      if (event.key === 'ArrowLeft') prevBtn.click();
+      if (event.key === 'ArrowRight') nextBtn.click();
+      mainAction.focus();
+      return;
+    }
+
+    if (onMainAction && event.key === 'ArrowDown') {
+      event.preventDefault();
+      focusDifficulty();
+      return;
+    }
+
+    if (onMainAction && event.key === ' ') {
+      event.preventDefault();
+      mainAction.click();
+      return;
+    }
+
+    if (onDifficulty && (event.key === 'ArrowLeft' || event.key === 'ArrowRight')) {
+      event.preventDefault();
+      moveDifficulty(event.key === 'ArrowRight' ? 1 : -1);
+      return;
+    }
+
+    if (onDifficulty && event.key === 'ArrowUp') {
+      event.preventDefault();
+      mainAction.focus();
+    }
+  });
+};
+
+setupHomeKeyboardControls();
+
 // Keyboard controls for Exercises answer choices
 const setupExerciseKeyboardControls = () => {
   const choicesContainer = document.getElementById('choices');
