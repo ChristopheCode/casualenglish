@@ -311,8 +311,6 @@ const setupLearnKeyboardControls = () => {
     control.focus();
   };
 
-  window.setTimeout(() => focusLearnControl(learnNextButton), 0);
-
   learnNextButton.addEventListener('click', () => {
     window.setTimeout(() => focusLearnControl(learnNextButton), 0);
   });
@@ -321,14 +319,13 @@ const setupLearnKeyboardControls = () => {
     if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
 
     const currentIndex = learnControls.indexOf(document.activeElement);
-    if (currentIndex === -1) return;
+    const nextIndex = currentIndex === -1
+      ? (event.key === 'ArrowRight' ? 1 : 0)
+      : event.key === 'ArrowRight'
+        ? (currentIndex + 1) % learnControls.length
+        : (currentIndex - 1 + learnControls.length) % learnControls.length;
 
     event.preventDefault();
-
-    const nextIndex = event.key === 'ArrowRight'
-      ? (currentIndex + 1) % learnControls.length
-      : (currentIndex - 1 + learnControls.length) % learnControls.length;
-
     focusLearnControl(learnControls[nextIndex]);
   });
 };
