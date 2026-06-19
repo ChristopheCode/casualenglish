@@ -298,6 +298,43 @@ const setupHomeKeyboardControls = () => {
 
 setupHomeKeyboardControls();
 
+// Keyboard controls for Learn page buttons
+const setupLearnKeyboardControls = () => {
+  const learnSpeakButton = document.getElementById('speakButton');
+  const learnNextButton = document.getElementById('nextButton');
+  if (!learnSpeakButton || !learnNextButton) return;
+
+  const learnControls = [learnSpeakButton, learnNextButton];
+
+  const focusLearnControl = control => {
+    if (!control || control.disabled || control.offsetParent === null) return;
+    control.focus();
+  };
+
+  window.setTimeout(() => focusLearnControl(learnNextButton), 0);
+
+  learnNextButton.addEventListener('click', () => {
+    window.setTimeout(() => focusLearnControl(learnNextButton), 0);
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+
+    const currentIndex = learnControls.indexOf(document.activeElement);
+    if (currentIndex === -1) return;
+
+    event.preventDefault();
+
+    const nextIndex = event.key === 'ArrowRight'
+      ? (currentIndex + 1) % learnControls.length
+      : (currentIndex - 1 + learnControls.length) % learnControls.length;
+
+    focusLearnControl(learnControls[nextIndex]);
+  });
+};
+
+setupLearnKeyboardControls();
+
 // Keyboard controls for Exercises answer choices
 const setupExerciseKeyboardControls = () => {
   const choicesContainer = document.getElementById('choices');
