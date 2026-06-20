@@ -1,3 +1,8 @@
+/*
+ * Shared site behavior.
+ * Handles safe storage, theme, menu, page navigation, difficulty selection,
+ * keyboard controls, and small cross-page helpers.
+ */
 // ── Safe browser storage helpers
 const safeGet = (storage, key) => {
   try {
