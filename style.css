@@ -1,3 +1,4 @@
+/* Base reset and theme variables */
 * {
   margin: 0;
   padding: 0;
@@ -19,110 +20,10 @@ body {
   background-color: var(--bg-color-primary);
 }
 
+/* Shared layout */
 .container {
   width: clamp(275px, 90%, 500px);
   margin: auto;
-}
-
-.home {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100vh;
-  align-items: center;
-}
-
-.logo {
-  margin-top: 2rem;
-  margin-inline: auto;
-  height: 3.5rem;
-}
-/*
-.logo.dark {
-  filter: grayscale() brightness(3);
-}
-
-.logo.dark {
-  filter: none !important;
-}
-*/
-
-.home h2 {
-  color: var(--text-color-primary);
-  text-align: center;
-  font-size: clamp(2rem, 5vw, 3rem);
-  margin-top: 1em;
-}
-
-.home .play {
-  margin: auto;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 12px;  
-  margin-bottom: 1rem;
-}
-
-/* On garde ton image + bouton bleu dans un bloc */
-.play-main {
-  position: relative;
-}
-
-.home .play img {
-  display: block; 
-  width: 192px;
-}
-
-.home .play a {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-
-  color: white;
-  font-size: 42px;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-
-  top: 100%;
-
-  padding: 0 .96em;
-  border-radius: 1em;
-  background-color: var(--button-bg-primary);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: max-content; 
-  height: 63px;
-
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-  z-index: 2;
-}
-
-/* Boutons de navigation gauche / droite */
-.play-nav {
-  /* reset du style iOS */
-  -webkit-appearance: none;
-  appearance: none;
-  border: none;
-  background: transparent;
-  box-shadow: none;
-
-  /* style visuel */
-  font-size: 2.2rem;
-  line-height: 1;
-  padding: 4px 6px;
-  cursor: pointer;
-  color: var(--text-color-primary);
-
-  /* pour qu'ils ne ressemblent pas à un bouton gris iOS */
-  -webkit-tap-highlight-color: transparent;
-}
-
-.play-nav:focus {
-  outline: none;
 }
 
 .words {
@@ -141,6 +42,87 @@ body {
   background-color: var(--button-bg-primary);
 }
 
+/* Home page */
+.home {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+}
+
+.logo {
+  margin-top: 2rem;
+  margin-inline: auto;
+  height: 3.5rem;
+}
+
+.home h2 {
+  color: var(--text-color-primary);
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-top: 1em;
+}
+
+.home .play {
+  margin: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.play-main {
+  position: relative;
+}
+
+.home .play img {
+  display: block;
+  width: 192px;
+}
+
+.home .play a {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: white;
+  font-size: 42px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  top: 100%;
+  padding: 0 .96em;
+  border-radius: 1em;
+  background-color: var(--button-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  height: 63px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.play-nav {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  font-size: 2.2rem;
+  line-height: 1;
+  padding: 4px 6px;
+  cursor: pointer;
+  color: var(--text-color-primary);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.play-nav:focus {
+  outline: none;
+}
+
+/* Learn page */
 .words .word {
   margin: auto;
   display: flex;
@@ -213,15 +195,14 @@ body {
   filter: grayscale() brightness(0.6) contrast(2);
 }
 
+/* Footer */
 .footer {
   margin-top: auto;
   padding: 1rem 0;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-
   max-width: 550px;
   width: 100%;
 }
@@ -248,11 +229,6 @@ body {
   filter: none !important;
 }
 
-.footer .legal img.dark {
-  /* filter: none !important; */
-
-}
-
 .social-container {
   display: flex;
   justify-content: center;
@@ -265,13 +241,11 @@ body {
   justify-content: end;
 }
 
-
 .footer a.social {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-
   height: 53px;
   width: 53px;
 }
@@ -284,10 +258,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 100%;
   height: 100%;
-
   border-radius: 1000px;
 }
 
@@ -299,7 +271,6 @@ body {
   filter: grayscale(100%) !important;
 }
 
-
 img.dark {
   filter: grayscale(100%);
 }
@@ -310,7 +281,6 @@ img.dark {
 
 .footer #copyright {
   width: 100px;
-
   object-fit: contain;
   margin-right: 0;
   margin-top: 1rem;
@@ -331,6 +301,7 @@ img.dark {
   filter: grayscale() brightness(5);
 }
 
+/* Floating buttons and navigation icons */
 .btn-float {
   position: absolute;
   top: 20px;
@@ -351,22 +322,7 @@ img.dark {
   height: 20px;
 }
 
-.ham {
-  background: transparent;
-  border: none;
-  position: absolute;
-  top: 20px;
-  left: 10px;
-  height: 35px;
-  width: 35px;
-  z-index: 15;
-}
-
-.ham{
-  z-index: 15;
-}
-
-.ham ,
+.ham,
 .back-button {
   background: transparent;
   border: none;
@@ -375,12 +331,14 @@ img.dark {
   left: 10px;
   height: 36px;
   width: 36px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
+}
+
+.ham {
+  z-index: 15;
 }
 
 .ham img {
@@ -388,38 +346,53 @@ img.dark {
 }
 
 .back-button {
-  top: 60px; 
+  top: 60px;
   z-index: 9;
 }
 
-.back-button .arrow-back-icon{
+.back-button .arrow-back-icon {
   height: 90%;
   width: 90%;
-
   border-radius: 1000px;
   background-color: var(--button-bg-primary);
-
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.back-button img{
+.back-button img {
   width: 60%;
 }
 
-.back-button .arrow-back-icon.dark{
+.back-button .arrow-back-icon.dark {
   background-color: rgb(235, 235, 235);
 }
 
 .back-button img.dark {
- filter: brightness(0.45);
+  filter: brightness(0.45);
 }
 
 .ham img.dark {
   filter: grayscale() brightness(5);
 }
 
+.ques {
+  top: 65px;
+}
+
+.ques img {
+  height: 30px;
+}
+
+.language {
+  top: 110px;
+}
+
+.btn-float.language img {
+  height: 25px;
+}
+
+/* Menu and help panels */
 .menu {
   position: absolute;
   width: 50%;
@@ -469,41 +442,9 @@ img.dark {
   z-index: 8;
   transition: 0.5s all;
 }
- 
+
 .help {
   height: 80vh;
-}
-
-.help,
-.language-options {
-    position: absolute;
-    width: 90%;
-    top: -50%;
-    left: 50%;
-    opacity: 0;
-    transform: translate(-50%, -50%);
-    background-color: var(--button-bg-primary);
-    padding: 2rem 3rem;
-    border-radius: 2rem;
-    font-size: 18px;
-    color: white;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    overflow-y: auto;
-    gap: 14px;
-    z-index: 8;
-    transition: 0.5s all; 
-}
-
-.help{
-    height: 80vh;
-}
-
-.help-title {
-  margin-top: 0;
 }
 
 .help.show {
@@ -520,67 +461,25 @@ img.dark {
   top: 50%;
 }
 
-.language-options{
-  height: auto;  
-}
-
-.language-options.show{
-    opacity: 1;
-    top: 50%;
-}
-
-.ques {
-  top: 65px;
-}
-
-.language {
-  top: 110px;
-}
-
-.btn-float.language img {
-  height: 25px;
-}
-
-.language{ 
-  top: 110px;
-}
-
-.btn-float.language img{
-  height: 25px;
-}
-
 .menu-overlay {
   position: fixed;
   inset: 0;
-  /* top:0 right:0 bottom:0 left:0 */
   background: rgba(0, 0, 0, 0.25);
   opacity: 0;
   pointer-events: none;
-  /* invisible aux clics quand fermé */
   transition: opacity 0.3s;
   z-index: 9;
-  /* juste sous le menu (10) et sous le bouton ham (15) */
 }
 
 .menu-overlay.show {
   opacity: 1;
   pointer-events: auto;
-  /* capte les clics quand ouvert */
 }
 
-.ques img {
-  height: 30px;
-
-}
-
-/* -----------------------------
-   Exercises page
------------------------------- */
-
+/* Practice pages: Exercises and Exam */
 .exercise-card {
   margin: auto;
   width: clamp(275px, 100%, 420px);
-  /* background: var(--bg-color-secondary); */
   border-radius: 16px;
   padding: 18px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.08);
@@ -591,14 +490,12 @@ img.dark {
   font-weight: bold;
   text-align: center;
   margin-bottom: 10px;
-
   font-size: 22px;
 }
 
-#badge{
+#badge {
   font-size: 100px;
 }
-
 
 .hidden-question #progress,
 .hidden-question #sentence,
@@ -679,9 +576,7 @@ img.dark {
   cursor: pointer;
 }
 
-/* -----------------------------
-   Tense rules page
------------------------------- */
+/* Tense Rules page */
 .tense-card {
   margin: auto;
   width: clamp(275px, 100%, 420px);
@@ -729,8 +624,9 @@ img.dark {
   font-size: 16px;
 }
 
-/* Help language switcher */
+/* Help content */
 .help-title {
+  margin-top: 0;
   margin-bottom: 12px;
   text-align: center;
   font-size: 22px;
@@ -782,17 +678,13 @@ img.dark {
   margin: 8px 0;
 }
 
-/* nicer on larger screens */
 @media (min-width: 420px) {
   .help-lang-buttons {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* -----------------------------
-   Home selector (Learn / Exercises / Exam)
------------------------------- */
-
+/* Home selector: Learn, Exercises, Exam */
 .play-selector {
   display: flex;
   align-items: center;
@@ -804,30 +696,28 @@ img.dark {
 .nav-btn {
   background-color: var(--button-bg-primary);
   color: white;
-  border: none; 
+  border: none;
   width: 45px;
   height: 45px;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
-
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
-#prevBtn img{
+#prevBtn img {
   rotate: 90deg;
   margin-right: .33rem;
 }
 
-#nextBtn img{
+#nextBtn img {
   rotate: -90deg;
   margin-left: .33rem;
 }
 
-.nav-btn img{
+.nav-btn img {
   width: 50%;
   filter: brightness(0) invert(1);
 }
@@ -836,8 +726,7 @@ img.dark {
   transform: scale(0.95);
 }
 
-
-/* difficulty buttons */
+/* Difficulty selector */
 .difficulty-btn-group {
   position: relative;
   display: inline-flex;
@@ -845,10 +734,8 @@ img.dark {
   border-radius: 999px;
   padding: 5px;
   gap: 4px;
-
   margin-top: 50px;
   box-shadow: 0px 3px 4px 0px #00000026;
-
 }
 
 .difficulty-btn-group .slider {
