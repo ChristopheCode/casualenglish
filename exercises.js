@@ -1,16 +1,8 @@
-// Exercises page uses the shared verb list loaded from data/irregular-verbs.js.
+// Exercises page uses shared verb data and helpers.
 const verbs = Array.isArray(window.IRREGULAR_VERBS) ? window.IRREGULAR_VERBS : [];
-
-const templates = [
-  { label: "Present Simple", form: "base" },
-  { label: "Past Simple", form: "past" },
-  { label: "Present Perfect", form: "pp" },
-];
-
-const storedDifficulty = safeGet(localStorage, "selectedDifficulty");
-const allowedDifficulties = ["easy", "medium", "hard"];
-const difficulty = allowedDifficulties.includes(storedDifficulty) ? storedDifficulty : "easy";
-const filteredVerbs = verbs.filter(verb => verb.difficulty === difficulty);
+const templates = window.VerbUtils.templates;
+const difficulty = window.VerbUtils.getSelectedDifficulty();
+const filteredVerbs = window.VerbUtils.getVerbsForDifficulty(verbs, difficulty);
 
 const tenseLabel = document.getElementById("tenseLabel");
 const sentenceEl = document.getElementById("sentence");
@@ -21,17 +13,6 @@ const nextButton = document.getElementById("nextExercise");
 
 let locked = false;
 let lastKey = null;
-
-function shuffle(arr) {
-  return arr
-    .map(value => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(item => item.value);
-}
-
-function correctAnswer(verb, template) {
-  return verb[template.form];
-}
 
 function renderExercise() {
   locked = false;
@@ -54,8 +35,8 @@ function renderExercise() {
   hintStrong.textContent = verb.base;
   hintEl.replaceChildren(document.createTextNode("Verb: "), hintStrong);
 
-  const answer = correctAnswer(verb, template);
-  const options = shuffle([verb.base, verb.past, verb.pp]);
+  const answer = window.VerbUtils.correctAnswer(verb, template);
+  const options = window.VerbUtils.shuffle([verb.base, verb.past, verb.pp]);
   choicesEl.replaceChildren();
 
   options.forEach(option => {
