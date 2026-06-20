@@ -40,13 +40,44 @@ Example branch names:
 
 Before opening a Pull Request, please check the pages affected by your change.
 
-For interface changes, test:
+For most changes, use this simple checklist:
 
-- light mode
-- dark mode
-- mobile display
-- keyboard navigation with `Tab`
-- main buttons and links
+- open the home page
+- open Learn
+- open Exercises
+- open Exam
+- test light mode
+- test dark mode
+- test mobile display
+- test keyboard navigation with `Tab`
+- test arrow key navigation where available
+- test main buttons and links
+- check that GitHub security checks pass
+
+For Learn, check:
+
+- difficulty selection works
+- Next works
+- Speak works when available
+- verb data looks correct
+
+For Exercises, check:
+
+- a question is displayed
+- answer choices work
+- feedback appears after an answer
+- Next moves to another question
+- keyboard controls work when available
+
+For Exam, check:
+
+- 10 questions can be completed
+- answer choices work
+- feedback appears after an answer
+- Next moves to another question
+- the final badge appears
+- Restart Exam works
+- keyboard controls work when available
 
 For learning content changes, check:
 
