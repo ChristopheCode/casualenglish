@@ -20,6 +20,21 @@ Good contributions include:
 
 ---
 
+## 🗂 Where to make changes
+
+Use this quick guide to find the right file:
+
+- add or edit irregular verbs: `data/irregular-verbs.js`
+- update shared verb helpers: `verb-utils.js`
+- update the Learn page behavior: `learn.js`
+- update the Exercises page behavior: `exercises.js`
+- update the Exam page behavior: `exam.js`
+- update shared site behavior: `script.js`
+- update visual styles: `style.css`
+- update project documentation: `README.md`, `CONTRIBUTING.md`, or `docs/architecture.md`
+
+---
+
 ## 🛠 How to contribute
 
 1. Fork the repository
