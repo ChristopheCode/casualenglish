@@ -258,3 +258,98 @@ jobs:
 
           console.log(`Irregular verb data checks passed (${verbs.length} verbs).`);
           JS
+
+      - name: Validate verb utilities
+        shell: bash
+        run: |
+          node <<'JS'
+          const fs = require('fs');
+          const vm = require('vm');
+
+          const source = fs.readFileSync('verb-utils.js', 'utf8');
+          const sandbox = {
+            window: {},
+            localStorage: { selectedDifficulty: 'medium' },
+            safeGet(storage, key) {
+              return storage[key];
+            },
+          };
+          vm.createContext(sandbox);
+          vm.runInContext(source, sandbox, { filename: 'verb-utils.js' });
+
+          const utils = sandbox.window.VerbUtils;
+          const failures = [];
+          const requiredFunctions = [
+            'getSelectedDifficulty',
+            'getVerbsForDifficulty',
+            'shuffle',
+            'correctAnswer',
+          ];
+
+          if (!utils || typeof utils !== 'object') {
+            failures.push('window.VerbUtils must be defined');
+          } else {
+            if (!Array.isArray(utils.templates) || utils.templates.length !== 3) {
+              failures.push('VerbUtils.templates must contain three verb forms');
+            } else {
+              const forms = utils.templates.map((template) => template.form).join(',');
+
+              if (forms !== 'base,past,pp') {
+                failures.push('VerbUtils.templates must use base,past,pp forms');
+              }
+            }
+
+            requiredFunctions.forEach((name) => {
+              if (typeof utils[name] !== 'function') {
+                failures.push(`VerbUtils.${name} must be a function`);
+              }
+            });
+
+            if (typeof utils.getSelectedDifficulty === 'function') {
+              if (utils.getSelectedDifficulty() !== 'medium') {
+                failures.push('getSelectedDifficulty should return a valid stored difficulty');
+              }
+
+              sandbox.localStorage.selectedDifficulty = 'unknown';
+
+              if (utils.getSelectedDifficulty() !== 'easy') {
+                failures.push('getSelectedDifficulty should fall back to easy');
+              }
+            }
+
+            if (typeof utils.getVerbsForDifficulty === 'function') {
+              const filtered = utils.getVerbsForDifficulty([
+                { base: 'go', difficulty: 'easy' },
+                { base: 'write', difficulty: 'hard' },
+              ], 'easy');
+
+              if (!Array.isArray(filtered) || filtered.length !== 1 || filtered[0].base !== 'go') {
+                failures.push('getVerbsForDifficulty should filter by difficulty');
+              }
+            }
+
+            if (typeof utils.correctAnswer === 'function') {
+              const answer = utils.correctAnswer({ past: 'went' }, { form: 'past' });
+
+              if (answer !== 'went') {
+                failures.push('correctAnswer should return the requested verb form');
+              }
+            }
+
+            if (typeof utils.shuffle === 'function') {
+              const shuffled = utils.shuffle(['a', 'b', 'c']);
+
+              if (!Array.isArray(shuffled) || shuffled.length !== 3 || shuffled.slice().sort().join(',') !== 'a,b,c') {
+                failures.push('shuffle should keep the same values');
+              }
+            }
+          }
+
+          if (failures.length) {
+            console.log('Verb utility checks failed:');
+            failures.forEach((failure) => console.log(`- ${failure}`));
+            process.exit(1);
+          }
+
+          console.log('Verb utility checks passed.');
+          JS
