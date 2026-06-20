@@ -182,3 +182,79 @@ jobs:
 
           print('Static security checks passed.')
           PY
+
+      - name: Validate irregular verb data
+        shell: bash
+        run: |
+          node <<'JS'
+          const fs = require('fs');
+          const vm = require('vm');
+
+          const source = fs.readFileSync('data/irregular-verbs.js', 'utf8');
+          const sandbox = { window: {} };
+          vm.createContext(sandbox);
+          vm.runInContext(source, sandbox, { filename: 'data/irregular-verbs.js' });
+
+          const verbs = sandbox.window.IRREGULAR_VERBS;
+          const failures = [];
+          const allowedDifficulties = new Set(['easy', 'medium', 'hard']);
+          const requiredFields = ['base', 'past', 'pp', 'difficulty'];
+          const requiredSentences = ['base', 'past', 'pp'];
+
+          if (!Array.isArray(verbs)) {
+            failures.push('IRREGULAR_VERBS must be an array');
+          } else {
+            const seenBaseVerbs = new Set();
+
+            verbs.forEach((verb, index) => {
+              const label = verb && verb.base ? `verb "${verb.base}"` : `entry ${index + 1}`;
+
+              if (!verb || typeof verb !== 'object') {
+                failures.push(`${label}: must be an object`);
+                return;
+              }
+
+              requiredFields.forEach((field) => {
+                if (typeof verb[field] !== 'string' || verb[field].trim() === '') {
+                  failures.push(`${label}: missing ${field}`);
+                }
+              });
+
+              if (typeof verb.difficulty === 'string' && !allowedDifficulties.has(verb.difficulty)) {
+                failures.push(`${label}: invalid difficulty "${verb.difficulty}"`);
+              }
+
+              if (typeof verb.base === 'string') {
+                const baseKey = verb.base.trim().toLowerCase();
+
+                if (seenBaseVerbs.has(baseKey)) {
+                  failures.push(`${label}: duplicate base verb`);
+                }
+
+                seenBaseVerbs.add(baseKey);
+              }
+
+              if (!verb.sentences || typeof verb.sentences !== 'object') {
+                failures.push(`${label}: missing sentences`);
+              } else {
+                requiredSentences.forEach((form) => {
+                  const sentence = verb.sentences[form];
+
+                  if (typeof sentence !== 'string' || sentence.trim() === '') {
+                    failures.push(`${label}: missing sentences.${form}`);
+                  } else if (!sentence.includes('____')) {
+                    failures.push(`${label}: sentences.${form} must contain ____`);
+                  }
+                });
+              }
+            });
+          }
+
+          if (failures.length) {
+            console.log('Irregular verb data checks failed:');
+            failures.forEach((failure) => console.log(`- ${failure}`));
+            process.exit(1);
+          }
+
+          console.log(`Irregular verb data checks passed (${verbs.length} verbs).`);
+          JS
