@@ -32,7 +32,7 @@ jobs:
           CONFLICT_MARKER_RE = re.compile(r'^(<<<<<<<|=======|>>>>>>>)', re.MULTILINE)
           INLINE_HANDLER_FREE_HTML = {
               'index.html',
-              'iregularverbsenglish.html',
+              'learn.html',
               'exercises.html',
               'exam.html',
               'tense-rules.html',
