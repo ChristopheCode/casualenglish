@@ -1,4 +1,8 @@
-// Shared helpers for pages that ask irregular verb questions.
+/*
+ * Shared irregular verb helpers.
+ * Used by Exercises and Exam to select difficulty, filter verbs,
+ * shuffle choices, and read the correct answer.
+ */
 window.VerbUtils = {
   templates: [
     { label: "Present Simple", form: "base" },

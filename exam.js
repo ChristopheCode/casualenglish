@@ -1,4 +1,8 @@
-// Exam page uses shared verb data and helpers.
+/*
+ * Exam page logic.
+ * Builds a 10-question quiz from shared verb data and VerbUtils helpers.
+ * Tracks score, feedback, final badge, and restart behavior.
+ */
 const allVerbs = Array.isArray(window.IRREGULAR_VERBS) ? window.IRREGULAR_VERBS : [];
 const difficulty = window.VerbUtils.getSelectedDifficulty();
 const verbs = window.VerbUtils.getVerbsForDifficulty(allVerbs, difficulty);

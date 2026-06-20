@@ -1,4 +1,8 @@
-// Exercises page uses shared verb data and helpers.
+/*
+ * Exercises page logic.
+ * Builds practice questions from shared verb data and VerbUtils helpers.
+ * Handles answer choices, feedback, and the next question flow.
+ */
 const verbs = Array.isArray(window.IRREGULAR_VERBS) ? window.IRREGULAR_VERBS : [];
 const templates = window.VerbUtils.templates;
 const difficulty = window.VerbUtils.getSelectedDifficulty();
