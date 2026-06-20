@@ -1,4 +1,8 @@
-// Learn page uses the shared verb list loaded from data/irregular-verbs.js.
+/*
+ * Learn page logic.
+ * Uses shared verb data from data/irregular-verbs.js.
+ * Shows one verb at a time and handles Next and Speak controls.
+ */
 const irregularVerbs = Array.isArray(window.IRREGULAR_VERBS) ? window.IRREGULAR_VERBS : [];
 
 // Difficulty
