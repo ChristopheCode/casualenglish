@@ -3,7 +3,7 @@
  * Handles safe storage, theme, menu, page navigation, difficulty selection,
  * keyboard controls, and small cross-page helpers.
  */
-// ── Safe browser storage helpers
+// Section: Safe browser storage helpers
 const safeGet = (storage, key) => {
   try {
     return storage.getItem(key);
@@ -24,7 +24,7 @@ const safeRemove = (storage, key) => {
   } catch {}
 };
 
-// ── Theme (dark / light) 
+// Section: Shared DOM references and page state
 let dark = safeGet(localStorage, 'dark') === 'true';
 
 const style    = document.documentElement.style;
@@ -39,6 +39,7 @@ const socialContainer = document.querySelector('.social-container');
 const arrowBackIcon = document.querySelector('.arrow-back-icon');
 const container = document.querySelector('.container');
 
+// Section: Optional app footer stylesheet
 if (document.querySelector('.words .footer') && !document.querySelector('link[href="./app-footer.css"]')) {
   const appFooterStyles = document.createElement('link');
   appFooterStyles.rel = 'stylesheet';
@@ -49,6 +50,7 @@ if (document.querySelector('.words .footer') && !document.querySelector('link[hr
 let menuOpen = false;  
 let show = false;
 
+// Section: Theme controls
 const toggleDark = () => {
   dark = !dark;
   safeSet(localStorage, 'dark', dark);
@@ -95,7 +97,7 @@ const applyTheme = () => {
 applyTheme();
 
 
-// ── Menu (burger)
+// Section: Burger menu controls
 const closeMenu = () => {
   menuOpen = false;
   if (menu)    menu.classList.remove('show');
@@ -123,7 +125,7 @@ if (menu) {
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 }
 
-// Arrow Back Button Previous page
+// Section: Safe back navigation
 document.querySelector('.back-button')?.addEventListener('click', () => {
   const back = safeGet(sessionStorage, 'backPage');
   if (back) safeRemove(sessionStorage, 'backPage'); // clean up
@@ -144,7 +146,7 @@ document.querySelector('.back-button')?.addEventListener('click', () => {
 });
 
 
-// ── Help panel 
+// Section: Help panel controls
 const toggleQues = () => {
   if (help) help.classList.toggle('show');
 };
@@ -160,7 +162,7 @@ document.addEventListener('click', e => {
   }
 });
 
-// ── Home page selector (Learn / Exercises / Exam) ──────
+// Section: Home page selector (Learn / Exercises / Exam)
 const pages = [
   { name: 'Learn',     link: './learn.html'     },
   { name: 'Exercises', link: './exercises.html' },
@@ -192,7 +194,7 @@ if (mainAction && prevBtn && nextBtn) {
   updateSelector();
 }
 
-// ── Difficulty buttons 
+// Section: Difficulty selector
 const slider   = document.getElementById('slider');
 
 if (btnGroup && slider) {
@@ -240,7 +242,7 @@ if (btnGroup && slider) {
   });
 }
 
-// Keyboard controls for Home page selectors
+// Section: Keyboard controls for the home page
 const setupHomeKeyboardControls = () => {
   if (!mainAction || !prevBtn || !nextBtn || !btnGroup) return;
 
@@ -303,7 +305,7 @@ const setupHomeKeyboardControls = () => {
 
 setupHomeKeyboardControls();
 
-// Keyboard controls for Learn page buttons
+// Section: Keyboard controls for the Learn page
 const setupLearnKeyboardControls = () => {
   const learnSpeakButton = document.getElementById('speakButton');
   const learnNextButton = document.getElementById('nextButton');
@@ -337,7 +339,7 @@ const setupLearnKeyboardControls = () => {
 
 setupLearnKeyboardControls();
 
-// Keyboard controls for Exercises answer choices
+// Section: Keyboard controls for Exercises and Exam choices
 const setupExerciseKeyboardControls = () => {
   const choicesContainer = document.getElementById('choices');
   if (!choicesContainer) return;
@@ -401,7 +403,7 @@ const setupExerciseKeyboardControls = () => {
 
 setupExerciseKeyboardControls();
 
-// block zoom in mobile
+// Section: Mobile touch guard
 document.addEventListener('touchmove', (e) => {
   if (e.touches.length > 1 || (e.scale && e.scale !== 1)) {
     e.preventDefault();
