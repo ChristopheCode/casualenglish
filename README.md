@@ -34,6 +34,14 @@ The project currently focuses on the **frontend development** of the application
 
 ---
 
+## 🧱 Project structure
+
+The project keeps the irregular verb data in one shared file and uses small JavaScript files for each page.
+
+See `docs/architecture.md` for a simple overview of the current architecture.
+
+---
+
 ## 👥 Our Team
 
 - **Developers** – Building the user interface and learning experience  
