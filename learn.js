@@ -1,129 +1,5 @@
-// Verb data
-const irregularVerbs = [
-  // EASY
-  { english: "be", pastSimple: "was were", pastParticiple: "been", difficulty: "easy" },
-  { english: "become", pastSimple: "became", pastParticiple: "become", difficulty: "easy" },
-  { english: "begin", pastSimple: "began", pastParticiple: "begun", difficulty: "easy" },
-  { english: "bend", pastSimple: "bent", pastParticiple: "bent", difficulty: "easy" },
-  { english: "bet", pastSimple: "bet", pastParticiple: "bet", difficulty: "easy" },
-  { english: "break", pastSimple: "broke", pastParticiple: "broken", difficulty: "easy" },
-  { english: "bring", pastSimple: "brought", pastParticiple: "brought", difficulty: "easy" },
-  { english: "build", pastSimple: "built", pastParticiple: "built", difficulty: "easy" },
-  { english: "buy", pastSimple: "bought", pastParticiple: "bought", difficulty: "easy" },
-  { english: "come", pastSimple: "came", pastParticiple: "come", difficulty: "easy" },
-  { english: "cost", pastSimple: "cost", pastParticiple: "cost", difficulty: "easy" },
-  { english: "cut", pastSimple: "cut", pastParticiple: "cut", difficulty: "easy" },
-  { english: "do", pastSimple: "did", pastParticiple: "done", difficulty: "easy" },
-  { english: "drink", pastSimple: "drank", pastParticiple: "drunk", difficulty: "easy" },
-  { english: "drive", pastSimple: "drove", pastParticiple: "driven", difficulty: "easy" },
-  { english: "eat", pastSimple: "ate", pastParticiple: "eaten", difficulty: "easy" },
-  { english: "feed", pastSimple: "fed", pastParticiple: "fed", difficulty: "easy" },
-  { english: "find", pastSimple: "found", pastParticiple: "found", difficulty: "easy" },
-  { english: "get", pastSimple: "got", pastParticiple: "gotten got", difficulty: "easy" },
-  { english: "give", pastSimple: "gave", pastParticiple: "given", difficulty: "easy" },
-  { english: "go", pastSimple: "went", pastParticiple: "gone", difficulty: "easy" },
-  { english: "have", pastSimple: "had", pastParticiple: "had", difficulty: "easy" },
-  { english: "hit", pastSimple: "hit", pastParticiple: "hit", difficulty: "easy" },
-  { english: "hurt", pastSimple: "hurt", pastParticiple: "hurt", difficulty: "easy" },
-  { english: "know", pastSimple: "knew", pastParticiple: "known", difficulty: "easy" },
-  { english: "let", pastSimple: "let", pastParticiple: "let", difficulty: "easy" },
-  { english: "make", pastSimple: "made", pastParticiple: "made", difficulty: "easy" },
-  { english: "put", pastSimple: "put", pastParticiple: "put", difficulty: "easy" },
-  { english: "run", pastSimple: "ran", pastParticiple: "run", difficulty: "easy" },
-  { english: "say", pastSimple: "said", pastParticiple: "said", difficulty: "easy" },
-  { english: "see", pastSimple: "saw", pastParticiple: "seen", difficulty: "easy" },
-  { english: "set", pastSimple: "set", pastParticiple: "set", difficulty: "easy" },
-  { english: "show", pastSimple: "showed", pastParticiple: "shown showed", difficulty: "easy" },
-  { english: "shut", pastSimple: "shut", pastParticiple: "shut", difficulty: "easy" },
-  { english: "take", pastSimple: "took", pastParticiple: "taken", difficulty: "easy" },
-  { english: "tell", pastSimple: "told", pastParticiple: "told", difficulty: "easy" },
-  { english: "think", pastSimple: "thought", pastParticiple: "thought", difficulty: "easy" },
-  { english: "understand", pastSimple: "understood", pastParticiple: "understood", difficulty: "easy" },
-  { english: "wake", pastSimple: "woke", pastParticiple: "woken", difficulty: "easy" },
-  { english: "wear", pastSimple: "wore", pastParticiple: "worn", difficulty: "easy" },
-  { english: "win", pastSimple: "won", pastParticiple: "won", difficulty: "easy" },
-  { english: "write", pastSimple: "wrote", pastParticiple: "written", difficulty: "easy" },
-  { english: "read", pastSimple: "read", pastParticiple: "read", difficulty: "easy" },
-  { english: "speak", pastSimple: "spoke", pastParticiple: "spoken", difficulty: "easy" },
-  { english: "meet", pastSimple: "met", pastParticiple: "met", difficulty: "easy" },
-  { english: "leave", pastSimple: "left", pastParticiple: "left", difficulty: "easy" },
-
-  // MEDIUM
-  { english: "beat", pastSimple: "beat", pastParticiple: "beaten", difficulty: "medium" },
-  { english: "bite", pastSimple: "bit", pastParticiple: "bitten", difficulty: "medium" },
-  { english: "blow", pastSimple: "blew", pastParticiple: "blown", difficulty: "medium" },
-  { english: "burst", pastSimple: "burst", pastParticiple: "burst", difficulty: "medium" },
-  { english: "catch", pastSimple: "caught", pastParticiple: "caught", difficulty: "medium" },
-  { english: "choose", pastSimple: "chose", pastParticiple: "chosen", difficulty: "medium" },
-  { english: "draw", pastSimple: "drew", pastParticiple: "drawn", difficulty: "medium" },
-  { english: "fall", pastSimple: "fell", pastParticiple: "fallen", difficulty: "medium" },
-  { english: "feel", pastSimple: "felt", pastParticiple: "felt", difficulty: "medium" },
-  { english: "fight", pastSimple: "fought", pastParticiple: "fought", difficulty: "medium" },
-  { english: "fly", pastSimple: "flew", pastParticiple: "flown", difficulty: "medium" },
-  { english: "forget", pastSimple: "forgot", pastParticiple: "forgotten", difficulty: "medium" },
-  { english: "freeze", pastSimple: "froze", pastParticiple: "frozen", difficulty: "medium" },
-  { english: "grow", pastSimple: "grew", pastParticiple: "grown", difficulty: "medium" },
-  { english: "hang", pastSimple: "hung", pastParticiple: "hung", difficulty: "medium" },
-  { english: "hear", pastSimple: "heard", pastParticiple: "heard", difficulty: "medium" },
-  { english: "hide", pastSimple: "hid", pastParticiple: "hidden", difficulty: "medium" },
-  { english: "hold", pastSimple: "held", pastParticiple: "held", difficulty: "medium" },
-  { english: "keep", pastSimple: "kept", pastParticiple: "kept", difficulty: "medium" },
-  { english: "lead", pastSimple: "led", pastParticiple: "led", difficulty: "medium" },
-  { english: "lie", pastSimple: "lay", pastParticiple: "lain", difficulty: "medium" },
-  { english: "lose", pastSimple: "lost", pastParticiple: "lost", difficulty: "medium" },
-  { english: "mean", pastSimple: "meant", pastParticiple: "meant", difficulty: "medium" },
-  { english: "pay", pastSimple: "paid", pastParticiple: "paid", difficulty: "medium" },
-  { english: "ride", pastSimple: "rode", pastParticiple: "ridden", difficulty: "medium" },
-  { english: "ring", pastSimple: "rang", pastParticiple: "rung", difficulty: "medium" },
-  { english: "rise", pastSimple: "rose", pastParticiple: "risen", difficulty: "medium" },
-  { english: "sell", pastSimple: "sold", pastParticiple: "sold", difficulty: "medium" },
-  { english: "send", pastSimple: "sent", pastParticiple: "sent", difficulty: "medium" },
-  { english: "shake", pastSimple: "shook", pastParticiple: "shaken", difficulty: "medium" },
-  { english: "shoot", pastSimple: "shot", pastParticiple: "shot", difficulty: "medium" },
-  { english: "sing", pastSimple: "sang", pastParticiple: "sung", difficulty: "medium" },
-  { english: "sink", pastSimple: "sank", pastParticiple: "sunk", difficulty: "medium" },
-  { english: "sit", pastSimple: "sat", pastParticiple: "sat", difficulty: "medium" },
-  { english: "sleep", pastSimple: "slept", pastParticiple: "slept", difficulty: "medium" },
-  { english: "spend", pastSimple: "spent", pastParticiple: "spent", difficulty: "medium" },
-  { english: "spread", pastSimple: "spread", pastParticiple: "spread", difficulty: "medium" },
-  { english: "stand", pastSimple: "stood", pastParticiple: "stood", difficulty: "medium" },
-  { english: "steal", pastSimple: "stole", pastParticiple: "stolen", difficulty: "medium" },
-  { english: "teach", pastSimple: "taught", pastParticiple: "taught", difficulty: "medium" },
-
-  // HARD
-  { english: "broadcast", pastSimple: "broadcast", pastParticiple: "broadcast", difficulty: "hard" },
-  { english: "creep", pastSimple: "crept", pastParticiple: "crept", difficulty: "hard" },
-  { english: "deal", pastSimple: "dealt", pastParticiple: "dealt", difficulty: "hard" },
-  { english: "dig", pastSimple: "dug", pastParticiple: "dug", difficulty: "hard" },
-  { english: "flee", pastSimple: "fled", pastParticiple: "fled", difficulty: "hard" },
-  { english: "forbid", pastSimple: "forbade", pastParticiple: "forbidden", difficulty: "hard" },
-  { english: "forgive", pastSimple: "forgave", pastParticiple: "forgiven", difficulty: "hard" },
-  { english: "kneel", pastSimple: "knelt", pastParticiple: "knelt", difficulty: "hard" },
-  { english: "lay", pastSimple: "laid", pastParticiple: "laid", difficulty: "hard" },
-  { english: "lend", pastSimple: "lent", pastParticiple: "lent", difficulty: "hard" },
-  { english: "light", pastSimple: "lit", pastParticiple: "lit", difficulty: "hard" },
-  { english: "seek", pastSimple: "sought", pastParticiple: "sought", difficulty: "hard" },
-  { english: "sew", pastSimple: "sewed", pastParticiple: "sewn", difficulty: "hard" },
-  { english: "shine", pastSimple: "shone", pastParticiple: "shone", difficulty: "hard" },
-  { english: "shrink", pastSimple: "shrank", pastParticiple: "shrunk", difficulty: "hard" },
-  { english: "slide", pastSimple: "slid", pastParticiple: "slid", difficulty: "hard" },
-  { english: "spin", pastSimple: "spun", pastParticiple: "spun", difficulty: "hard" },
-  { english: "split", pastSimple: "split", pastParticiple: "split", difficulty: "hard" },
-  { english: "spring", pastSimple: "sprang", pastParticiple: "sprung", difficulty: "hard" },
-  { english: "spit", pastSimple: "spat", pastParticiple: "spat", difficulty: "hard" },
-  { english: "stick", pastSimple: "stuck", pastParticiple: "stuck", difficulty: "hard" },
-  { english: "sting", pastSimple: "stung", pastParticiple: "stung", difficulty: "hard" },
-  { english: "stink", pastSimple: "stank", pastParticiple: "stunk", difficulty: "hard" },
-  { english: "strike", pastSimple: "struck", pastParticiple: "struck", difficulty: "hard" },
-  { english: "swear", pastSimple: "swore", pastParticiple: "sworn", difficulty: "hard" },
-  { english: "sweep", pastSimple: "swept", pastParticiple: "swept", difficulty: "hard" },
-  { english: "swim", pastSimple: "swam", pastParticiple: "swum", difficulty: "hard" },
-  { english: "swing", pastSimple: "swung", pastParticiple: "swung", difficulty: "hard" },
-  { english: "tear", pastSimple: "tore", pastParticiple: "torn", difficulty: "hard" },
-  { english: "throw", pastSimple: "threw", pastParticiple: "thrown", difficulty: "hard" },
-  { english: "weep", pastSimple: "wept", pastParticiple: "wept", difficulty: "hard" },
-  { english: "withdraw", pastSimple: "withdrew", pastParticiple: "withdrawn", difficulty: "hard" }
-];
+// Learn page uses the shared verb list loaded from data/irregular-verbs.js.
+const irregularVerbs = Array.isArray(window.IRREGULAR_VERBS) ? window.IRREGULAR_VERBS : [];
 
 // Difficulty
 const storedDifficulty = safeGet(localStorage, "selectedDifficulty");
@@ -147,7 +23,14 @@ let countdown = -1;
 let intervalId = null;
 
 // Init
- document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
+  if (filteredVerbs.length === 0) {
+    verbPrompt.textContent = "No verbs available.";
+    nextButton.disabled = true;
+    speakButton.disabled = true;
+    return;
+  }
+
   showNewVerb();
 
   nextButton.addEventListener("click", () => {
@@ -172,7 +55,7 @@ function showNewVerb() {
   );
 
   currentVerb = filteredVerbs[randomIndex];
-  verbPrompt.textContent = currentVerb.english;
+  verbPrompt.textContent = currentVerb.base;
   restartProgressAnimation((countdown + 1) * 1000);
 
   intervalId = setInterval(() => {
@@ -183,7 +66,7 @@ function showNewVerb() {
       intervalId = null;
 
       answerText.textContent =
-        `${currentVerb.english} ${currentVerb.pastSimple} ${currentVerb.pastParticiple}`;
+        `${currentVerb.base} ${currentVerb.past} ${currentVerb.pp}`;
     }
   }, 1000);
 }
@@ -222,7 +105,7 @@ function setupSpeech() {
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(
-      `${currentVerb.english}, ${currentVerb.pastSimple}, ${currentVerb.pastParticiple}`
+      `${currentVerb.base}, ${currentVerb.past}, ${currentVerb.pp}`
     );
 
     utterance.rate = 0.9;
