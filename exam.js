@@ -1,16 +1,8 @@
-// Exam page uses the shared verb list loaded from data/irregular-verbs.js.
+// Exam page uses shared verb data and helpers.
 const allVerbs = Array.isArray(window.IRREGULAR_VERBS) ? window.IRREGULAR_VERBS : [];
-
-const storedDifficulty = safeGet(localStorage, 'selectedDifficulty');
-const allowedDifficulties = ['easy', 'medium', 'hard'];
-const difficulty = allowedDifficulties.includes(storedDifficulty) ? storedDifficulty : 'easy';
-const verbs = allVerbs.filter(verb => verb.difficulty === difficulty);
-
-const templates = [
-  { label: "Present Simple", form: "base" },
-  { label: "Past Simple", form: "past" },
-  { label: "Present Perfect", form: "pp" },
-];
+const difficulty = window.VerbUtils.getSelectedDifficulty();
+const verbs = window.VerbUtils.getVerbsForDifficulty(allVerbs, difficulty);
+const templates = window.VerbUtils.templates;
 
 const TOTAL = 10;
 
@@ -32,16 +24,6 @@ let locked = false;
 let lastKey = null;
 let currentV = null;
 let currentT = null;
-
-function shuffle(arr) {
-  return arr.map(v => ({ v, s: Math.random() })).sort((a, b) => a.s - b.s).map(x => x.v);
-}
-
-function correctAnswer(v, t) {
-  if (t.form === 'base') return v.base;
-  if (t.form === 'past') return v.past;
-  return v.pp;
-}
 
 function pickRandom() {
   let v, t, key;
@@ -81,7 +63,7 @@ function renderQuestion() {
     verbStrong
   );
 
-  const options = shuffle([v.base, v.past, v.pp]);
+  const options = window.VerbUtils.shuffle([v.base, v.past, v.pp]);
   choicesEl.replaceChildren();
   options.forEach(opt => {
     const btn = document.createElement('button');
@@ -99,7 +81,7 @@ function onPick(value, btn) {
   if (locked) return;
   locked = true;
 
-  const ans = correctAnswer(currentV, currentT);
+  const ans = window.VerbUtils.correctAnswer(currentV, currentT);
   choicesEl.querySelectorAll('button').forEach(b => b.disabled = true);
 
   if (value === ans) {
