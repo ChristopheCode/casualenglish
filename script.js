@@ -157,9 +157,9 @@ document.addEventListener('click', e => {
 
 // ── Home page selector (Learn / Exercises / Exam) ──────
 const pages = [
-  { name: 'Learn',     link: './iregularverbsenglish.html' },
-  { name: 'Exercises', link: './exercises.html'            },
-  { name: 'Exam',      link: './exam.html'                 },
+  { name: 'Learn',     link: './learn.html'     },
+  { name: 'Exercises', link: './exercises.html' },
+  { name: 'Exam',      link: './exam.html'      },
 ];
 
 let currentIndex = 0;
