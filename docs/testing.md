@@ -36,6 +36,9 @@ The GitHub Actions workflow is stored in:
 
 The current smoke tests verify that:
 
+- Home can switch between Learn, Exercises, and Exam
+- Home can select Easy, Medium, and Hard
+- Legal pages load and keep the zoom-friendly viewport
 - Learn loads an irregular verb and the Next button stays usable
 - Exercises can display a question, accept an answer, and move to the next question
 - Exam can complete 10 questions and show the final result screen
@@ -78,9 +81,11 @@ This helps verify that important user flows still work after a change.
 
 Add or update a Playwright test when a change affects:
 
+- Home page navigation or difficulty selection
 - Learn navigation
 - Exercises questions or answers
 - Exam flow or final result
+- legal page viewport or layout
 - shared JavaScript used by those pages
 - important keyboard navigation
 
