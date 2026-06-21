@@ -69,7 +69,7 @@ test('Learn loads verbs and Next stays usable', async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
-test('Exercises can answer and move to next question', async ({ page }) => {
+test('Exercises can answer, save progress, and move to next question', async ({ page }) => {
   const errors = trackPageErrors(page);
 
   await page.goto(pageUrl('exercises.html'));
@@ -79,6 +79,14 @@ test('Exercises can answer and move to next question', async ({ page }) => {
 
   await page.locator('.exercise-choice').first().click();
   await expect(page.locator('#feedback')).not.toHaveText('');
+
+  const progressRaw = await page.evaluate(() => window.localStorage.casualEnglishFlashcardProgress || null);
+  expect(progressRaw).not.toBeNull();
+
+  const progress = JSON.parse(progressRaw);
+  const firstEntry = Object.values(progress)[0];
+  expect(firstEntry.views).toBe(1);
+  expect(firstEntry.correct + firstEntry.wrong).toBe(1);
 
   await page.locator('#nextExercise').click();
   await expect(page.locator('.exercise-choice')).toHaveCount(3);
