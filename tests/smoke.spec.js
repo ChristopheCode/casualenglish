@@ -10,6 +10,34 @@ const trackPageErrors = page => {
   return errors;
 };
 
+test('Home page selector and difficulty buttons stay usable', async ({ page }) => {
+  const errors = trackPageErrors(page);
+
+  await page.goto(pageUrl('index.html'));
+
+  await expect(page.locator('#mainAction')).toHaveText('Learn');
+  await expect(page.locator('#mainAction')).toHaveAttribute('href', /learn\.html$/);
+
+  await page.locator('#nextBtn').click();
+  await expect(page.locator('#mainAction')).toHaveText('Exercises');
+  await expect(page.locator('#mainAction')).toHaveAttribute('href', /exercises\.html$/);
+
+  await page.locator('#nextBtn').click();
+  await expect(page.locator('#mainAction')).toHaveText('Exam');
+  await expect(page.locator('#mainAction')).toHaveAttribute('href', /exam\.html$/);
+
+  await page.locator('.diff-btn[data-value="medium"]').click();
+  await expect(page.locator('.diff-btn[data-value="medium"]')).toHaveAttribute('aria-pressed', 'true');
+
+  await page.locator('.diff-btn[data-value="hard"]').click();
+  await expect(page.locator('.diff-btn[data-value="hard"]')).toHaveAttribute('aria-pressed', 'true');
+
+  await page.locator('.diff-btn[data-value="easy"]').click();
+  await expect(page.locator('.diff-btn[data-value="easy"]')).toHaveAttribute('aria-pressed', 'true');
+
+  expect(errors).toEqual([]);
+});
+
 test('Learn loads verbs and Next stays usable', async ({ page }) => {
   const errors = trackPageErrors(page);
 
