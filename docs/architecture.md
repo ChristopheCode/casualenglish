@@ -41,6 +41,25 @@ When a verb is added or corrected here, the change can be reused by Learn, Exerc
 
 ---
 
+## ⚙️ Shared configuration
+
+Common app settings are stored in:
+
+- `app-config.js`
+
+This file is the single place for small shared settings used by several pages.
+
+Examples:
+
+- difficulty levels
+- home page links
+- exam question count
+- verb form labels
+
+When a shared setting changes here, the pages that read `APP_CONFIG` can reuse the same value.
+
+---
+
 ## 🧠 Shared logic
 
 Common verb helper functions are stored in:
