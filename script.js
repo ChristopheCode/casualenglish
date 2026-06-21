@@ -163,11 +163,14 @@ document.addEventListener('click', e => {
 });
 
 // Section: Home page selector (Learn / Exercises / Exam)
-const pages = [
-  { name: 'Learn',     link: './learn.html'     },
-  { name: 'Exercises', link: './exercises.html' },
-  { name: 'Exam',      link: './exam.html'      },
-];
+const sharedPages = window.APP_CONFIG?.pages;
+const pages = Array.isArray(sharedPages) && sharedPages.length > 0
+  ? sharedPages
+  : [
+      { name: 'Learn',     link: './learn.html'     },
+      { name: 'Exercises', link: './exercises.html' },
+      { name: 'Exam',      link: './exam.html'      },
+    ];
 
 let currentIndex = 0;
 
