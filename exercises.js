@@ -48,12 +48,12 @@ function renderExercise() {
     button.type = "button";
     button.className = "exercise-choice";
     button.textContent = option;
-    button.addEventListener("click", () => onPick(option, button, answer));
+    button.addEventListener("click", () => onPick(option, button, answer, verb));
     choicesEl.appendChild(button);
   });
 }
 
-function onPick(value, button, answer) {
+function onPick(value, button, answer, verb) {
   if (locked) return;
   locked = true;
 
@@ -61,7 +61,10 @@ function onPick(value, button, answer) {
     choice.disabled = true;
   });
 
-  if (value === answer) {
+  const isCorrect = value === answer;
+  window.FlashcardProgress?.recordAnswer(verb, isCorrect);
+
+  if (isCorrect) {
     button.classList.add("correct");
     feedbackEl.textContent = "Correct!";
     feedbackEl.classList.add("ok");
