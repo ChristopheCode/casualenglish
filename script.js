@@ -202,7 +202,10 @@ const slider   = document.getElementById('slider');
 
 if (btnGroup && slider) {
   const diffBtns = btnGroup.querySelectorAll('.diff-btn');
-  const allowedDiffs = ['easy', 'medium', 'hard'];
+  const sharedDifficulties = window.APP_CONFIG?.difficulties;
+  const allowedDiffs = Array.isArray(sharedDifficulties) && sharedDifficulties.length > 0
+    ? sharedDifficulties
+    : ['easy', 'medium', 'hard'];
   const storedDiff = safeGet(localStorage, 'selectedDifficulty');
   const savedDiff = allowedDiffs.includes(storedDiff) ? storedDiff : 'easy';
 
