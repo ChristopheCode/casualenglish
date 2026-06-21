@@ -59,6 +59,7 @@ function showNewVerb() {
   );
 
   currentVerb = filteredVerbs[randomIndex];
+  window.FlashcardProgress?.recordView(currentVerb);
   verbPrompt.textContent = currentVerb.base;
   restartProgressAnimation((countdown + 1) * 1000);
 

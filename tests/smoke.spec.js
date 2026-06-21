@@ -55,13 +55,22 @@ test('Legal pages load and allow mobile zoom', async ({ page }) => {
   }
 });
 
-test('Learn loads verbs and Next stays usable', async ({ page }) => {
+test('Learn loads verbs, saves views, and keeps Next usable', async ({ page }) => {
   const errors = trackPageErrors(page);
 
   await page.goto(pageUrl('learn.html'));
 
   await expect(page.locator('#verbPrompt')).not.toHaveText('');
   await expect(page.locator('#nextButton')).toBeEnabled();
+
+  const progressRaw = await page.evaluate(() => window.localStorage.casualEnglishFlashcardProgress || null);
+  expect(progressRaw).not.toBeNull();
+
+  const progress = JSON.parse(progressRaw);
+  const firstEntry = Object.values(progress)[0];
+  expect(firstEntry.views).toBe(1);
+  expect(firstEntry.correct).toBe(0);
+  expect(firstEntry.wrong).toBe(0);
 
   await page.locator('#nextButton').click();
 
