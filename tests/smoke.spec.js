@@ -93,7 +93,7 @@ test('Exercises can answer, save progress, and move to next question', async ({ 
   expect(errors).toEqual([]);
 });
 
-test('Exam can complete 10 questions and show final result', async ({ page }) => {
+test('Exam can complete 10 questions, save progress, and show final result', async ({ page }) => {
   const errors = trackPageErrors(page);
 
   await page.goto(pageUrl('exam.html'));
@@ -102,6 +102,13 @@ test('Exam can complete 10 questions and show final result', async ({ page }) =>
     await page.locator('.exercise-choice:not([disabled])').first().click();
     await page.locator('#nextExamBtn').click();
   }
+
+  const progressRaw = await page.evaluate(() => window.localStorage.casualEnglishFlashcardProgress || null);
+  expect(progressRaw).not.toBeNull();
+
+  const progress = JSON.parse(progressRaw);
+  const totalViews = Object.values(progress).reduce((sum, entry) => sum + entry.views, 0);
+  expect(totalViews).toBe(10);
 
   await expect(page.locator('#result')).toBeVisible();
   await expect(page.locator('#resultScore')).toContainText('/ 10');
