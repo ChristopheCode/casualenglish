@@ -38,6 +38,23 @@ test('Home page selector and difficulty buttons stay usable', async ({ page }) =
   expect(errors).toEqual([]);
 });
 
+test('Legal pages load and allow mobile zoom', async ({ page }) => {
+  const legalPages = ['mention.html', 'cookies.html', 'confidentialite.html', 'condition.html'];
+
+  for (const legalPage of legalPages) {
+    const errors = trackPageErrors(page);
+
+    await page.goto(pageUrl(legalPage));
+
+    await expect(page.locator('meta[name="viewport"]')).toHaveAttribute(
+      'content',
+      'width=device-width, initial-scale=1.0'
+    );
+    await expect(page.locator('h1').last()).not.toHaveText('');
+    expect(errors).toEqual([]);
+  }
+});
+
 test('Learn loads verbs and Next stays usable', async ({ page }) => {
   const errors = trackPageErrors(page);
 
