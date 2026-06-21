@@ -8,7 +8,9 @@ const difficulty = window.VerbUtils.getSelectedDifficulty();
 const verbs = window.VerbUtils.getVerbsForDifficulty(allVerbs, difficulty);
 const templates = window.VerbUtils.templates;
 
-const TOTAL = 10;
+const TOTAL = Number.isInteger(window.APP_CONFIG?.examTotalQuestions)
+  ? window.APP_CONFIG.examTotalQuestions
+  : 10;
 
 const progressEl = document.getElementById('progress');
 const sentenceEl = document.getElementById('sentence');
