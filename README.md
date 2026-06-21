@@ -40,6 +40,8 @@ The project keeps the irregular verb data in one shared file and uses small Java
 
 See `docs/architecture.md` for a simple overview of the current architecture.
 
+See `docs/testing.md` for the automated browser test setup.
+
 ---
 
 ## 👥 Our Team
