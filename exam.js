@@ -88,9 +88,11 @@ function onPick(value, btn) {
   locked = true;
 
   const ans = window.VerbUtils.correctAnswer(currentV, currentT);
+  const isCorrect = value === ans;
   choicesEl.querySelectorAll('button').forEach(b => b.disabled = true);
+  window.FlashcardProgress?.recordAnswer(currentV, isCorrect);
 
-  if (value === ans) {
+  if (isCorrect) {
     score++;
     btn.classList.add('correct');
     feedbackEl.textContent = '✅ Correct!';
